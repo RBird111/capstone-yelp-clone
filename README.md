@@ -1,5 +1,6 @@
 # Welcome to Whelp...
 
-Whelp... is a Yelp clone.
+... a Yelp clone!
 
-TODO: README details.
+
+**TODO: README details.**
