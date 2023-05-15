@@ -1,4 +1,4 @@
-# MVP Feature List [^1]
+# MVP Feature List [^*]
 
 ## 1. Users
 
@@ -8,7 +8,7 @@
 - Logged in users are directed back to the landing page where they can view nearby businesses.
 - Logged out users can view businesses and reviews but cannot create reviews or business pages.
 
-## 2. Reviews
+## 3. Reviews
 
 - Users can view a business's reviews.
 - Logged in users can:
@@ -35,4 +35,4 @@
 
 - Reserved for future use.
 
-[^1]: Feature List is a living document and new features will be added/updated as the project progresses.
+[^*]: Feature List is a living document and new features will be added/updated as the project progresses.
