@@ -23,6 +23,8 @@ class Review(db.Model):
     images = db.relationship("Image", back_populates="review")
 
     # Model methods
+
+    # Full instance
     def to_dict(self):
         return {
             'id': self.id,
@@ -30,10 +32,18 @@ class Review(db.Model):
             'body': self.body,
 
             'user_id': self.user_id,
-            'user': self.user,
+            'user': self.user.to_obj(),
 
             'business_id': self.business_id,
-            'business': self.business,
+            'business': self.business.to_obj(),
 
-            'images': self.images,
+            'images': [image.to_obj() for image in self.images],
+        }
+
+    # Partial instance to avoid circular logic
+    def to_obj(self):
+        return {
+            'id': self.id,
+            'rating': self.rating,
+            'body': self.body,
         }
