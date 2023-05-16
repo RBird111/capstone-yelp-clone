@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
 
     locations = db.relationship("UserLocation", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")
+    images = db.relationship("Image", back_populates="user")
 
     # Model methods
     @property
@@ -43,4 +44,5 @@ class User(db.Model, UserMixin):
 
             'locations': self.locations,
             'reviews': self.reviews,
+            'images': self.images,
         }

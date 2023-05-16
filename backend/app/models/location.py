@@ -28,6 +28,7 @@ class Location(db.Model):
             'state': self.state,
             'lat': self.lat,
             'lng': self.lng,
+
             'business': self.business,
             'users': self.users,
         }
