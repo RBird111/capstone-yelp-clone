@@ -9,22 +9,23 @@ class Location(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     # Table columns
-
-    # Model methods
     id = db.Column(db.Integer, primary_key=True)
+    address = db.Column(db.String(40), nullable=False)
     city = db.Column(db.String(40), nullable=False)
     state = db.Column(db.String(40), nullable=False)
-    country = db.Column(db.String(40), nullable=False)
     lat = db.Column(db.Numeric)
     lng = db.Column(db.Numeric)
+
+    business = db.relationship("Business", back_populates="location")
 
     # Model methods
     def to_dict(self):
         return {
             'id': self.id,
+            'address': self.address,
             'city': self.city,
             'state': self.state,
-            'country': self.country,
             'lat': self.lat,
             'lng': self.lng,
+            'business': self.business,
         }
