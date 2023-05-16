@@ -11,7 +11,7 @@ class Business(db.Model):
     # Table columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
-    description = db.Column(db.String(500), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
     category = db.Column(db.String(40))
 
     location_id = db.Column(db.Integer, db.ForeignKey(
