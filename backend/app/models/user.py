@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     locations = db.relationship("UserLocation", back_populates="user")
+    reviews = db.relationship("Review", back_populates="user")
 
     # Model methods
     @property
@@ -39,5 +40,7 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'username': self.username,
             'email': self.email,
+
             'locations': self.locations,
+            'reviews': self.reviews,
         }

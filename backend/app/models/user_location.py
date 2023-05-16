@@ -25,8 +25,10 @@ class UserLocation(db.Model):
         return {
             'id': self.id,
             'type': self.type,
+
             'user_id': self.user_id,
             'user': self.user,
+
             'location_id': self.location_id,
             'location': self.location,
         }
