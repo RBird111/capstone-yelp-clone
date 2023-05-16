@@ -16,7 +16,7 @@ def seed_images():
             new_image = Image(
                 url=image['url'],
                 user_id=random.choice(range(1, 51)),
-                business_id=random.choice(range(1, 51)),
+                business_id=random.choice(range(1, 31)),
                 review_id=None,
             )
             db.session.add(new_image)
