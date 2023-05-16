@@ -4,11 +4,13 @@ from flask_login import UserMixin
 
 
 class User(db.Model, UserMixin):
+    # Table properties
     __tablename__ = 'users'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
+    # Table columns
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(40), nullable=False, unique=True)
     last_name = db.Column(db.String(40), nullable=False, unique=True)
@@ -16,6 +18,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    # Model methods
     @property
     def password(self):
         return self.hashed_password
