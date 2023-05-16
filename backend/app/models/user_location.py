@@ -10,7 +10,6 @@ class UserLocation(db.Model):
 
     # Table columns
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(40))
 
     user_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod("users.id")), nullable=False)
@@ -18,13 +17,12 @@ class UserLocation(db.Model):
         add_prefix_for_prod("locations.id")), nullable=False)
 
     user = db.relationship("User", back_populates="locations")
-    location = db.relationship("Locations", back_populates="users")
+    location = db.relationship("Location", back_populates="users")
 
     # Model methods
     def to_dict(self):
         return {
             'id': self.id,
-            'type': self.type,
 
             'user_id': self.user_id,
             'user': self.user,
