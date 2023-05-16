@@ -17,6 +17,7 @@ class Location(db.Model):
     lng = db.Column(db.Numeric)
 
     business = db.relationship("Business", back_populates="location")
+    users = db.relationship("UserLocation", back_populates="location")
 
     # Model methods
     def to_dict(self):
@@ -28,4 +29,5 @@ class Location(db.Model):
             'lat': self.lat,
             'lng': self.lng,
             'business': self.business,
+            'users': self.users,
         }

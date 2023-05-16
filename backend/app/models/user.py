@@ -18,6 +18,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    locations = db.relationship("UserLocation", back_populates="user")
+
     # Model methods
     @property
     def password(self):
@@ -36,5 +38,6 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'locations': self.locations,
         }
