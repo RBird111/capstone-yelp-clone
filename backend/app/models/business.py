@@ -17,7 +17,8 @@ class Business(db.Model):
     location_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod("locations.id")), nullable=False)
 
-    location = db.relationship("Location", back_populates="business")
+    location = db.relationship(
+        "Location", back_populates="business", cascade="all, delete-orphan")
     reviews = db.relationship("Review", back_populates="business")
     images = db.relationship("Image", back_populates="business")
 

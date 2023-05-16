@@ -16,7 +16,8 @@ class Location(db.Model):
     lat = db.Column(db.Numeric)
     lng = db.Column(db.Numeric)
 
-    business = db.relationship("Business", back_populates="location")
+    business = db.relationship(
+        "Business", back_populates="location", cascade="all, delete-orphan")
     users = db.relationship("UserLocation", back_populates="location")
 
     # Model methods

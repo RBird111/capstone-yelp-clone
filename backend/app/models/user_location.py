@@ -18,7 +18,7 @@ class UserLocation(db.Model):
         add_prefix_for_prod("locations.id")), nullable=False)
 
     user = db.relationship("User", back_populates="locations")
-    location = db.relationship("Locations", back_populates="users")
+    location = db.relationship("Location", back_populates="users")
 
     # Model methods
     def to_dict(self):
