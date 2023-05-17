@@ -9,7 +9,7 @@ import * as sessionActions from "./store/session";
 import * as businessActions from "./store/business";
 import App from "./App";
 
-import "./index.css";
+import "./index.scss";
 
 const store = configureStore();
 
