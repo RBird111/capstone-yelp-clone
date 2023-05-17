@@ -27,7 +27,6 @@ def authenticate():
     """
     Authenticates a user.
     """
-    # If user not authenticated
     if not current_user.is_authenticated:
         return {'errors': ['Unauthorized']}
 
@@ -51,8 +50,10 @@ def login():
 
     # Add the user to the session, we are logged in!
     user = User.query.filter(
-        User.email == form.data['credential'] or
-        User.username == form.data['credential']).first()
+        (User.email == form.data['credential']) |
+        (User.username == form.data['credential'])
+    ).first()
+
     login_user(user)
 
     return user.to_dict()

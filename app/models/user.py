@@ -34,6 +34,9 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    # Model methods
+
+    # Full instance
     def to_dict(self):
         return {
             'id': self.id,
@@ -42,7 +45,16 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
 
-            'locations': self.locations,
-            'reviews': self.reviews,
-            'images': self.images,
+            'locations': [location.to_obj() for location in self.locations],
+            'reviews': [review.to_obj() for review in self.reviews],
+            'images': [image.to_obj() for image in self.images],
+        }
+
+    # Partial instance to avoid circular logic
+    def to_obj(self):
+        return {
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'username': self.username,
+            'email': self.email,
         }

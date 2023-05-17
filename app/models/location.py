@@ -20,6 +20,8 @@ class Location(db.Model):
     users = db.relationship("UserLocation", back_populates="location")
 
     # Model methods
+
+    # Full instance
     def to_dict(self):
         return {
             'id': self.id,
@@ -29,6 +31,17 @@ class Location(db.Model):
             'lat': self.lat,
             'lng': self.lng,
 
-            'business': self.business,
-            'users': self.users,
+            'business': self.business.to_obj(),
+            'users': [user.to_obj() for user in self.users],
+        }
+
+    # Partial instance to avoid circular logic
+    def to_obj(self):
+        return {
+            'id': self.id,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'lat': self.lat,
+            'lng': self.lng,
         }
