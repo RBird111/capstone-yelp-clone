@@ -38,6 +38,7 @@ def undo_businesses():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.businesses RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM businesses"))
+        db.session.execute(
+            f"TRUNCATE table businesses RESTART IDENTITY CASCADE;")
 
     db.session.commit()
