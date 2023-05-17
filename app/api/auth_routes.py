@@ -27,11 +27,10 @@ def authenticate():
     """
     Authenticates a user.
     """
-    # If user not authenticated
-    if not current_user.is_authenticated:
-        return {'errors': ['Unauthorized']}
+    if current_user.is_authenticated:
+        return current_user.to_dict()
 
-    return current_user.to_dict()
+    return {'errors': ['Unauthorized']}
 
 
 # User login

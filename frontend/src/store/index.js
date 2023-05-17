@@ -4,11 +4,21 @@ import {
   applyMiddleware,
   compose,
 } from "redux";
+
 import thunk from "redux-thunk";
 import session from "./session";
+import businessReducer from "./business";
 
+// Helper function that handles failed promises
+export const handleErrors = async (response) => {
+  const errors = await response.json();
+  return errors;
+};
+
+// ---MAIN REDUCER --- \\
 const rootReducer = combineReducers({
   session,
+  business: businessReducer,
 });
 
 let enhancer;

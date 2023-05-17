@@ -1,8 +1,8 @@
-// Constants
+// ---TYPES--- \\
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
-// Actions
+// ---ACTIONS--- \\
 const setUser = (user) => ({
   type: SET_USER,
   payload: user,
@@ -12,7 +12,7 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
-// Thunks
+// ---ACTION DISPATCHERS--- \\
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth", {
     headers: {
@@ -20,12 +20,14 @@ export const authenticate = () => async (dispatch) => {
     },
   });
 
-  if (!response.ok) {
-    return;
-  }
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
 
-  const data = await response.json();
-  dispatch(setUser(data));
+    dispatch(setUser(data));
+  }
 };
 
 export const login =
@@ -89,7 +91,7 @@ export const signUp = (user) => async (dispatch) => {
   }
 };
 
-// Reducer
+// ---REDUCER--- \\
 const initialState = { user: null };
 
 const reducer = (state = initialState, action) => {
