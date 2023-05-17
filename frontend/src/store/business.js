@@ -39,7 +39,7 @@ export const getBusiness = (businessId) => async (dispatch) => {
 
   if (!response.ok) return handleErrors(response);
 
-  const business = await response.json();
+  const { business } = await response.json();
   dispatch(_getBusiness(business));
 
   return business;
@@ -50,40 +50,40 @@ export const getAllBusinesses = () => async (dispatch) => {
 
   if (!response.ok) return handleErrors(response);
 
-  const businesses = await response.json();
+  const { businesses } = await response.json();
   dispatch(_getAllBusinesses(businesses));
 
   return businesses;
 };
 
-export const createBusiness = (business) => async (dispatch) => {
+export const createBusiness = (businessData) => async (dispatch) => {
   const response = await fetch(`/api/businesses`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(business),
+    body: JSON.stringify(businessData),
   });
 
   if (!response.ok) return handleErrors(response);
 
-  const newBusiness = await response.json();
-  dispatch(_createBusiness(newBusiness));
+  const { business } = await response.json();
+  dispatch(_createBusiness(business));
 
-  return newBusiness;
+  return business;
 };
 
-export const updateBusiness = (business) => async (dispatch) => {
-  const response = await fetch(`/api/businesses/${business.id}`, {
+export const updateBusiness = (businessData) => async (dispatch) => {
+  const response = await fetch(`/api/businesses/${businessData.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(business),
+    body: JSON.stringify(businessData),
   });
 
   if (!response.ok) return handleErrors(response);
 
-  const updatedBusiness = await response.json();
-  dispatch(_updateBusiness(updatedBusiness));
+  const { business } = await response.json();
+  dispatch(_updateBusiness(business));
 
-  return updatedBusiness;
+  return business;
 };
 
 export const deleteBusiness = (businessId) => async (dispatch) => {
@@ -91,7 +91,7 @@ export const deleteBusiness = (businessId) => async (dispatch) => {
 
   if (!response.ok) return handleErrors(response);
 
-  const message = response.json();
+  const { message } = response.json();
   dispatch(_deleteBusiness(businessId));
 
   return message;
