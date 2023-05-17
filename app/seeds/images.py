@@ -44,6 +44,7 @@ def undo_images():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.images RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM images"))
+        db.session.execute(
+            f"TRUNCATE table images RESTART IDENTITY CASCADE;")
 
     db.session.commit()

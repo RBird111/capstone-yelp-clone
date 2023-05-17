@@ -21,7 +21,7 @@ def validation_errors_to_messages(validation_errors):
     return errorMessages
 
 
-@business_routes.route('')
+@business_routes.route('', methods=['GET'])
 def get_all_businesses():
     """
     GET all businesses
@@ -59,7 +59,7 @@ def create_business():
     return {'business': new_business.to_dict()}, 201
 
 
-@business_routes.route('/<int:id>')
+@business_routes.route('/<int:id>', methods=['GET'])
 def get_business(id):
     """
     GET business by id

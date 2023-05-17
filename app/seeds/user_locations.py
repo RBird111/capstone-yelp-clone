@@ -31,6 +31,7 @@ def undo_user_locations():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.user_locations RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM user_locations"))
+        db.session.execute(
+            f"TRUNCATE table user_locations RESTART IDENTITY CASCADE;")
 
     db.session.commit()

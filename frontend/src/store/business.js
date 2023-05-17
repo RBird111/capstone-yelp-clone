@@ -87,7 +87,9 @@ export const updateBusiness = (businessData) => async (dispatch) => {
 };
 
 export const deleteBusiness = (businessId) => async (dispatch) => {
-  const response = await fetch(`/api/businesses/${businessId}`);
+  const response = await fetch(`/api/businesses/${businessId}`, {
+    method: "DELETE",
+  });
 
   if (!response.ok) return handleErrors(response);
 

@@ -34,6 +34,7 @@ def undo_locations():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.locations RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM locations"))
+        db.session.execute(
+            f"TRUNCATE table locations RESTART IDENTITY CASCADE;")
 
     db.session.commit()
