@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(40), nullable=False)
     last_name = db.Column(db.String(40), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
+    email = db.Column(db.String(40), nullable=False, unique=True)
     hashed_password = db.Column(db.String(500), nullable=False)
 
     locations = db.relationship("UserLocation", back_populates="user")
