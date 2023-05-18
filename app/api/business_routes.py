@@ -5,9 +5,8 @@ from app.models import db, Business
 
 business_routes = Blueprint("businesses", __name__)
 
+
 # Function that returns a list of error messasges
-
-
 def validation_errors_to_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list
@@ -29,7 +28,7 @@ def get_all_businesses():
     businesses = Business.query.all()
 
     if not businesses:
-        return {'errors': ['Error trying to load businesses.']}
+        return {'errors': ['Error trying to load businesses.']}, 404
 
     return {'businesses': [business.to_dict() for business in businesses]}
 
