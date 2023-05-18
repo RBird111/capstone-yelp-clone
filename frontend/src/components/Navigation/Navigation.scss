@@ -1,9 +1,16 @@
 .nav-bar-div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   border-bottom: 1px solid black;
   padding-bottom: 15px;
+
+  a.nav-logo {
+    color: #ff1a1a;
+    font-weight: bold;
+    text-decoration: none;
+  }
 }
 
 .profile-button-div {

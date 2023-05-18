@@ -9,8 +9,10 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="nav-bar-div">
-      <NavLink exact to="/">
-        Home
+      {/* <p className="nav-logo">whelp...</p> */}
+
+      <NavLink className="nav-logo" exact to="/">
+        whelp...
       </NavLink>
 
       {isLoaded && (
