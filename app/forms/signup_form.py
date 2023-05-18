@@ -1,6 +1,7 @@
+import re
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import User
 
 
@@ -20,8 +21,24 @@ def username_exists(form, field):
         raise ValidationError('Username is already in use.')
 
 
+def valid_email(form, field):
+    email = field.data
+    valid = re.match(r'^[\w\d!$-_]+@[\w\d]+.[\w\d]+$')
+    if not valid:
+        raise ValidationError('Must provide valid email.')
+
+
 class SignUpForm(FlaskForm):
+    first_name = StringField('first_name', validators=[
+                             DataRequired(), Length(1, 40)])
+
+    last_name = StringField('last_name', validators=[
+                            DataRequired(), Length(1, 40)])
+
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
+        'username', validators=[DataRequired(), username_exists, Length(1, 40)])
+
+    email = StringField('email', validators=[
+                        DataRequired(), user_exists, Length(1, 40), valid_email])
+
     password = StringField('password', validators=[DataRequired()])
