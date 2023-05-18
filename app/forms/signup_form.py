@@ -23,7 +23,7 @@ def username_exists(form, field):
 
 def valid_email(form, field):
     email = field.data
-    valid = re.match(r'^[\w\d!$-_]+@[\w\d]+.[\w\d]+$')
+    valid = re.match(r'^[\w\d!$-_]+@[\w\d]+.[\w\d]+$', email)
     if not valid:
         raise ValidationError('Must provide valid email.')
 
