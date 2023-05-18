@@ -100,7 +100,7 @@ export const signUp = (user) => async (dispatch) => {
 };
 
 export const updateUser = (userData) => async (dispatch) => {
-  const response = await fetch(`/api/user/${userData.id}`, {
+  const response = await fetch(`/api/user/curr`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userData),
@@ -115,7 +115,7 @@ export const updateUser = (userData) => async (dispatch) => {
 };
 
 export const deleteUser = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/user/${userId}`, {
+  const response = await fetch(`/api/user/curr`, {
     method: "DELETE",
   });
 

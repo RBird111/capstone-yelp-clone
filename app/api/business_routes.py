@@ -29,7 +29,7 @@ def get_all_businesses():
     businesses = Business.query.all()
 
     if not businesses:
-        return {'error': 'Error trying to load businesses.'}
+        return {'errors': ['Error trying to load businesses.']}
 
     return {'businesses': [business.to_dict() for business in businesses]}
 
@@ -67,7 +67,7 @@ def get_business(id):
     business = Business.query.get(id)
 
     if not business:
-        return {'error': 'Business could not be found.'}, 404
+        return {'errors': ['Business could not be found.']}, 404
 
     return {'business': business.to_dict()}
 
@@ -87,7 +87,7 @@ def update_business(id):
     business = Business.query.get(id)
 
     if not business:
-        return {'error': 'Business could not be found.'}, 404
+        return {'errors': ['Business could not be found.']}, 404
 
     business.name = form.data['name']
     business.description = form.data['description']
@@ -108,7 +108,7 @@ def delete_business(id):
     business = Business.query.get(id)
 
     if not business:
-        return {'error': 'Business could not be found.'}, 404
+        return {'errors': ['Business could not be found.']}, 404
 
     db.session.delete(business)
     db.session.commit()
