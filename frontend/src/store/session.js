@@ -1,8 +1,9 @@
-import { normalize } from ".";
+import { normalize, handleErrors } from ".";
 
 // ---TYPES--- \\
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const UPDATE_USER = "session/UPDATE_USER";
 
 // ---ACTIONS--- \\
 const setUser = (user) => ({
@@ -12,6 +13,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+});
+
+const _updateUser = (user) => ({
+  type: UPDATE_USER,
+  user,
 });
 
 // ---ACTION DISPATCHERS--- \\
@@ -93,6 +99,34 @@ export const signUp = (user) => async (dispatch) => {
   }
 };
 
+export const updateUser = (userData) => async (dispatch) => {
+  const response = await fetch(`/api/user/${userData.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData),
+  });
+
+  if (!response.ok) return await handleErrors(response);
+
+  const { user } = await response.json();
+  dispatch(_updateUser(user));
+
+  return user;
+};
+
+export const deleteUser = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/user/${userId}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) return await handleErrors(response);
+
+  const { message } = await response.json();
+  dispatch(removeUser());
+
+  return message;
+};
+
 // ---REDUCER--- \\
 const initialState = { user: null };
 
@@ -102,6 +136,8 @@ const reducer = (state = initialState, action) => {
       return { user: normalize(action.payload) };
     case REMOVE_USER:
       return { user: null };
+    case UPDATE_USER:
+      return { user: normalize(action.user) };
     default:
       return state;
   }

@@ -37,7 +37,7 @@ const _deleteBusiness = (businessId) => ({
 export const getBusiness = (businessId) => async (dispatch) => {
   const response = await fetch(`/api/businesses/${businessId}`);
 
-  if (!response.ok) return handleErrors(response);
+  if (!response.ok) return await handleErrors(response);
 
   const { business } = await response.json();
   dispatch(_getBusiness(business));
@@ -48,7 +48,7 @@ export const getBusiness = (businessId) => async (dispatch) => {
 export const getAllBusinesses = () => async (dispatch) => {
   const response = await fetch(`/api/businesses`);
 
-  if (!response.ok) return handleErrors(response);
+  if (!response.ok) return await handleErrors(response);
 
   const { businesses } = await response.json();
   dispatch(_getAllBusinesses(businesses));
@@ -63,7 +63,7 @@ export const createBusiness = (businessData) => async (dispatch) => {
     body: JSON.stringify(businessData),
   });
 
-  if (!response.ok) return handleErrors(response);
+  if (!response.ok) return await handleErrors(response);
 
   const { business } = await response.json();
   dispatch(_createBusiness(business));
@@ -78,7 +78,7 @@ export const updateBusiness = (businessData) => async (dispatch) => {
     body: JSON.stringify(businessData),
   });
 
-  if (!response.ok) return handleErrors(response);
+  if (!response.ok) return await handleErrors(response);
 
   const { business } = await response.json();
   dispatch(_updateBusiness(business));
@@ -91,7 +91,7 @@ export const deleteBusiness = (businessId) => async (dispatch) => {
     method: "DELETE",
   });
 
-  if (!response.ok) return handleErrors(response);
+  if (!response.ok) return await handleErrors(response);
 
   const { message } = response.json();
   dispatch(_deleteBusiness(businessId));
