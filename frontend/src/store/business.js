@@ -1,4 +1,4 @@
-import { handleErrors } from ".";
+import { handleErrors, normalize } from ".";
 
 // ---TYPES--- \\
 const GET_BUSINESS = "business/GET_BUSINESS";
@@ -109,7 +109,7 @@ const businessReducer = (state = initialState, action) => {
       const newState = { ...state, allBusinesses: { ...state.allBusinesses } };
 
       // Overwrite business
-      newState.currBusiness = action.business;
+      newState.currBusiness = normalize(action.business);
 
       return newState;
     }
@@ -117,12 +117,8 @@ const businessReducer = (state = initialState, action) => {
       // Create deep copy of state
       const newState = { ...state };
 
-      // Normalize data
-      const businesses = {};
-      action.businesses.map((business) => (businesses[business.id] = business));
-
       // Overwrite allBusinesses
-      newState.allBusinesses = businesses;
+      newState.allBusinesses = normalize(action.businesses);
 
       return newState;
     }
@@ -131,8 +127,8 @@ const businessReducer = (state = initialState, action) => {
       const newState = { ...state, allBusinesses: { ...state.allBusinesses } };
 
       // Overwrite currBusiness and allBusinesses
-      newState.currBusiness = action.business;
-      newState.allBusinesses[action.business.id] = action.business;
+      newState.currBusiness = normalize(action.business);
+      newState.allBusinesses[action.business.id] = normalize(action.business);
 
       return newState;
     }
@@ -141,8 +137,8 @@ const businessReducer = (state = initialState, action) => {
       const newState = { ...state, allBusinesses: { ...state.allBusinesses } };
 
       // Overwrite business and allBusinesses
-      newState.currBusiness = action.business;
-      newState.allBusinesses[action.business.id] = action.business;
+      newState.currBusiness = normalize(action.business);
+      newState.allBusinesses[action.business.id] = normalize(action.business);
 
       return newState;
     }

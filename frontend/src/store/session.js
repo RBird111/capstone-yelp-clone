@@ -1,3 +1,5 @@
+import { normalize } from ".";
+
 // ---TYPES--- \\
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -97,7 +99,7 @@ const initialState = { user: null };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload };
+      return { user: normalize(action.payload) };
     case REMOVE_USER:
       return { user: null };
     default:
