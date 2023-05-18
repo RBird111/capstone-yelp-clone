@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import businessReducer from "./business";
+import locationReducer from "./locations";
 
 // Helper function that handles failed promises
 export const handleErrors = async (response) => {
@@ -44,6 +45,7 @@ export const normalize = (data) => {
 const rootReducer = combineReducers({
   session,
   business: businessReducer,
+  location: locationReducer,
 });
 
 let enhancer;

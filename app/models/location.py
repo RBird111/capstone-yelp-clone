@@ -16,7 +16,8 @@ class Location(db.Model):
     lat = db.Column(db.Numeric)
     lng = db.Column(db.Numeric)
 
-    business = db.relationship("Business", back_populates="location")
+    business = db.relationship(
+        "Business", back_populates="location")
     users = db.relationship("UserLocation", back_populates="location")
 
     # Model methods
@@ -31,7 +32,7 @@ class Location(db.Model):
             'lat': self.lat,
             'lng': self.lng,
 
-            'business': self.business.to_obj(),
+            'business': self.business[0].to_obj() if len(self.business) > 0 else {},
             'users': [user.to_obj() for user in self.users],
         }
 
