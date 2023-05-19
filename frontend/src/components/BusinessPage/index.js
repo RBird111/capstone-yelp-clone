@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 import "./BusinessPage.scss";
 import { getBusiness } from "../../store/business";
+import StarRatingBar from "../FormElements/StarRatingBar";
 
 const BusinessPage = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const BusinessPage = () => {
       <h3>Reviews:</h3>
       {Object.values(reviews).map((review) => (
         <div key={review.id}>
-          <p>Rating: {review.rating}</p>
+          <StarRatingBar rating={review.rating} />
 
           <p>Body: {review.body}</p>
         </div>

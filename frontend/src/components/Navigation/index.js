@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.scss";
+import Logo from "../FormElements/Logo";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -9,7 +10,8 @@ function Navigation({ isLoaded }) {
   return (
     <div className="nav-bar-div">
       <NavLink className="nav-logo" exact to="/">
-        whelp...
+        {/* whelp... */}
+        <Logo />
       </NavLink>
 
       {isLoaded && (
