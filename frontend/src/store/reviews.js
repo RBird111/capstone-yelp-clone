@@ -9,27 +9,27 @@ const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
 // ---ACTIONS--- \\
 const _getReview = (review) => ({
-  action: GET_REVIEW,
+  type: GET_REVIEW,
   review,
 });
 
 const _getAllReviews = (reviews) => ({
-  action: GET_ALL_REVIEWS,
+  type: GET_ALL_REVIEWS,
   reviews,
 });
 
 const _createReview = (review) => ({
-  action: CREATE_REVIEW,
+  type: CREATE_REVIEW,
   review,
 });
 
 const _updateReview = (review) => ({
-  action: UPDATE_REVIEW,
+  type: UPDATE_REVIEW,
   review,
 });
 
 const _deleteReview = (reviewId) => ({
-  action: DELETE_REVIEW,
+  type: DELETE_REVIEW,
   reviewId,
 });
 
@@ -106,7 +106,7 @@ const reviewReducer = (state = initialState, action) => {
       const newState = { ...state, allReviews: { ...state.allReviews } };
 
       newState.currReview = normalize(action.review);
-      newState.allReviews[action.review] = normalize(action.review);
+      newState.allReviews[action.review.id] = normalize(action.review);
 
       return newState;
     }
@@ -123,7 +123,7 @@ const reviewReducer = (state = initialState, action) => {
       const newState = { ...state, allReviews: { ...state.allReviews } };
 
       newState.currReview = normalize(action.review);
-      newState.allReviews[action.review] = normalize(action.review);
+      newState.allReviews[action.review.id] = normalize(action.review);
 
       return newState;
     }
@@ -132,7 +132,7 @@ const reviewReducer = (state = initialState, action) => {
       const newState = { ...state, allReviews: { ...state.allReviews } };
 
       newState.currReview = normalize(action.review);
-      newState.allReviews[action.review] = normalize(action.review);
+      newState.allReviews[action.review.id] = normalize(action.review);
 
       return newState;
     }
@@ -141,7 +141,7 @@ const reviewReducer = (state = initialState, action) => {
       const newState = { ...state, allReviews: { ...state.allReviews } };
 
       newState.currReview = {};
-      delete newState.allReviews[action.review];
+      delete newState.allReviews[action.review.id];
 
       return newState;
     }
