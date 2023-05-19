@@ -3,7 +3,7 @@ import { handleErrors, normalize } from ".";
 // ---TYPES--- \\
 const GET_REVIEW = "reviews/GET_REVIEW";
 const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
-const GET_RANDOM_REVIEWS = "reviews/GET_RANDOM_REVIEWS";
+// const GET_RANDOM_REVIEWS = "reviews/GET_RANDOM_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
@@ -19,10 +19,10 @@ const _getAllReviews = (reviews) => ({
   reviews,
 });
 
-const _getRandomReviews = (reviews) => ({
-  type: GET_RANDOM_REVIEWS,
-  reviews,
-});
+// const _getRandomReviews = (reviews) => ({
+//   type: GET_RANDOM_REVIEWS,
+//   reviews,
+// });
 
 const _createReview = (review) => ({
   type: CREATE_REVIEW,
@@ -62,16 +62,17 @@ export const getAllReviews = () => async (dispatch) => {
   return reviews;
 };
 
-export const getRandomReviews = (num) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/random/${num}`);
+// // num => number of random reviews desired
+// export const getRandomReviews = (num) => async (dispatch) => {
+//   const response = await fetch(`/api/reviews/random/${num}`);
 
-  if (!response.ok) return await handleErrors(response);
+//   if (!response.ok) return await handleErrors(response);
 
-  const { reviews } = await response.json();
-  dispatch(_getRandomReviews(reviews));
+//   const { reviews } = await response.json();
+//   dispatch(_getRandomReviews(reviews));
 
-  return reviews;
-};
+//   return reviews;
+// };
 
 export const createReview = (reviewData) => async (dispatch) => {
   const response = await fetch(`/api/reviews`, {
@@ -115,7 +116,7 @@ export const deleteReview = (reviewId) => async (dispatch) => {
 };
 
 // ---REDUCER--- \\
-const initialState = { currReview: {}, allReviews: {}, randReviews: {} };
+const initialState = { currReview: {}, allReviews: {} };
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -136,13 +137,13 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
     }
 
-    case GET_RANDOM_REVIEWS: {
-      const newState = { ...state };
+    // case GET_RANDOM_REVIEWS: {
+    //   const newState = { ...state };
 
-      newState.randReviews = normalize(action.reviews);
+    //   newState.randReviews = normalize(action.reviews);
 
-      return newState;
-    }
+    //   return newState;
+    // }
 
     case CREATE_REVIEW: {
       const newState = { ...state };

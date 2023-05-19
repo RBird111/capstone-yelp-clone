@@ -1,3 +1,4 @@
+import random
 from flask import Blueprint, request
 from flask_login import current_user, login_required
 from app.forms import ReviewForm
@@ -44,6 +45,21 @@ def get_all_reviews():
         return {'errors': ['Error retrieving reviews.']}, 404
 
     return {'reviews': [review.to_dict() for review in reviews]}
+
+
+@review_routes.route('/random/<int:num>', methods=['GET'])
+def random_reviews(num):
+    """
+    GET random number of reviews
+    """
+    all_reviews = Review.query.all()
+
+    if not all_reviews:
+        return {'errors': ['Error retrieving reviews.']}, 404
+
+    random_reviews = random.sample(all_reviews, num)
+
+    return {'reviews': [review.to_dict() for review in random_reviews]}
 
 
 @review_routes.route('', methods=['POST'])
