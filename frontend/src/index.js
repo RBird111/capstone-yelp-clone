@@ -7,6 +7,7 @@ import { ModalProvider, Modal } from "./context/Modal";
 import configureStore, { normalize } from "./store";
 import * as businessActions from "./store/business";
 import * as locationActions from "./store/locations";
+import * as reviewActions from "./store/reviews";
 import * as sessionActions from "./store/session";
 import App from "./App";
 
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV !== "production") {
   window.normalize = normalize;
   window.businessActions = businessActions;
   window.locationActions = locationActions;
+  window.reviewActions = reviewActions;
   window.sessionActions = sessionActions;
 }
 

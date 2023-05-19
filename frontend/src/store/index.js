@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import session from "./session";
 import businessReducer from "./business";
 import locationReducer from "./locations";
+import reviewReducer from "./reviews";
 
 // Helper function that handles failed promises
 export const handleErrors = async (response) => {
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   session,
   business: businessReducer,
   location: locationReducer,
+  reviews: reviewReducer,
 });
 
 let enhancer;
