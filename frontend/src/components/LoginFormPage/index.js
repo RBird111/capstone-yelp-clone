@@ -3,13 +3,16 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { login } from "../../store/session";
 import "./LoginForm.scss";
+import FormInput, { toInput } from "../FormElements/FormInput/FormInput";
+import HandleErrors from "../FormElements/HandleErrors/HandleErrors";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
+
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,29 +28,16 @@ function LoginFormPage() {
     <div className="login-form">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
+        <HandleErrors errors={errors} />
+
+        <FormInput
+          input={toInput("Username or Email", credential, setCredential)}
+        />
+
+        <FormInput
+          input={toInput("Password", password, setPassword, "password")}
+        />
+
         <button type="submit">Log In</button>
       </form>
     </div>

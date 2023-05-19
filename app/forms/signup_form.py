@@ -10,7 +10,7 @@ def user_exists(form, field):
     email = field.data
     user = User.query.filter(User.email == email).first()
     if user:
-        raise ValidationError('Email address is already in use.')
+        raise ValidationError('email address is already in use')
 
 
 def username_exists(form, field):
@@ -18,27 +18,28 @@ def username_exists(form, field):
     username = field.data
     user = User.query.filter(User.username == username).first()
     if user:
-        raise ValidationError('Username is already in use.')
+        raise ValidationError('username is already in use')
 
 
 def valid_email(form, field):
     email = field.data
     valid = re.match(r'^[\w\d!$-_]+@[\w\d]+.[\w\d]+$', email)
     if not valid:
-        raise ValidationError('Must provide valid email.')
+        raise ValidationError('must provide a valid email')
 
 
 class SignUpForm(FlaskForm):
     first_name = StringField('first_name', validators=[
-                             DataRequired(), Length(1, 40)])
+                             DataRequired("must submit a first name"), Length(1, 40)])
 
     last_name = StringField('last_name', validators=[
-                            DataRequired(), Length(1, 40)])
+                            DataRequired('must submit a last name'), Length(1, 40)])
 
     username = StringField(
-        'username', validators=[DataRequired(), username_exists, Length(1, 40)])
+        'username', validators=[DataRequired('must submit a username'), username_exists, Length(1, 40)])
 
     email = StringField('email', validators=[
-                        DataRequired(), user_exists, Length(1, 40), valid_email])
+                        DataRequired('must submit an email'), user_exists, Length(1, 40), valid_email])
 
-    password = StringField('password', validators=[DataRequired()])
+    password = StringField('password', validators=[
+                           DataRequired('must enter a password')])

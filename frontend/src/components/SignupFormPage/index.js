@@ -2,10 +2,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 import { useModal } from "../../context/Modal";
+
+import FormInput, { toInput } from "../FormElements/FormInput/FormInput";
 import "./SignupForm.scss";
+import HandleErrors from "../FormElements/HandleErrors/HandleErrors";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
+
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +18,6 @@ function SignupFormPage() {
   const [last_name, setLastName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,66 +46,31 @@ function SignupFormPage() {
   return (
     <div className="signup-form">
       <h1>Sign Up</h1>
+
       <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          First Name
-          <input
-            type="text"
-            value={first_name}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Last Name
-          <input
-            type="text"
-            value={last_name}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
+        <HandleErrors errors={errors} />
+
+        <FormInput input={toInput("First Name", first_name, setFirstName)} />
+
+        <FormInput input={toInput("Last Name", last_name, setLastName)} />
+
+        <FormInput input={toInput("Email", email, setEmail)} />
+
+        <FormInput input={toInput("Username", username, setUsername)} />
+
+        <FormInput
+          input={toInput("Password", password, setPassword, "password")}
+        />
+
+        <FormInput
+          input={toInput(
+            "Confirm Password",
+            confirmPassword,
+            setConfirmPassword,
+            "password"
+          )}
+        />
+
         <button type="submit">Sign Up</button>
       </form>
     </div>
