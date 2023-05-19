@@ -8,13 +8,15 @@
   padding-bottom: 15px;
 
   a.nav-logo {
-    color: #ff1a1a;
-    font-weight: bold;
     text-decoration: none;
   }
 }
 
 .profile-button-div {
+  button {
+    cursor: pointer;
+  }
+
   .profile-dropdown {
     background-color: white;
     border: 1px solid black;
