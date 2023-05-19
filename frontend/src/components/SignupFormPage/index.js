@@ -3,9 +3,10 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 import { useModal } from "../../context/Modal";
 
-import FormInput, { toInput } from "../FormElements/FormInput/FormInput";
+import FormInput, { toInput } from "../FormElements/FormInput";
+import HandleErrors from "../FormElements/HandleErrors";
 import "./SignupForm.scss";
-import HandleErrors from "../FormElements/HandleErrors/HandleErrors";
+import DefaultButton from "../FormElements/DefaultButton";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function SignupFormPage() {
       const data = await dispatch(signUp(user));
       if (data) {
         setErrors(data);
+        console.log("THESE ARE ERRORS =>", errors);
       } else {
         closeModal();
       }
@@ -71,7 +73,7 @@ function SignupFormPage() {
           )}
         />
 
-        <button type="submit">Sign Up</button>
+        <DefaultButton text={"Sign Up"} />
       </form>
     </div>
   );

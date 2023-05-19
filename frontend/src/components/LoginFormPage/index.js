@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { login } from "../../store/session";
+
 import "./LoginForm.scss";
-import FormInput, { toInput } from "../FormElements/FormInput/FormInput";
-import HandleErrors from "../FormElements/HandleErrors/HandleErrors";
+import FormInput, { toInput } from "../FormElements/FormInput";
+import HandleErrors from "../FormElements/HandleErrors";
+import DefaultButton from "../FormElements/DefaultButton";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ function LoginFormPage() {
           input={toInput("Password", password, setPassword, "password")}
         />
 
-        <button type="submit">Log In</button>
+        <DefaultButton text={"Log In"} />
       </form>
     </div>
   );
