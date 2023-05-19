@@ -67,7 +67,7 @@ def logout():
     """
     logout_user()
 
-    return {'message': 'User logged out'}
+    return {'message': 'user logged out'}
 
 
 # Sign up new user
