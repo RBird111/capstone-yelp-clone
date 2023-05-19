@@ -95,7 +95,7 @@ def update_location(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if not form.validate_on_sbumit():
+    if not form.validate_on_submit():
         return {'errors': validation_errors_to_messages(form.errors)}, 401
 
     review = Review.query.get(id)

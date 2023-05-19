@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+// Bar that displays a rating using five StarIcon components
+// It becomes reactive when supplite with a setRating function
+// otherwise it remains inert when hovered over
 const StarRatingBar = ({ rating, setRating }) => {
   const colors = {
     1: "#ffcc4b",
@@ -11,16 +14,22 @@ const StarRatingBar = ({ rating, setRating }) => {
 
   const [disRating, setDisRating] = useState(rating);
 
-  const createProps = () => {
-    return {
-      onMouseEnter: () => {},
-      onMouseLeave: () => {},
-      onClick: () => {},
-    };
-  };
-
+  // Component that renders a single star
   const StarIcon = ({ number }) => {
-    const iconColor = number <= rating ? colors[rating] : "lightgray";
+    const iconColor = number <= disRating ? colors[disRating] : "lightgray";
+
+    // If setRating is supplied than the component becomes reactive
+    const createProps = () => {
+      // Function that does nothing
+      // Default used if no setRating is supplied
+      const def = () => {};
+
+      return {
+        onMouseEnter: setRating ? () => setDisRating(number) : def,
+        onMouseLeave: setRating ? () => setDisRating(rating) : def,
+        onClick: setRating ? () => setRating(number) : def,
+      };
+    };
 
     const starStyling = {
       border: `1px solid ${iconColor}`,
@@ -30,7 +39,7 @@ const StarRatingBar = ({ rating, setRating }) => {
     };
 
     return (
-      <div style={starStyling}>
+      <div style={starStyling} {...createProps()}>
         <i
           style={{ padding: "5px", color: "white" }}
           className={`fa-solid fa-star`}
@@ -39,6 +48,7 @@ const StarRatingBar = ({ rating, setRating }) => {
     );
   };
 
+  // Renders five StarIcons
   return (
     <div style={{ display: "flex" }}>
       {[1, 2, 3, 4, 5].map((number) => (
