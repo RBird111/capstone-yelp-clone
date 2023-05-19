@@ -35,11 +35,11 @@ class SignUpForm(FlaskForm):
     last_name = StringField('last_name', validators=[
                             DataRequired('must submit a last name'), Length(1, 40)])
 
-    username = StringField(
-        'username', validators=[DataRequired('must submit a username'), username_exists, Length(1, 40)])
-
     email = StringField('email', validators=[
                         DataRequired('must submit an email'), user_exists, Length(1, 40), valid_email])
+
+    username = StringField(
+        'username', validators=[DataRequired('must submit a username'), username_exists, Length(1, 40)])
 
     password = StringField('password', validators=[
                            DataRequired('must enter a password')])
