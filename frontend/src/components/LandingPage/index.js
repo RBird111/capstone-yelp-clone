@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllReviews } from "../../store/reviews";
 
 import "./LandingPage.scss";
+import ReviewCard from "../ReviewCard";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const LandingPage = () => {
         <h1>Recent Activity</h1>
 
         {Object.values(randReviews).map((review) => (
-          <p key={review.id}>{review.user.username}</p>
+          <ReviewCard key={review.id} review={review} />
         ))}
       </div>
     </div>
