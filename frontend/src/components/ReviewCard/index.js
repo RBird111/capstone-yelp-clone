@@ -22,6 +22,21 @@ const ReviewCard = ({ review }) => {
       <div className="review-body">
         <p>{review.body}</p>
       </div>
+
+      <div className="icon-bar">
+        {[
+          "fa-regular fa-lightbulb fa-xl",
+          "fa-regular fa-face-laugh fa-xl",
+          "fa-regular fa-face-sad-cry fa-xl",
+        ].map((className, idx) => (
+          <div key={idx}>
+            <i
+              onClick={() => alert("Feature not yet implemented")}
+              className={className}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

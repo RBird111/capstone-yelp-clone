@@ -1,4 +1,10 @@
 .nav-bar-div {
+  position: sticky;
+  top: 0;
+  width: 100%;
+
+  background-color: white;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
