@@ -35,6 +35,7 @@ class Business(db.Model):
             'location_id': self.location_id,
             'location': self.location.to_obj(),
 
+            'avg_rating': self.avg_rating(),
             'reviews': [review.to_obj() for review in self.reviews],
             'images': [image.to_obj() for image in self.images],
         }
@@ -46,4 +47,12 @@ class Business(db.Model):
             'name': self.name,
             'description': self.description,
             'category': self.category,
+            'avg_rating': self.avg_rating(),
         }
+
+    # Avg rating
+    def avg_rating(self):
+        rating_sum = sum([r.rating for r in self.reviews])
+        num_ratings = len(self.reviews)
+
+        return rating_sum / num_ratings

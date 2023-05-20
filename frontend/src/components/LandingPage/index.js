@@ -5,6 +5,7 @@ import { getAllReviews } from "../../store/reviews";
 import "./LandingPage.scss";
 import ReviewCard from "../ReviewCard";
 import StarRatingBar from "../FormElements/StarRatingBar";
+import CategoryCard from "../CategoryCard";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -33,15 +34,25 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <h2>Star Rating Reactivity Test</h2>
+      <h1 className="title">Star Rating Reactivity Test</h1>
       <StarRatingBar rating={rating} setRating={setRating} />
 
-      <h2>Recent Activity</h2>
-
+      {/* Recent Activity */}
+      <h1 className="title">Recent Activity</h1>
       <div className="reviews">
         {Object.values(randReviews).map((review) => (
           <ReviewCard key={review.id} review={review} />
         ))}
+      </div>
+
+      {/* Categories */}
+      <h1 className="title">Categories</h1>
+      <div className="categories">
+        {["home services", "shopping", "restaurant", "automotive"].map(
+          (service, idx) => (
+            <CategoryCard key={idx} category={service} />
+          )
+        )}
       </div>
     </div>
   );

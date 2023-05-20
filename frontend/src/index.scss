@@ -3,6 +3,11 @@ $blue: #4990e2;
 $green: #00ac82;
 $gray: lightgray;
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   font-family: "Open Sans", sans-serif;
 }

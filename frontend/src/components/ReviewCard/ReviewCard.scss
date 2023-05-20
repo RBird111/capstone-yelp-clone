@@ -1,19 +1,24 @@
 @use "../../index.scss" as index;
 
+div.review-card:hover {
+  box-shadow: 0 0 3px black;
+}
+
 div.review-card {
+  cursor: default;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border: 1px solid index.$gray;
+  border-radius: 5px;
 
   padding: 5px;
   margin-bottom: 30px;
 
-  width: 30%;
-  min-width: 300px;
-  max-width: 430px;
-  height: 300px;
+  width: 22vw;
+  height: 24vw;
 
   .user-info {
     width: 85%;
@@ -63,8 +68,6 @@ div.review-card {
   }
 
   .review-body {
-    position: relative;
-
     display: flex;
     flex-direction: column;
 

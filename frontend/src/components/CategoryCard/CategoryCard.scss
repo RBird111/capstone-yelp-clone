@@ -1,0 +1,34 @@
+@use "../../index.scss" as index;
+
+div.category-card:hover {
+  box-shadow: 0 0 3px black;
+}
+
+div.category-card {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid index.$gray;
+  border-radius: 5px;
+
+  padding: 5px;
+  margin-bottom: 30px;
+
+  width: 18vw;
+  height: 18vw;
+
+  i {
+    padding-bottom: 15px;
+  }
+
+  .category-name {
+    font-size: 18px;
+    font-weight: bold;
+
+    padding-top: 15px;
+  }
+}
