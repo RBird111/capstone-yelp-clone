@@ -1,5 +1,14 @@
 div.landing-page {
-  div.reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    margin-top: 40px;
+  }
+
+  div.reviews,
+  div.categories {
     margin: 0 auto;
 
     display: flex;
