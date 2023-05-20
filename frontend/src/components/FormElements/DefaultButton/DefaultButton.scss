@@ -1,10 +1,12 @@
+@use "../../../index.scss" as index;
+
 button.default-btn {
   cursor: pointer;
 
   padding: 5px;
   margin: 10px;
 
-  background-color: #d32323;
+  background-color: index.$red;
   color: white;
   border: none;
   border-radius: 5px;

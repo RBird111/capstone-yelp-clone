@@ -1,9 +1,13 @@
-/* TODO Add site wide styles */
+$red: #d32323;
+$blue: #4990e2;
+$green: #00ac82;
+$gray: lightgray;
+
 html {
   font-family: "Open Sans", sans-serif;
 }
 
 a {
-  color: #4990e2;
+  color: $blue;
   text-decoration: none;
 }
