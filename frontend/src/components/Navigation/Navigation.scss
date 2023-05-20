@@ -10,36 +10,44 @@
   align-items: center;
 
   border-bottom: 1px solid black;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px 0;
 
   a.nav-logo {
+    padding-left: 20px;
+
     text-decoration: none;
   }
-}
 
-.profile-button-div {
-  button {
-    cursor: pointer;
-  }
+  .profile-button-div {
+    padding-right: 20px;
 
-  .profile-dropdown {
-    background-color: white;
-    border: 1px solid black;
+    button {
+      cursor: pointer;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+      i {
+        font-size: 20px;
+        padding: 3px;
+      }
+    }
 
-    position: absolute;
-    right: 8px;
-    top: 50px;
+    .profile-dropdown {
+      background-color: white;
+      border: 1px solid black;
 
-    padding: 10px;
-  }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
 
-  .hidden {
-    display: none;
+      position: absolute;
+      right: 8px;
+      top: 50px;
+
+      padding: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
   }
 }

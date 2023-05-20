@@ -6,6 +6,7 @@ import { authenticate } from "./store/session";
 import BusinessPage from "./components/BusinessPage";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -33,6 +35,8 @@ function App() {
           </Route>
         </Switch>
       )}
+
+      <Footer />
     </>
   );
 }
