@@ -3,34 +3,95 @@
 div.review-card {
   display: flex;
   flex-direction: column;
-//   justify-content: space-between;
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid lightgray;
+  border: 1px solid index.$gray;
 
   padding: 5px;
   margin-bottom: 6px;
 
-  width: 30vw;
-  height: 350px;
+  width: 30%;
+  min-width: 300px;
+  max-width: 430px;
+  height: 300px;
 
   .user-info {
+    width: 85%;
+
+    display: flex;
+    align-items: center;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid index.$gray;
+
+    .p-div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      height: 20%;
+
+      p {
+        padding: 0;
+        margin: 0;
+      }
+
+      .name {
+        font-weight: bolder;
+      }
+
+      .wrote {
+        font-size: small;
+      }
+    }
+  }
+
+  .star-rating-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     font-weight: bold;
 
-    p {
-      margin-bottom: 5px;
-      padding-bottom: 10px;
+    width: 85%;
 
-      border-bottom: 1px solid lightgray;
+    a {
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
   }
 
   .review-body {
-    width: 90%;
-    height: 90%;
-    overflow: hidden;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 85%;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
 
     p {
-        text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .body {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      text-align: left;
+    }
+
+    .continue {
+      font-size: small;
+
+      color: index.$blue;
+
+      cursor: pointer;
     }
   }
 
@@ -38,12 +99,15 @@ div.review-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 85%;
 
     padding-bottom: 5px;
     margin-bottom: 10px;
+    padding-top: 15px;
 
-    div {
+    border-top: 1px solid index.$gray;
+
+    .icon {
       cursor: pointer;
 
       i:hover {
