@@ -36,6 +36,23 @@
     color: index.$orange;
   }
 
+  .repo-link {
+    a {
+      color: white;
+      font-weight: bold;
+
+      font-family: "Amatic SC", cursive;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .repo-link:hover {
+    a {
+      color: index.$green;
+    }
+  }
+
   .personal-info {
     display: flex;
     align-items: center;

@@ -15,6 +15,16 @@ const Footer = () => {
         </a>
       </div>
 
+      <div className="repo-link">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://github.com/MrBird88/capstone-yelp-clone"
+        >
+          GitHub Repo
+        </a>
+      </div>
+
       <div>
         <p>@2023</p>
       </div>

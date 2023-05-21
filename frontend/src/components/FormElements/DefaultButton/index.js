@@ -1,8 +1,8 @@
 import "./DefaultButton.scss";
 
-const DefaultButton = ({ text, onClick }) => {
+const DefaultButton = ({ text, onClick, color = "red" }) => {
   return (
-    <button className="default-btn" type="submit" onClick={onClick}>
+    <button className={`default-btn ${color}`} type="submit" onClick={onClick}>
       {text}
     </button>
   );
