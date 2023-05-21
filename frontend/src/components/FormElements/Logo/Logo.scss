@@ -1,6 +1,15 @@
-.div-logo {
-  font-size: 25px;
+@use "../../../index.scss" as index;
 
-  color: #d32323;
+.div-logo {
+  color: black;
+
+  font-family: "Amatic SC", cursive;
+  font-size: 40px;
   font-weight: bold;
+
+  .w {
+    color: index.$red;
+    font-weight: normal;
+    font-family: "Open Sans", sans-serif;
+  }
 }
