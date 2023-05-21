@@ -6,6 +6,7 @@ import "./LandingPage.scss";
 import ReviewCard from "../ReviewCard";
 import StarRatingBar from "../FormElements/StarRatingBar";
 import CategoryCard from "../CategoryCard";
+import LoadingIcon from "../FormElements/LoadingIcon";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const LandingPage = () => {
 
   const [rating, setRating] = useState(0);
 
-  if (!isLoaded) return <>Loading...</>;
+  if (!isLoaded) return <LoadingIcon />;
 
   return (
     <div className="landing-page">
