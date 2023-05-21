@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
+import ProfileIcon from "../FormElements/ProfileIcon";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -39,9 +41,7 @@ function ProfileButton({ user }) {
 
   return (
     <div className="profile-button-div">
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <ProfileIcon props={{ onClick: openMenu }} />
 
       <div className={divClassName} ref={ulRef}>
         {user ? (
