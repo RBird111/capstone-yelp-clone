@@ -32,26 +32,6 @@
         background-color: index.$red;
       }
     }
-
-    .profile-dropdown {
-      background-color: white;
-      border: 1px solid index.$gray;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-
-      position: absolute;
-      right: 8px;
-      top: 50px;
-
-      padding: 10px;
-    }
-
-    .hidden {
-      display: none;
-    }
   }
 
   .logged-out {

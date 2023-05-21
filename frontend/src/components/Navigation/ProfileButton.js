@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
+import "./ProfileButton.scss";
 import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
-import LoginFormPage from "../LoginFormPage";
-import SignupFormPage from "../SignupFormPage";
 import ProfileIcon from "../FormElements/ProfileIcon";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -34,41 +35,33 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push("/");
   };
 
   const divClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <div className="profile-button-div">
       <ProfileIcon props={{ onClick: openMenu }} />
 
       <div className={divClassName} ref={ulRef}>
-        {user ? (
+        {user && (
           <>
-            <p>{user.username}</p>
-
-            <p>{user.email}</p>
-
-            <button onClick={handleLogout}>Log Out</button>
-          </>
-        ) : (
-          <>
-            <div onClick={(e) => setShowMenu(false)}>
-              <OpenModalButton
-                buttonText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormPage />}
-              />
+            <div className="header">
+              <p>
+                {user.first_name} {user.last_name[0].toUpperCase()}.
+              </p>
             </div>
 
-            <div onClick={(e) => setShowMenu(false)}>
-              <OpenModalButton
-                buttonText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormPage />}
-              />
-            </div>
+            <p className="about" onClick={() => alert("TODO: Add user page")}>
+              <i className="fa-regular fa-circle-user" />
+              About Me
+            </p>
+
+            <p className="logout" onClick={handleLogout}>
+              <i className="fa-solid fa-arrow-right-from-bracket" />
+              Log Out
+            </p>
           </>
         )}
       </div>
