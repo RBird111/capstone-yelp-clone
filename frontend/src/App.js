@@ -7,6 +7,7 @@ import BusinessPage from "./components/BusinessPage";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import Footer from "./components/Footer";
+import LoadingIcon from "./components/FormElements/LoadingIcon";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,10 @@ function App() {
 
           <Route path="/business/:businessId">
             <BusinessPage />
+          </Route>
+
+          <Route path="/loading">
+            <LoadingIcon />
           </Route>
 
           <Route>
