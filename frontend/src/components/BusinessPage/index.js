@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "./BusinessPage.scss";
 import { getBusiness } from "../../store/business";
 import StarRatingBar from "../FormElements/StarRatingBar";
+import LoadingIcon from "../FormElements/LoadingIcon";
 
 const BusinessPage = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const BusinessPage = () => {
     dispatch(getBusiness(businessId)).then(() => setIsLoaded(true));
   }, [businessId, dispatch]);
 
-  if (!isLoaded) return <>Loading...</>;
+  if (!isLoaded) return <LoadingIcon />;
 
   return (
     <div className="business-page">

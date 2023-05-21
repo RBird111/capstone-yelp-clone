@@ -33,7 +33,7 @@ function LoginFormPage() {
         <HandleErrors errors={errors} />
 
         <FormInput
-          input={toInput("Username or Email", credential, setCredential)}
+          input={toInput("Username/Email", credential, setCredential)}
         />
 
         <FormInput
