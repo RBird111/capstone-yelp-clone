@@ -1,9 +1,9 @@
 import "./ProfileIcon.scss";
 
-const ProfileIcon = ({ height = "40px", width = "40px" }) => {
+const ProfileIcon = ({ props }) => {
   return (
-    <div style={{ height: height, width: width }} className="icon-div">
-      <i className="fa-solid fa-user fa-lg" />
+    <div {...props} className="icon-div">
+      <i className="profile-icon fa-solid fa-user" />
     </div>
   );
 };

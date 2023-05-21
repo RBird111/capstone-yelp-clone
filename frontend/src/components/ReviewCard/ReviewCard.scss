@@ -32,6 +32,10 @@ div.review-card {
     padding: 10px 0;
     border-bottom: 1px solid index.$gray;
 
+    .icon-div {
+      margin-right: 20px;
+    }
+
     .p-div {
       display: flex;
       flex-direction: column;

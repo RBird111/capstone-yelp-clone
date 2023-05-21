@@ -1,3 +1,5 @@
+@use "../../index.scss" as index;
+
 .nav-bar-div {
   position: sticky;
   top: 0;
@@ -9,8 +11,8 @@
   justify-content: space-between;
   align-items: center;
 
-  border-bottom: 1px solid black;
-  padding: 15px 0;
+  border-bottom: 1px solid index.$gray;
+  padding: 8px 0;
 
   a.nav-logo {
     padding-left: 20px;
@@ -19,39 +21,35 @@
   }
 
   .profile-button-div {
-    padding-right: 20px;
+    margin-right: 20px;
 
-    button {
+    .icon-div {
       cursor: pointer;
+    }
 
+    .icon-div:hover {
       i {
-        font-size: 20px;
-        padding: 3px;
+        background-color: index.$red;
       }
-    }
-
-    .profile-dropdown {
-      background-color: white;
-      border: 1px solid black;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-
-      position: absolute;
-      right: 8px;
-      top: 50px;
-
-      padding: 10px;
-    }
-
-    .hidden {
-      display: none;
     }
   }
 
   .logged-out {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     padding-right: 20px;
+
+    p {
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 13px;
+    }
+
+    p:hover {
+      color: index.$blue;
+      font-weight: bold;
+    }
   }
 }
