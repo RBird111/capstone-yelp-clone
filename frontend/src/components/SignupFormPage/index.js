@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 import { useModal } from "../../context/Modal";
 
 import "./SignupForm.scss";
 import FormInput, { toInput } from "../FormElements/FormInput";
-import HandleErrors from "../FormElements/HandleErrors";
 import DefaultButton from "../FormElements/DefaultButton";
 
 function SignupFormPage() {
@@ -18,11 +17,52 @@ function SignupFormPage() {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Validations
+  useEffect(() => {
+    setErrors({});
+    const errorsObj = {};
+
+    if (!first_name) errorsObj.first_name = "First Name required";
+    else if (first_name.length > 40)
+      errorsObj.first_name = "First Name must be less than 40 characters";
+
+    if (!last_name) errorsObj.last_name = "Last Name required";
+    else if (last_name.length > 40)
+      errorsObj.last_name = "Last Name must be less than 40 characters";
+
+    if (!username) errorsObj.username = "Username required";
+    else if (username.length > 40)
+      errorsObj.username = "Username must be less than 40 characters";
+
+    if (!email) errorsObj.email = "Email required";
+    else if (email.length > 40)
+      errorsObj.email = "Email must be less than 40 characters";
+    else if (email && !email.match(/[\w\-_$@!#%;^&?]+@\w+\.\w+/))
+      errorsObj.email = "Email must be valid";
+
+    if (!password) errorsObj.password = "Password required";
+    else if (password.length > 50)
+      errorsObj.password = "Password must be less than 50 characters.";
+
+    if (!confirmPassword) errorsObj.confirmPassword = "Must confirm Password";
+
+    if (password !== confirmPassword) {
+      errorsObj.password = "Confirm Password must be same as Password";
+      errorsObj.confirmPassword = "Confirm Password must be same as Password";
+    }
+
+    setErrors(errorsObj);
+  }, [confirmPassword, email, first_name, last_name, password, username]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
+
+    setIsSubmitted(true);
+
+    if (Object.values(errors).length === 0) {
       const user = {
         email,
         username,
@@ -32,16 +72,19 @@ function SignupFormPage() {
       };
 
       const data = await dispatch(signUp(user));
+
       if (data) {
-        setErrors(data);
-        console.log("THESE ARE ERRORS =>", errors);
-      } else {
-        closeModal();
+        const errorsObj = {};
+
+        for (const error of data) {
+          const [name, message] = error.split(" : ");
+          errorsObj[name] = message;
+        }
+
+        return setErrors(errorsObj);
       }
-    } else {
-      setErrors([
-        "Confirm Password field must be the same as the Password field",
-      ]);
+
+      closeModal();
     }
   };
 
@@ -52,18 +95,49 @@ function SignupFormPage() {
       </h1>
 
       <form onSubmit={handleSubmit}>
-        <HandleErrors errors={errors} />
-
-        <FormInput input={toInput("First Name", first_name, setFirstName)} />
-
-        <FormInput input={toInput("Last Name", last_name, setLastName)} />
-
-        <FormInput input={toInput("Email", email, setEmail)} />
-
-        <FormInput input={toInput("Username", username, setUsername)} />
+        <FormInput
+          input={toInput(
+            "First Name",
+            first_name,
+            setFirstName,
+            isSubmitted,
+            errors.first_name
+          )}
+        />
 
         <FormInput
-          input={toInput("Password", password, setPassword, "password")}
+          input={toInput(
+            "Last Name",
+            last_name,
+            setLastName,
+            isSubmitted,
+            errors.last_name
+          )}
+        />
+
+        <FormInput
+          input={toInput("Email", email, setEmail, isSubmitted, errors.email)}
+        />
+
+        <FormInput
+          input={toInput(
+            "Username",
+            username,
+            setUsername,
+            isSubmitted,
+            errors.username
+          )}
+        />
+
+        <FormInput
+          input={toInput(
+            "Password",
+            password,
+            setPassword,
+            isSubmitted,
+            errors.password,
+            "password"
+          )}
         />
 
         <FormInput
@@ -71,6 +145,8 @@ function SignupFormPage() {
             "Confirm Password",
             confirmPassword,
             setConfirmPassword,
+            isSubmitted,
+            errors.confirmPassword,
             "password"
           )}
         />

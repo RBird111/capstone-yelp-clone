@@ -1,0 +1,6 @@
+@use "../../../index.scss" as index;
+
+p.p-error {
+  color: index.$red;
+  font-size: 12px;
+}
