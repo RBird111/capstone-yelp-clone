@@ -46,4 +46,6 @@ class Review(db.Model):
             'id': self.id,
             'rating': self.rating,
             'body': self.body,
+            'user': self.user.to_obj(),
+            'business': self.business.to_obj(),
         }

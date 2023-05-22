@@ -6,13 +6,14 @@ import "./BusinessPage.scss";
 import { getBusiness } from "../../store/business";
 import StarRatingBar from "../FormElements/StarRatingBar";
 import LoadingIcon from "../FormElements/LoadingIcon";
+import ReviewCard from "../ReviewCard";
 
 const BusinessPage = () => {
   const dispatch = useDispatch();
 
   const { businessId } = useParams();
   const business = useSelector((state) => state.business.currBusiness);
-  const { name, description, category, location, reviews, images } = business;
+  const { name, description, category, location, reviews } = business;
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -20,34 +21,81 @@ const BusinessPage = () => {
     dispatch(getBusiness(businessId)).then(() => setIsLoaded(true));
   }, [businessId, dispatch]);
 
+  // Object to hold random reviews for Featured Reviews section
+  const randReviews = {};
+
+  // Function to pull a random review out of reviews
+  const randReview = (reviews) =>
+    Object.values(reviews)[
+      Math.floor(Math.random() * Object.values(reviews).length)
+    ];
+
+  if (isLoaded) {
+    // Number of random reviews to pull
+    // (minimum of 3 or the total number of reviews)
+    const numReviews = Math.min(4, Object.values(reviews).length);
+
+    while (Object.values(randReviews).length < numReviews) {
+      const review = randReview(reviews);
+
+      randReviews[review.id] = review;
+    }
+  }
+
   if (!isLoaded) return <LoadingIcon />;
 
   return (
     <div className="business-page">
-      <h1>Name: {name}</h1>
-      <h2>Category: {category}</h2>
+      <div className="top-bar">
+        <h1 className="title">{name}</h1>
 
-      <div className="location">
-        <p>Address: {location.address}</p>
-        <p>City: {location.city}</p>
-        <p>State: {location.state}</p>
+        <div className="avg-rating-top">
+          <StarRatingBar rating={Number(business.avg_rating).toFixed(0)} />
+
+          <p className="reviews">
+            {Object.values(reviews).length} review
+            {Object.values(reviews).length === 1 ? "" : "s"}
+          </p>
+
+          <div className="location">
+            {location.address}
+
+            <p>
+              {location.city}, {location.state}
+            </p>
+          </div>
+        </div>
+
+        <p className="category">
+          <i className="fa-solid fa-building" />
+          {category[0].toUpperCase() + category.slice(1)}
+        </p>
+
+        <button className="add-review">
+          <i className="fa-regular fa-star" />
+          Write a review
+        </button>
       </div>
 
-      <p>Description: {description}</p>
-
-      <h3>Reviews:</h3>
-      {Object.values(reviews).map((review) => (
-        <div key={review.id}>
-          <StarRatingBar rating={review.rating} />
-
-          <p>Body: {review.body}</p>
+      <div className="about">
+        <div className="details">
+          <p className="title">About this business:</p>
+          <p>{description}</p>
         </div>
-      ))}
+      </div>
 
-      <h3>Images:</h3>
-      {Object.values(images).map((image) => (
-        <img key={image.id} src={image.url} alt="business" />
-      ))}
+      <div className="featured-reviews">
+        <div className="r-wrap">
+          <p className="title">Featured Reviews:</p>
+
+          <div className="reviews">
+            {isLoaded &&
+              Object.values(randReviews).map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
