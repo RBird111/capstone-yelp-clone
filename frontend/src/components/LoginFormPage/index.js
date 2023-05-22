@@ -28,7 +28,10 @@ function LoginFormPage() {
 
   return (
     <div className="login-form">
-      <h1>Log In</h1>
+      <h1>
+        Log In to&nbsp;<span>W</span>help...
+      </h1>
+
       <form onSubmit={handleSubmit}>
         <HandleErrors errors={errors} />
 
