@@ -4,8 +4,8 @@ div.form-input {
   display: flex;
   flex-direction: column;
 
+  margin-bottom: 10px;
   width: 70%;
-  margin: 10px;
 
   input {
     height: 25px;
@@ -16,7 +16,7 @@ div.form-input {
   }
 
   input:focus {
-    outline: 2px solid index.$red;
+    outline: 2px solid index.$blue;
     border: none;
   }
 }

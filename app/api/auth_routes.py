@@ -46,6 +46,7 @@ def login():
 
     # If the form has errors
     if not form.validate_on_submit():
+        # print({'errors': validation_errors_to_messages(form.errors)})
         return {'errors': validation_errors_to_messages(form.errors)}, 401
 
     # Add the user to the session, we are logged in!
