@@ -48,7 +48,7 @@ function SignupFormPage() {
   return (
     <div className="signup-form">
       <h1>
-        Sign Up to&nbsp;<span>W</span>help...
+        Sign Up for&nbsp;<span>W</span>help...
       </h1>
 
       <form onSubmit={handleSubmit}>
