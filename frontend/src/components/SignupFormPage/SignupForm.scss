@@ -1,13 +1,30 @@
+@use "../../index.scss" as index;
+
 div.signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+
+    span {
+      color: index.$red;
+    }
+  }
 
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    width: 300px;
+    width: 400px;
+
+    button {
+      width: 70%;
+    }
   }
 }

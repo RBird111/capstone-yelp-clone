@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../../store/session";
 import { useModal } from "../../context/Modal";
 
+import "./SignupForm.scss";
 import FormInput, { toInput } from "../FormElements/FormInput";
 import HandleErrors from "../FormElements/HandleErrors";
-import "./SignupForm.scss";
 import DefaultButton from "../FormElements/DefaultButton";
 
 function SignupFormPage() {
@@ -47,7 +47,9 @@ function SignupFormPage() {
 
   return (
     <div className="signup-form">
-      <h1>Sign Up</h1>
+      <h1>
+        Sign Up to&nbsp;<span>W</span>help...
+      </h1>
 
       <form onSubmit={handleSubmit}>
         <HandleErrors errors={errors} />

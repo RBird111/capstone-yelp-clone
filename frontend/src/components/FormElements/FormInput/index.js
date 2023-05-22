@@ -12,12 +12,12 @@ const FormInput = ({ input }) => {
 
   return (
     <div className="form-input">
-      <label htmlFor={label}>{label}</label>
       <input
         type={type}
         name={label}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        placeholder={label}
       />
     </div>
   );
