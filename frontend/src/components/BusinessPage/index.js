@@ -37,7 +37,7 @@ const BusinessPage = () => {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const hasReview = reviews ? alreadyReviewed(user, reviews) : null;
+  const hasReview = user && reviews ? alreadyReviewed(user, reviews) : null;
 
   useEffect(() => {
     dispatch(getBusiness(businessId)).then(() => setIsLoaded(true));
