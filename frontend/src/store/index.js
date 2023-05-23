@@ -29,6 +29,9 @@ export const normalize = (data) => {
         // If not then its a POJO
         default:
           // So we normalize the entries of the POJO
+          if (Object.is(data, null)) return null;
+          if (typeof data === "undefined") return undefined;
+
           return Object.entries(data).reduce((acc, [k, v]) => {
             v = normalize(v);
             acc[k] = v;

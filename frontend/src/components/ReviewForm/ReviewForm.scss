@@ -90,7 +90,7 @@ div.review-form {
       height: 100px;
     }
 
-    textarea:hover {
+    textarea:focus {
       outline: 2px solid index.$blue;
       border: none;
     }

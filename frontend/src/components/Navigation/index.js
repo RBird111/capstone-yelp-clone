@@ -1,25 +1,29 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import "./Navigation.scss";
+import { useModal } from "../../context/Modal";
 import { login } from "../../store/session";
 import LoginFormPage from "../LoginFormPage";
 import Logo from "../FormElements/Logo";
 import OpenModalButton from "../OpenModalButton";
 import ProfileButton from "./ProfileButton";
 import SignupFormPage from "../SignupFormPage";
+import BusinessForm from "../BusinessForm";
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
+
+  const { setModalContent } = useModal();
 
   const sessionUser = useSelector((state) => state.session.user);
 
   const loginDemo = async (e) => {
     e.preventDefault();
     await dispatch(login({ credential: "demo-lition", password: "password" }));
-    history.push("/");
+    // history.push("/");
   };
 
   return (
@@ -33,7 +37,7 @@ function Navigation({ isLoaded }) {
         <div className="profile-div">
           <p
             className="add-business"
-            onClick={(e) => alert("TODO: Add create business page")}
+            onClick={() => setModalContent(<BusinessForm />)}
           >
             Add a Business
           </p>

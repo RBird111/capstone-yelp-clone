@@ -4,11 +4,11 @@ import { useDispatch } from "react-redux";
 import "./ProfileButton.scss";
 import { logout } from "../../store/session";
 import ProfileIcon from "../FormElements/ProfileIcon";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    history.push("/");
+    // history.push("/");
   };
 
   const divClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
