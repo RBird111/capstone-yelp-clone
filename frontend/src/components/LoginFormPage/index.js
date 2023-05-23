@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import { login } from "../../store/session";
 
 import "./LoginForm.scss";
-import FormInput, { toInput } from "../FormElements/FormInput";
+import FormInput, { toInput, handleErrors } from "../FormElements/FormInput";
 import DefaultButton from "../FormElements/DefaultButton";
 
 function LoginFormPage() {
@@ -64,24 +64,13 @@ function LoginFormPage() {
 
       <form onSubmit={handleSubmit}>
         <FormInput
-          input={toInput(
-            "Username/Email",
-            credential,
-            setCredential,
-            isSubmitted,
-            errors.credential
-          )}
+          input={toInput("Username/Email", credential, setCredential)}
+          handleErrors={handleErrors(isSubmitted, errors.credential)}
         />
 
         <FormInput
-          input={toInput(
-            "Password",
-            password,
-            setPassword,
-            isSubmitted,
-            errors.password,
-            "password"
-          )}
+          input={toInput("Password", password, setPassword, "password")}
+          handleErrors={handleErrors(isSubmitted, errors.password)}
         />
 
         <DefaultButton text={"Log In"} />
