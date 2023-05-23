@@ -11,6 +11,7 @@ import OpenModalButton from "../OpenModalButton";
 import ProfileButton from "./ProfileButton";
 import SignupFormPage from "../SignupFormPage";
 import BusinessForm from "../BusinessForm";
+import SearchBar from "./SearchBar";
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
@@ -32,6 +33,8 @@ function Navigation({ isLoaded }) {
         {/* whelp... */}
         <Logo />
       </NavLink>
+
+      <SearchBar />
 
       {isLoaded && sessionUser ? (
         <div className="profile-div">
