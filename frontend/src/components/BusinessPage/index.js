@@ -32,7 +32,8 @@ const BusinessPage = () => {
   const { businessId } = useParams();
 
   const business = useSelector((state) => state.business.currBusiness);
-  const { name, description, category, location, reviews } = business;
+  const { name, description, category, location, reviews, avg_rating } =
+    business;
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -71,7 +72,7 @@ const BusinessPage = () => {
         <h1 className="title">{name}</h1>
 
         <div className="avg-rating-top">
-          <StarRatingBar rating={Number(business.avg_rating).toFixed(0)} />
+          <StarRatingBar rating={Math.round(Number(avg_rating))} />
 
           <p className="reviews">
             {Object.values(reviews).length} review
