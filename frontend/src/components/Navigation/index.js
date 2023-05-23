@@ -30,7 +30,13 @@ function Navigation({ isLoaded }) {
       </NavLink>
 
       {isLoaded && sessionUser ? (
-        <div>
+        <div className="profile-div">
+          <p
+            className="add-business"
+            onClick={(e) => alert("TODO: Add create business page")}
+          >
+            Add a Business
+          </p>
           <ProfileButton user={sessionUser} />
         </div>
       ) : (

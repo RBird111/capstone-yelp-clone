@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Bar that displays a rating using five StarIcon components
 // It becomes reactive when supplite with a setRating function
@@ -17,6 +17,10 @@ const StarRatingBar = ({ rating, setRating }) => {
   // Component that renders a single star
   const StarIcon = ({ number }) => {
     const iconColor = number <= disRating ? colors[disRating] : "lightgray";
+
+    useEffect(() => {
+      if (!setRating) setDisRating(rating);
+    }, []);
 
     // If setRating is supplied than the component becomes reactive
     const createProps = () => {

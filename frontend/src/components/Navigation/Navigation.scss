@@ -21,17 +21,19 @@
     text-decoration: none;
   }
 
-  .profile-button-div {
-    margin-right: 20px;
+  .profile-div {
+    display: flex;
+    align-items: center;
 
-    .icon-div {
+    .add-business {
       cursor: pointer;
+      margin-right: 25px;
+      font-size: 13px;
     }
 
-    .icon-div:hover {
-      i {
-        background-color: index.$red;
-      }
+    .add-business:hover {
+      color: index.$blue;
+      font-weight: bold;
     }
   }
 
