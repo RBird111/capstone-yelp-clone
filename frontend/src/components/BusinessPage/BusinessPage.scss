@@ -19,7 +19,21 @@ div.business-page {
     background-color: index.$dred;
 
     .title {
+      display: flex;
+      align-items: center;
+
       margin-bottom: 10px;
+
+      p {
+        cursor: pointer;
+        margin-left: 10px;
+        font-size: 12px;
+        color: index.$blue;
+      }
+
+      p:hover {
+        font-weight: bold;
+      }
     }
 
     .avg-rating-top {
@@ -31,7 +45,7 @@ div.business-page {
       }
 
       .location {
-        color: index.$blue;
+        // color: index.$blue;
         margin-left: 10px;
         font-size: 12px;
       }

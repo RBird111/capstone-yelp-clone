@@ -73,7 +73,7 @@ const ReviewForm = ({ business, review }) => {
       if (data.errors) {
         const errorsObj = {};
 
-        for (const error of data) {
+        for (const error of data.errors) {
           const [name, message] = error.split(" : ");
           errorsObj[name] = message;
         }

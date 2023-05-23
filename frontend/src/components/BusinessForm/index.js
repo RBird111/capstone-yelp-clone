@@ -6,9 +6,14 @@ import DefaultButton from "../FormElements/DefaultButton";
 import FormInput, { handleErrors, toInput } from "../FormElements/FormInput";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { createBusiness, updateBusiness } from "../../store/business";
+import {
+  createBusiness,
+  deleteBusiness,
+  updateBusiness,
+} from "../../store/business";
 import { createLocation } from "../../store/locations";
 import Error from "../FormElements/Error";
+import FormSelect, { toSelectInput } from "../FormElements/FormSelect";
 
 const BusinessForm = ({ business }) => {
   const dispatch = useDispatch();
@@ -26,9 +31,6 @@ const BusinessForm = ({ business }) => {
   const [state, setState] = useState(business ? business.location.state : "");
   const [description, setDescription] = useState(
     business ? business.description : ""
-  );
-  const [location_id, setLocationId] = useState(
-    business ? business.location_id : null
   );
 
   const [errors, setErrors] = useState({});
@@ -66,33 +68,50 @@ const BusinessForm = ({ business }) => {
     setErrors(errorsObj);
   }, [address, category, city, description, name, state]);
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    await dispatch(deleteBusiness(business.id));
+
+    history.push("/");
+    closeModal();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsSubmitted(true);
 
     if (Object.values(errors).length === 0) {
+      let location_id = business ? business.location_id : null;
+
       if (!business) {
-        const newLocation = {
+        const locationData = {
           address,
           city,
           state,
         };
 
-        const data = await dispatch(createLocation(newLocation));
+        const response = await fetch(`/api/location/${locationData.address}`);
+        const { location } = await response.json();
 
-        if (data.errors) {
-          const errorsObj = {};
+        if (location) location_id = location.id;
+        else {
+          const newLocation = await dispatch(createLocation(locationData));
 
-          for (const error of data) {
-            const [name, message] = error.split(" : ");
-            errorsObj[name] = message;
+          if (newLocation.errors) {
+            const errorsObj = {};
+
+            for (const error of newLocation.errors) {
+              const [name, message] = error.split(" : ");
+              errorsObj[name] = message;
+            }
+
+            return setErrors(errorsObj);
           }
 
-          return setErrors(errorsObj);
+          location_id = newLocation.id;
         }
-
-        setLocationId(data.id);
       }
 
       const formData = business ? { ...businessData } : {};
@@ -112,7 +131,7 @@ const BusinessForm = ({ business }) => {
       if (data.errors) {
         const errorsObj = {};
 
-        for (const error of data) {
+        for (const error of data.errors) {
           const [name, message] = error.split(" : ");
           errorsObj[name] = message;
         }
@@ -127,7 +146,17 @@ const BusinessForm = ({ business }) => {
 
   return (
     <div className="business-form">
-      <h1>Create a New Business</h1>
+      {business && (
+        <div className="delete">
+          <div className="confirm">
+            <p>Delete this business?</p>
+            <DefaultButton onClick={handleDelete} text={"Delete"} />
+          </div>
+
+          <i className="fa-solid fa-trash" />
+        </div>
+      )}
+      <h1>{business ? "Update " : "Add a "}Business</h1>
 
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -135,10 +164,21 @@ const BusinessForm = ({ business }) => {
           handleErrors={handleErrors(isSubmitted, errors.name)}
         />
 
-        <FormInput
-          input={toInput("Category", category, setCategory)}
+        <FormSelect
+          input={toSelectInput(category, setCategory, [
+            "automotive",
+            "home services",
+            "restaurant",
+            "shopping",
+          ])}
           handleErrors={handleErrors(isSubmitted, errors.category)}
         />
+
+        <div className="d-error">
+          {isSubmitted && errors.location_id && (
+            <Error error={errors.location_id} />
+          )}
+        </div>
 
         <FormInput
           input={toInput("Address", address, setAddress)}
@@ -166,7 +206,7 @@ const BusinessForm = ({ business }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <DefaultButton text={`${business ? "Update" : "Create"} Business`} />
+        <DefaultButton text={`${business ? "Update" : "Add"} Business`} />
       </form>
     </div>
   );
