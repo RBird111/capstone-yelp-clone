@@ -13,5 +13,13 @@ class BusinessForm(FlaskForm):
     category = StringField('category', validators=[
                            DataRequired('must submit category'), Length(1, 40)])
 
-    location_id = StringField('location_id', validators=[
-                              DataRequired('must link a location')])
+    location_id = StringField('location_id')
+
+    address = StringField('address', validators=[
+                          DataRequired('must submit an address'), Length(1, 40)])
+
+    city = StringField('city', validators=[
+                       DataRequired('must submit city'), Length(1, 40)])
+
+    state = StringField('state', validators=[
+                        DataRequired('must submit state'), Length(1, 40)])
