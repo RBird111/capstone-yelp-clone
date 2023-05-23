@@ -51,10 +51,10 @@ const BusinessPage = () => {
     });
   }, [businessId, dispatch, history]);
 
-  if (isLoaded && Object.values(business).length === 0) {
-    history.push("/");
-    return <LoadingIcon />;
-  }
+  // if (isLoaded && Object.values(business).length === 0) {
+  //   history.push("/");
+  //   return <LoadingIcon />;
+  // }
 
   // Object to hold random reviews for Featured Reviews section
   const randReviews = {};

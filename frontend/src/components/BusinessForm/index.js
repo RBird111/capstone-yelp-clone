@@ -11,7 +11,6 @@ import {
   deleteBusiness,
   updateBusiness,
 } from "../../store/business";
-import { createLocation } from "../../store/locations";
 import Error from "../FormElements/Error";
 import FormSelect, { toSelectInput } from "../FormElements/FormSelect";
 
@@ -71,9 +70,8 @@ const BusinessForm = ({ business }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
 
-    await dispatch(deleteBusiness(business.id));
-
     history.push("/");
+    await dispatch(deleteBusiness(business.id));
     closeModal();
   };
 
@@ -83,43 +81,14 @@ const BusinessForm = ({ business }) => {
     setIsSubmitted(true);
 
     if (Object.values(errors).length === 0) {
-      let location_id = business ? business.location_id : null;
-
-      if (!business) {
-        const locationData = {
-          address,
-          city,
-          state,
-        };
-
-        const response = await fetch(`/api/location/${locationData.address}`);
-        const { location } = await response.json();
-
-        if (location) location_id = location.id;
-        else {
-          const newLocation = await dispatch(createLocation(locationData));
-
-          if (newLocation.errors) {
-            const errorsObj = {};
-
-            for (const error of newLocation.errors) {
-              const [name, message] = error.split(" : ");
-              errorsObj[name] = message;
-            }
-
-            return setErrors(errorsObj);
-          }
-
-          location_id = newLocation.id;
-        }
-      }
-
       const formData = business ? { ...businessData } : {};
 
       formData.name = name;
       formData.description = description;
       formData.category = category;
-      formData.location_id = location_id;
+      formData.address = address;
+      formData.city = city;
+      formData.state = state;
 
       let data;
       if (business) {

@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.forms import BusinessForm
-from app.models import db, Business
+from app.models import db, Business, Location
 
 business_routes = Blueprint("businesses", __name__)
 
@@ -45,11 +45,32 @@ def create_business():
     if not form.validate_on_submit():
         return {'errors': validation_errors_to_messages(form.errors)}, 401
 
+    location_data = {
+        'address': form.data['address'],
+        'city': form.data['city'],
+        'state': form.data['state'],
+    }
+
+    # See if location exists
+    location = Location.query.where(
+        Location.address == location_data['address']).first()
+
+    # If not then create it
+    if not location:
+        location = Location(
+            address=location_data['address'],
+            city=location_data['city'],
+            state=location_data['state'],
+        )
+
+        db.session.add(location)
+        db.session.commit()
+
     new_business = Business(
         name=form.data['name'],
         description=form.data['description'],
         category=form.data['category'],
-        location_id=form.data['location_id'],
+        location_id=location.id,
     )
 
     db.session.add(new_business)
