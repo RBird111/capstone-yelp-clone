@@ -1,24 +1,22 @@
-import Error from "../Error";
 import "./FormInput.scss";
+import Error from "../Error";
 
-export const toInput = (
+export const toInput = (label, value, onChange, type = "text") => ({
   label,
   value,
   onChange,
-  isSubmitted,
-  error,
-  type = "text"
-) => ({
-  label,
-  value,
-  onChange,
-  isSubmitted,
-  error,
   type,
 });
 
-const FormInput = ({ input }) => {
-  const { label, value, onChange, isSubmitted, error, type } = input;
+// Optional: to add error handling
+export const handleErrors = (isSubmitted, error) => ({
+  isSubmitted,
+  error,
+});
+
+const FormInput = ({ input, handleErrors }) => {
+  const { label, value, onChange, type } = input;
+  const { isSubmitted, error } = handleErrors ? handleErrors : {};
 
   return (
     <div className="form-input">

@@ -1,6 +1,7 @@
 @use "../../index.scss" as index;
 
 .footer {
+  z-index: 1;
   cursor: default;
 
   border-top-left-radius: 8px;

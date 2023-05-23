@@ -4,7 +4,7 @@ import { signUp } from "../../store/session";
 import { useModal } from "../../context/Modal";
 
 import "./SignupForm.scss";
-import FormInput, { toInput } from "../FormElements/FormInput";
+import FormInput, { handleErrors, toInput } from "../FormElements/FormInput";
 import DefaultButton from "../FormElements/DefaultButton";
 
 function SignupFormPage() {
@@ -96,48 +96,28 @@ function SignupFormPage() {
 
       <form onSubmit={handleSubmit}>
         <FormInput
-          input={toInput(
-            "First Name",
-            first_name,
-            setFirstName,
-            isSubmitted,
-            errors.first_name
-          )}
+          input={toInput("First Name", first_name, setFirstName)}
+          handleErrors={handleErrors(isSubmitted, errors.first_name)}
         />
 
         <FormInput
-          input={toInput(
-            "Last Name",
-            last_name,
-            setLastName,
-            isSubmitted,
-            errors.last_name
-          )}
+          input={toInput("Last Name", last_name, setLastName)}
+          handleErrors={handleErrors(isSubmitted, errors.last_name)}
         />
 
         <FormInput
-          input={toInput("Email", email, setEmail, isSubmitted, errors.email)}
+          input={toInput("Email", email, setEmail)}
+          handleErrors={handleErrors(isSubmitted, errors.email)}
         />
 
         <FormInput
-          input={toInput(
-            "Username",
-            username,
-            setUsername,
-            isSubmitted,
-            errors.username
-          )}
+          input={toInput("Username", username, setUsername)}
+          handleErrors={handleErrors(isSubmitted, errors.username)}
         />
 
         <FormInput
-          input={toInput(
-            "Password",
-            password,
-            setPassword,
-            isSubmitted,
-            errors.password,
-            "password"
-          )}
+          input={toInput("Password", password, setPassword, "password")}
+          handleErrors={handleErrors(isSubmitted, errors.password)}
         />
 
         <FormInput
@@ -145,10 +125,9 @@ function SignupFormPage() {
             "Confirm Password",
             confirmPassword,
             setConfirmPassword,
-            isSubmitted,
-            errors.confirmPassword,
             "password"
           )}
+          handleErrors={handleErrors(isSubmitted, errors.confirmPassword)}
         />
 
         <DefaultButton text={"Sign Up"} />

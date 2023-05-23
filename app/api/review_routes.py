@@ -88,7 +88,7 @@ def create_review():
 
 @review_routes.route('/<int:id>', methods=['PUT'])
 @login_required
-def update_location(id):
+def update_review(id):
     """
     PUT update review
     """
@@ -105,7 +105,6 @@ def update_location(id):
 
     review.rating = form.data['rating']
     review.body = form.data['body']
-    review.business_id = form.data['business_id']
 
     db.session.commit()
 

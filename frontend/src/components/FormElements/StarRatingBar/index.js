@@ -50,7 +50,7 @@ const StarRatingBar = ({ rating, setRating }) => {
 
   // Renders five StarIcons
   return (
-    <div style={{ display: "flex" }}>
+    <div className="rating-bar" style={{ display: "flex" }}>
       {[1, 2, 3, 4, 5].map((number) => (
         <StarIcon key={number} number={number} />
       ))}

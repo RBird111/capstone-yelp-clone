@@ -3,7 +3,6 @@ import { handleErrors, normalize } from ".";
 // ---TYPES--- \\
 const GET_REVIEW = "reviews/GET_REVIEW";
 const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
-// const GET_RANDOM_REVIEWS = "reviews/GET_RANDOM_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
@@ -18,11 +17,6 @@ const _getAllReviews = (reviews) => ({
   type: GET_ALL_REVIEWS,
   reviews,
 });
-
-// const _getRandomReviews = (reviews) => ({
-//   type: GET_RANDOM_REVIEWS,
-//   reviews,
-// });
 
 const _createReview = (review) => ({
   type: CREATE_REVIEW,
@@ -62,18 +56,6 @@ export const getAllReviews = () => async (dispatch) => {
   return reviews;
 };
 
-// // num => number of random reviews desired
-// export const getRandomReviews = (num) => async (dispatch) => {
-//   const response = await fetch(`/api/reviews/random/${num}`);
-
-//   if (!response.ok) return await handleErrors(response);
-
-//   const { reviews } = await response.json();
-//   dispatch(_getRandomReviews(reviews));
-
-//   return reviews;
-// };
-
 export const createReview = (reviewData) => async (dispatch) => {
   const response = await fetch(`/api/reviews`, {
     method: "POST",
@@ -105,7 +87,9 @@ export const updateReview = (reviewData) => async (dispatch) => {
 };
 
 export const deleteReview = (reviewId) => async (dispatch) => {
-  const response = await fetch(`/api/reviews/${reviewId}`);
+  const response = await fetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE",
+  });
 
   if (!response.ok) return await handleErrors(response);
 
@@ -137,14 +121,6 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
     }
 
-    // case GET_RANDOM_REVIEWS: {
-    //   const newState = { ...state };
-
-    //   newState.randReviews = normalize(action.reviews);
-
-    //   return newState;
-    // }
-
     case CREATE_REVIEW: {
       const newState = { ...state };
 
@@ -167,7 +143,7 @@ const reviewReducer = (state = initialState, action) => {
       const newState = { ...state };
 
       newState.currReview = {};
-      delete newState.allReviews[action.review.id];
+      delete newState.allReviews[action.reviewid];
 
       return newState;
     }

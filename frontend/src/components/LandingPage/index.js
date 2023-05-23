@@ -4,7 +4,6 @@ import { getAllReviews } from "../../store/reviews";
 
 import "./LandingPage.scss";
 import ReviewCard from "../ReviewCard";
-import StarRatingBar from "../FormElements/StarRatingBar";
 import CategoryCard from "../CategoryCard";
 import LoadingIcon from "../FormElements/LoadingIcon";
 
@@ -29,15 +28,10 @@ const LandingPage = () => {
     }
   }
 
-  const [rating, setRating] = useState(0);
-
   if (!isLoaded) return <LoadingIcon />;
 
   return (
     <div className="landing-page">
-      <h1 className="title">Star Rating Reactivity Test</h1>
-      <StarRatingBar rating={rating} setRating={setRating} />
-
       {/* Recent Activity */}
       <h1 className="title">Recent Activity</h1>
       <div className="reviews">
