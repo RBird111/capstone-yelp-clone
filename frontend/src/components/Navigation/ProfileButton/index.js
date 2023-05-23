@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import "./ProfileButton.scss";
-import { logout } from "../../store/session";
-import ProfileIcon from "../FormElements/ProfileIcon";
+import { logout } from "../../../store/session";
+import ProfileIcon from "../../FormElements/ProfileIcon";
 // import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user }) {
