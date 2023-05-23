@@ -46,6 +46,19 @@ def get_location(id):
     return {'location': location.to_dict()}
 
 
+@location_routes.route('/<string:address>', methods=['GET'])
+def get_location_by_address(address):
+    """
+    GET location by address
+    """
+    location = Location.query.where(Location.address == address).first()
+
+    if not location:
+        return {'errors': ['Location not found.']}
+
+    return {'location': location.to_dict()}
+
+
 @location_routes.route('', methods=['POST'])
 @login_required
 def create_location():

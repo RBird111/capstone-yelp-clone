@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 
 import "./BusinessPage.scss";
 import { useModal } from "../../context/Modal";
@@ -10,6 +13,7 @@ import LoadingIcon from "../FormElements/LoadingIcon";
 import ReviewCard from "../ReviewCard";
 import ReviewForm from "../ReviewForm";
 import LoginFormPage from "../LoginFormPage";
+import BusinessForm from "../BusinessForm";
 
 // Expects reviews to be normalized
 const alreadyReviewed = (user, reviews) => {
@@ -24,6 +28,7 @@ const alreadyReviewed = (user, reviews) => {
 
 const BusinessPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { user } = useSelector((state) => state.session);
 
@@ -40,8 +45,16 @@ const BusinessPage = () => {
   const hasReview = user && reviews ? alreadyReviewed(user, reviews) : null;
 
   useEffect(() => {
-    dispatch(getBusiness(businessId)).then(() => setIsLoaded(true));
-  }, [businessId, dispatch]);
+    dispatch(getBusiness(businessId)).then((res) => {
+      if (res.errors) history.push("/");
+      else setIsLoaded(true);
+    });
+  }, [businessId, dispatch, history]);
+
+  if (isLoaded && Object.values(business).length === 0) {
+    history.push("/");
+    return <LoadingIcon />;
+  }
 
   // Object to hold random reviews for Featured Reviews section
   const randReviews = {};
@@ -69,7 +82,16 @@ const BusinessPage = () => {
   return (
     <div className="business-page">
       <div className="top-bar">
-        <h1 className="title">{name}</h1>
+        <div className="title">
+          <h1>{name}</h1>
+          <p
+            onClick={() =>
+              setModalContent(<BusinessForm business={business} />)
+            }
+          >
+            Update Business
+          </p>
+        </div>
 
         <div className="avg-rating-top">
           <StarRatingBar rating={Math.round(Number(avg_rating))} />

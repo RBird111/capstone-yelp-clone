@@ -16,6 +16,9 @@ export const normalize = (data) => {
   // Check to see if data is an object
   switch (typeof data) {
     case "object": {
+      // If null return
+      if (data === null) return null;
+
       // If so check to see if data is an array
       switch (Array.isArray(data)) {
         // If it's an array then normalize each item
@@ -36,6 +39,8 @@ export const normalize = (data) => {
           }, {});
       }
     }
+    case "undefined":
+      return null;
     // If it's not an object then just return it to the caller
     default:
       return data;

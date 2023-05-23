@@ -55,4 +55,7 @@ class Business(db.Model):
         rating_sum = sum([r.rating for r in self.reviews])
         num_ratings = len(self.reviews)
 
+        if num_ratings == 0:
+            return 0
+
         return rating_sum / num_ratings

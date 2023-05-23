@@ -1,6 +1,6 @@
 @use "../../index.scss" as index;
 
-div.review-form {
+div.business-form {
   cursor: default;
   display: flex;
   flex-direction: column;
@@ -33,6 +33,7 @@ div.review-form {
       top: -30px;
       right: -213px;
 
+      font-weight: bold;
       color: black;
       background-color: white;
       border: 1px solid index.$red;
@@ -48,19 +49,14 @@ div.review-form {
 
     .confirm {
       visibility: visible;
-      font-weight: bold;
     }
   }
 
   h1 {
-    margin: 0 30px;
-    color: index.$red;
-    font-family: "Amatic SC", cursive;
-  }
-
-  .p-title {
-    margin-top: 15px;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
   }
 
   form {
@@ -69,10 +65,9 @@ div.review-form {
     align-items: center;
 
     width: 500px;
-    margin-bottom: 30px;
 
-    .rating-bar {
-      margin-bottom: 30px;
+    .d-error {
+      width: 70%;
     }
 
     textarea {
@@ -85,7 +80,7 @@ div.review-form {
       outline: 1px solid index.$gray;
 
       padding: 10px;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
       width: 70%;
       height: 100px;
     }

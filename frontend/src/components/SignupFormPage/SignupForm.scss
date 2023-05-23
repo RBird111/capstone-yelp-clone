@@ -1,6 +1,7 @@
 @use "../../index.scss" as index;
 
 div.signup-form {
+  cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,13 +22,7 @@ div.signup-form {
     flex-direction: column;
     align-items: center;
 
-    width: 400px;
-
-    // div.input {
-    //   width: 70%;
-    //   display: flex;
-    //   flex-direction: column;
-    // }
+    width: 500px;
 
     button {
       width: 70%;
