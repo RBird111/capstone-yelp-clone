@@ -6,6 +6,52 @@ div.review-form {
   flex-direction: column;
   align-items: center;
 
+  .delete {
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    right: 20px;
+
+    .confirm {
+      visibility: hidden;
+      cursor: default;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      width: 200px;
+      position: absolute;
+      top: -30px;
+      right: -213px;
+
+      color: black;
+      background-color: white;
+      border: 1px solid index.$red;
+      border-radius: 5px;
+      padding: 5px;
+    }
+  }
+
+  .delete:hover {
+    i {
+      color: index.$red;
+    }
+
+    .confirm {
+      visibility: visible;
+      font-weight: bold;
+    }
+  }
+
   h1 {
     margin: 0 30px;
     color: index.$red;

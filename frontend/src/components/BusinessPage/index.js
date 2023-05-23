@@ -9,17 +9,34 @@ import StarRatingBar from "../FormElements/StarRatingBar";
 import LoadingIcon from "../FormElements/LoadingIcon";
 import ReviewCard from "../ReviewCard";
 import ReviewForm from "../ReviewForm";
+import LoginFormPage from "../LoginFormPage";
+
+// Expects reviews to be normalized
+const alreadyReviewed = (user, reviews) => {
+  reviews = Object.values(reviews);
+  for (const review of reviews) {
+    if (review.user.email === user.email) {
+      return review;
+    }
+  }
+  return false;
+};
 
 const BusinessPage = () => {
   const dispatch = useDispatch();
 
+  const { user } = useSelector((state) => state.session);
+
   const { setModalContent } = useModal();
 
   const { businessId } = useParams();
+
   const business = useSelector((state) => state.business.currBusiness);
   const { name, description, category, location, reviews } = business;
 
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const hasReview = reviews ? alreadyReviewed(user, reviews) : null;
 
   useEffect(() => {
     dispatch(getBusiness(businessId)).then(() => setIsLoaded(true));
@@ -75,13 +92,31 @@ const BusinessPage = () => {
           {category[0].toUpperCase() + category.slice(1)}
         </p>
 
-        <button
-          className="add-review"
-          onClick={() => setModalContent(<ReviewForm business={business} />)}
-        >
-          <i className="fa-regular fa-star" />
-          Write a review
-        </button>
+        {user && hasReview ? (
+          <button
+            className="add-review"
+            onClick={() =>
+              setModalContent(
+                <ReviewForm business={business} review={hasReview} />
+              )
+            }
+          >
+            <i className="fa-regular fa-star" />
+            Update your review!
+          </button>
+        ) : user ? (
+          <button
+            className="add-review"
+            onClick={() => setModalContent(<ReviewForm business={business} />)}
+          >
+            <i className="fa-regular fa-star" />
+            Write a review!
+          </button>
+        ) : (
+          <button onClick={() => setModalContent(<LoginFormPage />)}>
+            Log in to review!
+          </button>
+        )}
       </div>
 
       <div className="about">

@@ -1,25 +1,33 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import "./ReviewForm.scss";
 import { useModal } from "../../context/Modal";
-import { createReview } from "../../store/reviews";
+import {
+  createReview,
+  deleteReview,
+  getReview,
+  updateReview,
+} from "../../store/reviews";
 import DefaultButton from "../FormElements/DefaultButton";
 import StarRatingBar from "../FormElements/StarRatingBar";
 import Error from "../FormElements/Error";
 import { getBusiness } from "../../store/business";
 
-const alreadyReviewed = (user) => {};
-
-const ReviewForm = ({ business }) => {
+const ReviewForm = ({ business, review }) => {
   const dispatch = useDispatch();
 
   const { closeModal } = useModal();
+  const reviewData = useSelector((state) => state.reviews.currReview);
 
-  const [rating, setRating] = useState(null);
-  const [body, setBody] = useState("");
+  const [rating, setRating] = useState(review ? review.rating : null);
+  const [body, setBody] = useState(review ? review.body : "");
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (review) dispatch(getReview(review.id));
+  }, [dispatch, review]);
 
   // Validations
   useEffect(() => {
@@ -35,19 +43,32 @@ const ReviewForm = ({ business }) => {
     setErrors(errorsObj);
   }, [body, rating]);
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    await dispatch(deleteReview(review.id));
+    await dispatch(getBusiness(business.id));
+    closeModal();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsSubmitted(true);
 
     if (Object.values(errors).length === 0) {
-      const review = {
-        rating,
-        body,
-        business_id: business.id,
-      };
+      const formData = review ? { ...reviewData } : {};
 
-      const data = await dispatch(createReview(review));
+      formData.rating = rating;
+      formData.body = body;
+      formData.business_id = business.id;
+
+      let data;
+      if (review) {
+        data = await dispatch(updateReview(formData));
+      } else {
+        data = await dispatch(createReview(formData));
+      }
 
       if (data.errors) {
         const errorsObj = {};
@@ -67,6 +88,17 @@ const ReviewForm = ({ business }) => {
 
   return (
     <div className="review-form">
+      {review && (
+        <div className="delete">
+          <div className="confirm">
+            <p>Delete your review?</p>
+            <DefaultButton onClick={handleDelete} text={"Delete"} />
+          </div>
+
+          <i className="fa-solid fa-trash" />
+        </div>
+      )}
+
       <h1>{business.name}</h1>
       <p className="p-title">How would you rate your experience?</p>
 
@@ -81,7 +113,7 @@ const ReviewForm = ({ business }) => {
           onChange={(e) => setBody(e.target.value)}
         />
 
-        <DefaultButton text={"Submit Review"} />
+        <DefaultButton text={`${review ? "Update" : "Submit"} Review`} />
       </form>
     </div>
   );
