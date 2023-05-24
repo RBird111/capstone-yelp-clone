@@ -13,7 +13,7 @@ import LoadingIcon from "../FormElements/LoadingIcon";
 import ReviewForm from "../ReviewForm";
 import LoginFormPage from "../LoginFormPage";
 import BusinessForm from "../BusinessForm";
-import ReviewFeedItem from "../ReviewFeed";
+import ReviewFeedItem from "../ReviewFeedItem";
 
 // Expects reviews to be normalized
 const alreadyReviewed = (user, reviews) => {
@@ -125,7 +125,7 @@ const BusinessPage = () => {
       <div className="about">
         <div className="details">
           <p className="title">About this business:</p>
-          <p>{description}</p>
+          <div className="description">{description}</div>
         </div>
       </div>
 
@@ -135,7 +135,7 @@ const BusinessPage = () => {
 
           <div className="reviews">
             {isLoaded &&
-              Object.values(reviews).map((review) => (
+              Object.values(reviews).reverse().map((review) => (
                 <ReviewFeedItem key={review.id} review={review} />
               ))}
           </div>

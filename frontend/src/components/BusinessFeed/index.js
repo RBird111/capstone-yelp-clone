@@ -42,7 +42,7 @@ const BusinessFeed = () => {
       </h1>
 
       <div className="business-feed">
-        {categoryBusinesses.map((business) => (
+        {categoryBusinesses.reverse().map((business) => (
           <NavLink
             key={business.id}
             className="b-feed-link"

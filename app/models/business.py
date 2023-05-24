@@ -36,8 +36,8 @@ class Business(db.Model):
             'location': self.location.to_obj(),
 
             'avg_rating': self.avg_rating(),
-            'reviews': [review.to_obj() for review in self.reviews],
-            'images': [image.to_obj() for image in self.images],
+            'reviews': [review.to_obj() for review in self.reviews] if self.reviews else [],
+            'images': [image.to_obj() for image in self.images] if self.images else [],
         }
 
     # Partial instance to avoid circular logic
