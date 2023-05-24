@@ -26,7 +26,7 @@
     align-items: center;
 
     .name {
-      color: index.$green;
+      color: index.$blue;
       font-family: "Amatic SC", cursive;
       font-size: 40px;
     }
@@ -44,6 +44,8 @@
 
   .description {
     width: 50%;
+
+    margin-right: 15px;
 
     .d-title {
       font-weight: bold;
