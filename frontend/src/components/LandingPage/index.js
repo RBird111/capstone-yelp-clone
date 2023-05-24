@@ -32,14 +32,6 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      {/* Recent Activity */}
-      <h1 className="title">Recent Activity</h1>
-      <div className="reviews">
-        {Object.values(randReviews).map((review) => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
-      </div>
-
       {/* Categories */}
       <h1 className="title">Categories</h1>
       <div className="categories">
@@ -48,6 +40,14 @@ const LandingPage = () => {
             <CategoryCard key={idx} category={service} />
           )
         )}
+      </div>
+
+      {/* Recent Activity */}
+      <h1 className="title">Recent Activity</h1>
+      <div className="reviews">
+        {Object.values(randReviews).map((review) => (
+          <ReviewCard key={review.id} review={review} />
+        ))}
       </div>
     </div>
   );
