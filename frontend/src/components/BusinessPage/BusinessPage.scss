@@ -98,6 +98,7 @@ div.business-page {
   }
 
   div.about {
+    cursor: default;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,6 +106,10 @@ div.business-page {
     margin: 20px 0;
 
     .details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
       width: 60%;
       border: 1px solid index.$gray;
       padding: 15px;
@@ -113,6 +118,12 @@ div.business-page {
         font-weight: bold;
         font-size: 20px;
         margin-bottom: 5px;
+      }
+
+      .description {
+        overflow-wrap: break-word;
+        max-height: 70px;
+        overflow-y: scroll;
       }
     }
   }
