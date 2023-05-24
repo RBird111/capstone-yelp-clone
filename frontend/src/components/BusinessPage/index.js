@@ -51,32 +51,6 @@ const BusinessPage = () => {
     });
   }, [businessId, dispatch, history]);
 
-  // if (isLoaded && Object.values(business).length === 0) {
-  //   history.push("/");
-  //   return <LoadingIcon />;
-  // }
-
-  // Object to hold random reviews for Featured Reviews section
-  const randReviews = {};
-
-  // Function to pull a random review out of reviews
-  const randReview = (reviews) =>
-    Object.values(reviews)[
-      Math.floor(Math.random() * Object.values(reviews).length)
-    ];
-
-  if (isLoaded) {
-    // Number of random reviews to pull
-    // (minimum of 3 or the total number of reviews)
-    const numReviews = Math.min(3, Object.values(reviews).length);
-
-    while (Object.values(randReviews).length < numReviews) {
-      const review = randReview(reviews);
-
-      randReviews[review.id] = review;
-    }
-  }
-
   if (!isLoaded) return <LoadingIcon />;
 
   return (
@@ -155,7 +129,7 @@ const BusinessPage = () => {
 
           <div className="reviews">
             {isLoaded &&
-              Object.values(randReviews).map((review) => (
+              Object.values(reviews).map((review) => (
                 <ReviewCard key={review.id} review={review} />
               ))}
           </div>
