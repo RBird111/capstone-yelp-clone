@@ -4,7 +4,7 @@ div.business-page {
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 
   .top-bar {
     cursor: default;
@@ -45,7 +45,6 @@ div.business-page {
       }
 
       .location {
-        // color: index.$blue;
         margin-left: 10px;
         font-size: 12px;
       }
@@ -125,9 +124,18 @@ div.business-page {
       }
 
       .reviews {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+        // width: 80%;
+        height: 350px;
+        margin: 0 auto;
+        padding: 10px;
+
+        border: 2px solid index.$orange;
+        border-radius: 5px;
+        box-shadow: inset 0 0 3px index.$gray;
+
+        overflow-y: scroll;
+
+        margin-bottom: 40px;
       }
     }
   }
