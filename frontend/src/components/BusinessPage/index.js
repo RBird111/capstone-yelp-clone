@@ -57,15 +57,45 @@ const BusinessPage = () => {
     <div className="business-page">
       <div className="top-bar">
         <div className="title">
-          <h1>{name}</h1>
-          {user && (
-            <p
+          <div className="name">
+            <h1>{name}</h1>
+            {user && (
+              <p
+                onClick={() =>
+                  setModalContent(<BusinessForm business={business} />)
+                }
+              >
+                Update Business
+              </p>
+            )}
+          </div>
+
+          {user && hasReview ? (
+            <button
+              className="add-review"
               onClick={() =>
-                setModalContent(<BusinessForm business={business} />)
+                setModalContent(
+                  <ReviewForm business={business} review={hasReview} />
+                )
               }
             >
-              Update Business
-            </p>
+              <i className="fa-regular fa-star" />
+              Update your review!
+            </button>
+          ) : user ? (
+            <button
+              className="add-review"
+              onClick={() =>
+                setModalContent(<ReviewForm business={business} />)
+              }
+            >
+              <i className="fa-regular fa-star" />
+              Write a review!
+            </button>
+          ) : (
+            <button onClick={() => setModalContent(<LoginFormPage />)}>
+              Log in to review!
+            </button>
           )}
         </div>
 
@@ -90,32 +120,6 @@ const BusinessPage = () => {
           <i className="fa-solid fa-building" />
           {category[0].toUpperCase() + category.slice(1)}
         </p>
-
-        {user && hasReview ? (
-          <button
-            className="add-review"
-            onClick={() =>
-              setModalContent(
-                <ReviewForm business={business} review={hasReview} />
-              )
-            }
-          >
-            <i className="fa-regular fa-star" />
-            Update your review!
-          </button>
-        ) : user ? (
-          <button
-            className="add-review"
-            onClick={() => setModalContent(<ReviewForm business={business} />)}
-          >
-            <i className="fa-regular fa-star" />
-            Write a review!
-          </button>
-        ) : (
-          <button onClick={() => setModalContent(<LoginFormPage />)}>
-            Log in to review!
-          </button>
-        )}
       </div>
 
       <div className="about">

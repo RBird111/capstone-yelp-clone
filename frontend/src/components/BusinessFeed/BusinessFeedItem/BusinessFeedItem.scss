@@ -1,0 +1,58 @@
+@use "../../../index.scss" as index;
+
+.b-feed-item:hover {
+  box-shadow: 0 0 10px index.$gray;
+
+  .name {
+    font-weight: bold;
+  }
+}
+
+.b-feed-item {
+  cursor: pointer;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 8px;
+  border: 2px solid index.$gray;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .name-rating {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .name {
+      color: index.$green;
+      font-family: "Amatic SC", cursive;
+      font-size: 40px;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+
+      p {
+        margin-left: 7px;
+      }
+    }
+  }
+
+  .description {
+    width: 50%;
+
+    .d-title {
+      font-weight: bold;
+    }
+
+    .d-message {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
