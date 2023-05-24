@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import "./CategoryCard.scss";
 
 const CategoryCard = ({ category }) => {
@@ -9,19 +10,18 @@ const CategoryCard = ({ category }) => {
   };
 
   return (
-    <div
-      className="category-card"
-      onClick={() => alert("TODO: Redirect to Categories Page")}
-    >
-      <i className={`fa-solid ${iconClass[category]} fa-lg`} />
+    <NavLink to={`/category/${category}`}>
+      <div className="category-card">
+        <i className={`fa-solid ${iconClass[category]} fa-lg`} />
 
-      <p className="category-name">
-        {category
-          .split(" ")
-          .map((word) => word[0].toUpperCase() + word.slice(1))
-          .join(" ")}
-      </p>
-    </div>
+        <p className="category-name">
+          {category
+            .split(" ")
+            .map((word) => word[0].toUpperCase() + word.slice(1))
+            .join(" ")}
+        </p>
+      </div>
+    </NavLink>
   );
 };
 

@@ -2,11 +2,13 @@
 
 div.category-card:hover {
   box-shadow: 0 0 3px black;
+  color: index.$red;
 }
 
 div.category-card {
   cursor: pointer;
 
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,8 +36,4 @@ div.category-card {
 
     padding-top: 15px;
   }
-}
-
-div.category-card:hover {
-  color: index.$red;
 }

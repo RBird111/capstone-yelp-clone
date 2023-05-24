@@ -4,7 +4,7 @@ div.business-page {
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 70px;
+  margin-bottom: 30px;
 
   .top-bar {
     cursor: default;
@@ -12,8 +12,8 @@ div.business-page {
     flex-direction: column;
     justify-content: center;
 
-    height: 340px;
-    padding-left: 120px;
+    height: 210px;
+    padding: 0 120px;
 
     color: white;
     background-color: index.$dred;
@@ -21,18 +21,54 @@ div.business-page {
     .title {
       display: flex;
       align-items: center;
+      justify-content: space-between;
 
       margin-bottom: 10px;
 
-      p {
-        cursor: pointer;
-        margin-left: 10px;
-        font-size: 12px;
-        color: index.$blue;
+      .name {
+        display: flex;
+        align-items: center;
+
+        font-size: 20px;
+        h1 {
+          font-family: "Amatic SC", cursive;
+        }
+
+        p {
+          cursor: pointer;
+          margin-left: 10px;
+          font-size: 12px;
+          font-family: "Open Sans", sans-serif;
+          color: index.$blue;
+        }
+
+        p:hover {
+          font-weight: bold;
+        }
       }
 
-      p:hover {
+      button {
+        cursor: pointer;
+
+        padding: 10px 15px;
+
+        color: white;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 4px;
         font-weight: bold;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+          margin-right: 8px;
+        }
+      }
+
+      button:hover {
+        box-shadow: 0 0 4px index.$gray;
       }
     }
 
@@ -59,34 +95,6 @@ div.business-page {
         margin-right: 8px;
       }
     }
-
-    button {
-      cursor: pointer;
-
-      position: absolute;
-      top: 345px;
-      left: 200px;
-
-      padding: 10px 15px;
-
-      color: white;
-      background-color: transparent;
-      border: 1px solid white;
-      border-radius: 4px;
-      font-weight: bold;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      i {
-        margin-right: 8px;
-      }
-    }
-
-    button:hover {
-      box-shadow: 0 0 4px index.$gray;
-    }
   }
 
   div.about {
@@ -94,7 +102,7 @@ div.business-page {
     justify-content: center;
     align-items: center;
 
-    margin: 30px 0;
+    margin: 20px 0;
 
     .details {
       width: 60%;
@@ -120,11 +128,10 @@ div.business-page {
       .title {
         font-weight: bold;
         font-size: 28px;
-        margin-bottom: 28px;
+        margin-bottom: 18px;
       }
 
       .reviews {
-        // width: 80%;
         height: 350px;
         margin: 0 auto;
         padding: 10px;
@@ -135,7 +142,7 @@ div.business-page {
 
         overflow-y: scroll;
 
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
     }
   }
