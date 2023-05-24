@@ -1,3 +1,5 @@
+@use "../index.scss" as index;
+
 #modal {
   position: fixed;
   top: 0;
@@ -30,4 +32,6 @@
   align-items: center;
 
   padding: 15px 0;
+
+  outline: 2px solid index.$orange;
 }

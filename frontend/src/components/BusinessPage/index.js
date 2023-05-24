@@ -10,10 +10,10 @@ import { useModal } from "../../context/Modal";
 import { getBusiness } from "../../store/business";
 import StarRatingBar from "../FormElements/StarRatingBar";
 import LoadingIcon from "../FormElements/LoadingIcon";
-import ReviewCard from "../ReviewCard";
 import ReviewForm from "../ReviewForm";
 import LoginFormPage from "../LoginFormPage";
 import BusinessForm from "../BusinessForm";
+import ReviewFeedItem from "../ReviewFeed";
 
 // Expects reviews to be normalized
 const alreadyReviewed = (user, reviews) => {
@@ -58,13 +58,15 @@ const BusinessPage = () => {
       <div className="top-bar">
         <div className="title">
           <h1>{name}</h1>
-          <p
-            onClick={() =>
-              setModalContent(<BusinessForm business={business} />)
-            }
-          >
-            Update Business
-          </p>
+          {user && (
+            <p
+              onClick={() =>
+                setModalContent(<BusinessForm business={business} />)
+              }
+            >
+              Update Business
+            </p>
+          )}
         </div>
 
         <div className="avg-rating-top">
@@ -130,7 +132,7 @@ const BusinessPage = () => {
           <div className="reviews">
             {isLoaded &&
               Object.values(reviews).map((review) => (
-                <ReviewCard key={review.id} review={review} />
+                <ReviewFeedItem key={review.id} review={review} />
               ))}
           </div>
         </div>
