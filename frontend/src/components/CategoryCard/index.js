@@ -20,15 +20,17 @@ const CategoryCard = ({ category }) => {
   }, []);
 
   return (
-    <NavLink to={`/category/${category}`}>
+    <NavLink className="category-wrap" to={`/category/${category}`}>
       <div
-        className="category-card"
+        className="background"
         style={{
           backgroundImage: `url(${
             images[Math.floor(Math.random() * images.length)].url_regular
           })`,
         }}
-      >
+      />
+
+      <div className="category-card">
         <i className={`fa-solid ${iconClass[category]} fa-lg`} />
 
         <p className="category-name">
