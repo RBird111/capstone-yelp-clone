@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { useSelector } from "react-redux";
 import "./CategoryCard.scss";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ category, url }) => {
   const iconClass = {
     restaurant: "fa-utensils",
     shopping: "fa-cart-shopping",
@@ -10,23 +9,12 @@ const CategoryCard = ({ category }) => {
     "home services": "fa-house",
   };
 
-  const allReviews = useSelector((state) => state.reviews.allReviews);
-  const reviews = Object.values(allReviews);
-
-  const images = reviews.reduce((acc, review) => {
-    const imgArr = Object.values(review.images);
-    acc.push(...imgArr);
-    return acc;
-  }, []);
-
   return (
     <NavLink className="category-wrap" to={`/category/${category}`}>
       <div
         className="background"
         style={{
-          backgroundImage: `url(${
-            images[Math.floor(Math.random() * images.length)].url_regular
-          })`,
+          backgroundImage: `url(${url})`,
         }}
       />
 

@@ -28,6 +28,11 @@ const LandingPage = () => {
     }
   }
 
+  // Images for category buttons
+  const ctgImages = Object.values(randReviews)
+    .slice(0, 4)
+    .map((review) => Object.values(review.images)[0].url_regular);
+
   if (!isLoaded) return <LoadingIcon />;
 
   return (
@@ -37,7 +42,7 @@ const LandingPage = () => {
       <div className="categories">
         {["home services", "shopping", "restaurant", "automotive"].map(
           (service, idx) => (
-            <CategoryCard key={idx} category={service} />
+            <CategoryCard key={idx} category={service} url={ctgImages[idx]} />
           )
         )}
       </div>
