@@ -1,4 +1,4 @@
-@use "../index.scss" as index;
+@use "../base.scss" as base;
 
 #modal {
   position: fixed;
@@ -33,5 +33,5 @@
 
   padding: 15px 0;
 
-  outline: 2px solid index.$orange;
+  outline: 2px solid base.$orange;
 }

@@ -1,4 +1,4 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 div.review-feed-item {
   cursor: default;
@@ -9,7 +9,7 @@ div.review-feed-item {
 
   margin: 10px 0;
 
-  outline: 1px solid index.$gray;
+  outline: 1px solid base.$gray;
 
   .name-tag {
     display: flex;

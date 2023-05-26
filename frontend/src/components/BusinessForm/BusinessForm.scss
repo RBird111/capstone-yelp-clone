@@ -1,4 +1,4 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 div.business-form {
   cursor: default;
@@ -36,7 +36,7 @@ div.business-form {
       font-weight: bold;
       color: black;
       background-color: white;
-      border: 1px solid index.$red;
+      border: 1px solid base.$red;
       border-radius: 5px;
       padding: 5px;
     }
@@ -44,7 +44,7 @@ div.business-form {
 
   .delete:hover {
     i {
-      color: index.$red;
+      color: base.$red;
     }
 
     .confirm {
@@ -77,7 +77,7 @@ div.business-form {
 
       border-radius: 4px;
       border: none;
-      outline: 1px solid index.$gray;
+      outline: 1px solid base.$gray;
 
       padding: 10px;
       margin-bottom: 15px;
@@ -86,7 +86,7 @@ div.business-form {
     }
 
     textarea:focus {
-      outline: 2px solid index.$blue;
+      outline: 2px solid base.$blue;
       border: none;
     }
 

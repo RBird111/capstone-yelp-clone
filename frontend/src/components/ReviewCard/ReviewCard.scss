@@ -1,4 +1,4 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 div.review-card:hover {
   box-shadow: 0 0 3px black;
@@ -11,7 +11,7 @@ div.review-card {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid index.$gray;
+  border: 1px solid base.$gray;
   border-radius: 5px;
 
   padding: 5px;
@@ -30,7 +30,7 @@ div.review-card {
     align-items: center;
 
     padding: 10px 0;
-    border-bottom: 1px solid index.$gray;
+    border-bottom: 1px solid base.$gray;
 
     .icon-div {
       margin-right: 20px;
@@ -71,7 +71,7 @@ div.review-card {
       padding-top: 10px;
       padding-bottom: 10px;
 
-      color: index.$green;
+      color: base.$green;
       font-family: "Amatic SC", cursive;
       font-size: 28px;
     }
@@ -101,7 +101,7 @@ div.review-card {
     .continue {
       font-size: small;
 
-      color: index.$blue;
+      color: base.$blue;
 
       cursor: pointer;
     }
@@ -117,13 +117,13 @@ div.review-card {
     padding-bottom: 5px;
     margin-bottom: 10px;
 
-    border-top: 1px solid index.$gray;
+    border-top: 1px solid base.$gray;
 
     .icon {
       cursor: pointer;
 
       i:hover {
-        color: index.$blue;
+        color: base.$blue;
       }
     }
   }

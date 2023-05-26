@@ -1,4 +1,4 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 div.login-form {
   cursor: default;
@@ -13,7 +13,7 @@ div.login-form {
     margin: 15px 0;
 
     span {
-      color: index.$red;
+      color: base.$red;
     }
   }
 

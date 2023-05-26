@@ -1,4 +1,4 @@
-@use "../../../index.scss" as index;
+@use "../../../base.scss" as base;
 
 div.search-bar {
   cursor: default;
@@ -13,8 +13,8 @@ div.search-bar {
   height: 30px;
   width: 25vw;
 
-  outline: 1px solid index.$gray;
-  box-shadow: 0 0 7px index.$gray;
+  outline: 1px solid base.$gray;
+  box-shadow: 0 0 7px base.$gray;
   border-radius: 3px;
 
   input {
@@ -42,11 +42,11 @@ div.search-bar {
     font-size: 18px;
 
     padding: 0 7px;
-    background-color: index.$red;
+    background-color: base.$red;
     height: 100%;
   }
 }
 
 #active-search {
-  outline: 1px solid index.$red;
+  outline: 1px solid base.$red;
 }

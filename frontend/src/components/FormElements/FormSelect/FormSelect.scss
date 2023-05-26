@@ -1,4 +1,4 @@
-@use "../../../index.scss" as index;
+@use "../../../base.scss" as base;
 
 .form-select {
   display: flex;
@@ -11,12 +11,12 @@
     height: 25px;
     border-radius: 4px;
     border: none;
-    outline: 1px solid index.$gray;
+    outline: 1px solid base.$gray;
     padding: 0 10px;
   }
 
   select:focus {
-    outline: 2px solid index.$blue;
+    outline: 2px solid base.$blue;
     border: none;
   }
 }

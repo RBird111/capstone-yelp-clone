@@ -1,4 +1,4 @@
-@use "../../../index.scss" as index;
+@use "../../../base.scss" as base;
 
 button.default-btn {
   cursor: pointer;
@@ -14,7 +14,7 @@ button.default-btn:hover {
 }
 
 button.red {
-  background-color: index.$red;
+  background-color: base.$red;
   color: white;
   border: none;
 }
@@ -22,5 +22,5 @@ button.red {
 button.white {
   background-color: white;
   color: black;
-  border: 1px solid index.$gray;
+  border: 1px solid base.$gray;
 }

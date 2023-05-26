@@ -1,4 +1,4 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 h1.business-feed-title {
   margin: 10px;
@@ -6,7 +6,7 @@ h1.business-feed-title {
 
   i {
     padding-right: 20px;
-    color: index.$blue;
+    color: base.$blue;
   }
 }
 
@@ -22,7 +22,7 @@ div.business-feed {
   margin-bottom: 40px;
   padding: 30px 0;
 
-  border: 3px solid index.$orange;
+  border: 3px solid base.$orange;
   border-radius: 5px;
 
   .b-feed-link {
