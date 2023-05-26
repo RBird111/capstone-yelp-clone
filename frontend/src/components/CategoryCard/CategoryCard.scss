@@ -1,5 +1,25 @@
 @use "../../base.scss" as base;
 
+.category-wrap:hover {
+  .background {
+    filter: blur(7px);
+    -webkit-filter: blur(7px);
+  }
+
+  div.category-card {
+    box-shadow: 0 0 3px black;
+    font-size: 20px;
+
+    color: base.$blue;
+    background-color: rgba(0, 0, 0, 0.45);
+
+    .category-name {
+      font-size: 20px;
+      color: white;
+    }
+  }
+}
+
 .category-wrap {
   position: relative;
 
@@ -10,8 +30,8 @@
     top: 0;
     left: 0;
 
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
     background-size: cover;
     background-position: center;
 
@@ -21,19 +41,10 @@
     height: 18vw;
     min-height: 200px;
 
-    padding: 5px;
-    border-radius: 5px;
+    padding: 7px;
+    border-radius: 7px;
 
     border: 1px solid base.$gray;
-  }
-
-  div.category-card:hover {
-    box-shadow: 0 0 3px black;
-    font-size: 20px;
-
-    .category-name {
-      font-size: 20px;
-    }
   }
 
   div.category-card {
@@ -46,9 +57,9 @@
     align-items: center;
 
     border: 1px solid base.$gray;
-    border-radius: 5px;
+    border-radius: 7px;
 
-    padding: 5px;
+    padding: 7px;
     margin-bottom: 30px;
 
     width: 18vw;
