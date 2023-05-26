@@ -1,7 +1,5 @@
 import json
-import random
 from app.models import db, Image, environment, SCHEMA
-from sqlalchemy.sql import text
 
 
 # Adds a demo user, you can add other users here if you want
@@ -12,7 +10,9 @@ def seed_images():
     print("\nSeeding images table...")
     for idx, image in enumerate(images):
         new_image = Image(
-            url=image['url'],
+            url_small=image['url_small'],
+            url_regular=image['url_regular'],
+            url_full=image['url_full'],
             user_id=(idx % 50) + 1,
             business_id=(idx % 30) + 1,
             review_id=idx + 1,

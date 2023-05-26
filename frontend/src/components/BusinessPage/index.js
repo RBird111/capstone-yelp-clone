@@ -59,7 +59,9 @@ const BusinessPage = () => {
         className="top-bar"
         style={{
           backgroundImage: `linear-gradient(90deg, black, transparent), url(${
-            Object.values(images)[0].url
+            Object.values(images)[
+              Math.floor(Math.random() * Object.values(images).length)
+            ].url_full
           })`,
         }}
       >

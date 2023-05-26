@@ -14,6 +14,9 @@ div.review-card {
   border: 1px solid base.$gray;
   border-radius: 5px;
 
+  background-position: center;
+  background-size: cover;
+
   padding: 5px;
   margin-bottom: 30px;
 
@@ -72,6 +75,7 @@ div.review-card {
       padding-bottom: 10px;
 
       color: base.$green;
+      text-shadow: 0 0 2px white;
       font-family: "Amatic SC", cursive;
       font-size: 28px;
     }

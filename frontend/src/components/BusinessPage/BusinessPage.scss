@@ -17,6 +17,9 @@ div.business-page {
 
     color: white;
 
+    background-size: cover;
+    background-position: center;
+
     .title {
       display: flex;
       align-items: center;
@@ -53,7 +56,7 @@ div.business-page {
 
         color: white;
         background-color: transparent;
-        border: 1px solid white;
+        border: 2px solid white;
         border-radius: 4px;
         font-weight: bold;
 
