@@ -1,7 +1,7 @@
-@use "../../../index.scss" as index;
+@use "../../../base.scss" as base;
 
 .b-feed-item:hover {
-  box-shadow: 0 0 10px index.$gray;
+  box-shadow: 0 0 10px base.$gray;
 
   .name {
     font-weight: bold;
@@ -13,7 +13,7 @@
   width: 100%;
   padding: 20px;
   margin-bottom: 8px;
-  border: 2px solid index.$gray;
+  border: 2px solid base.$gray;
 
   display: flex;
   justify-content: space-between;
@@ -26,7 +26,7 @@
     align-items: center;
 
     .name {
-      color: index.$green;
+      color: base.$green;
       font-family: "Amatic SC", cursive;
       font-size: 40px;
     }

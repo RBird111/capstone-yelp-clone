@@ -1,4 +1,4 @@
-@use "../../../index.scss" as index;
+@use "../../../base.scss" as base;
 
 div.icon-div {
   i.profile-icon {
@@ -14,6 +14,6 @@ div.icon-div {
     border-radius: 50%;
 
     color: white;
-    background-color: index.$blue;
+    background-color: base.$blue;
   }
 }

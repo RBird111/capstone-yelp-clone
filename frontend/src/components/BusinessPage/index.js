@@ -37,7 +37,7 @@ const BusinessPage = () => {
   const { businessId } = useParams();
 
   const business = useSelector((state) => state.business.currBusiness);
-  const { name, description, category, location, reviews, avg_rating } =
+  const { name, description, category, location, reviews, avg_rating, images } =
     business;
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -55,7 +55,14 @@ const BusinessPage = () => {
 
   return (
     <div className="business-page">
-      <div className="top-bar">
+      <div
+        className="top-bar"
+        style={{
+          backgroundImage: `linear-gradient(90deg, black, transparent), url(${
+            Object.values(images)[0].url
+          })`,
+        }}
+      >
         <div className="title">
           <div className="name">
             <h1>{name}</h1>
@@ -135,9 +142,11 @@ const BusinessPage = () => {
 
           <div className="reviews">
             {isLoaded &&
-              Object.values(reviews).reverse().map((review) => (
-                <ReviewFeedItem key={review.id} review={review} />
-              ))}
+              Object.values(reviews)
+                .reverse()
+                .map((review) => (
+                  <ReviewFeedItem key={review.id} review={review} />
+                ))}
           </div>
         </div>
       </div>

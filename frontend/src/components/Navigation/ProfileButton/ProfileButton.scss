@@ -1,4 +1,4 @@
-@use "../../../index.scss" as index;
+@use "../../../base.scss" as base;
 
 .profile-button-div {
   margin-right: 20px;
@@ -9,13 +9,13 @@
 
   .icon-div:hover {
     i {
-      background-color: index.$red;
+      background-color: base.$red;
     }
   }
 
   .profile-dropdown {
     background-color: white;
-    border: 1px solid index.$gray;
+    border: 1px solid base.$gray;
 
     display: flex;
     flex-direction: column;
@@ -27,11 +27,11 @@
     div.header {
       cursor: default;
 
-      background-color: index.$blue;
+      background-color: base.$blue;
       display: flex;
       justify-content: center;
 
-      border-bottom: 1px solid index.$gray;
+      border-bottom: 1px solid base.$gray;
 
       padding: 0 40px;
       margin-bottom: 6px;
@@ -62,7 +62,7 @@
 
       font-size: 13px;
 
-      border-top: 1px solid index.$gray;
+      border-top: 1px solid base.$gray;
 
       padding: 9px 0;
       margin: 0 8px;
@@ -74,7 +74,7 @@
 
     p:hover {
       i {
-        color: index.$green;
+        color: base.$green;
       }
     }
   }

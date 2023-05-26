@@ -1,10 +1,4 @@
-$blue: #4990e2;
-$gray: #d3d3d3;
-$green: #00ac82;
-$lgray: #dcdcdc;
-$orange: #e29b49;
-$red: #d32323;
-$dred: #9b3838;
+@use "./base.scss" as base;
 
 * {
   margin: 0;
@@ -16,7 +10,7 @@ html {
 }
 
 a {
-  color: $blue;
+  color: base.$blue;
   text-decoration: none;
 }
 
@@ -25,15 +19,15 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 3px $gray;
+  box-shadow: inset 0 0 3px base.$gray;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $gray;
+  background: base.$gray;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: $blue;
+  background: base.$blue;
 }
 
 // ::-webkit-scrollbar-button {

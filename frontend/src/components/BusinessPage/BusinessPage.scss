@@ -1,4 +1,4 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 div.business-page {
   display: flex;
@@ -16,7 +16,6 @@ div.business-page {
     padding: 0 120px;
 
     color: white;
-    background-color: index.$dred;
 
     .title {
       display: flex;
@@ -39,7 +38,7 @@ div.business-page {
           margin-left: 10px;
           font-size: 12px;
           font-family: "Open Sans", sans-serif;
-          color: index.$blue;
+          color: base.$blue;
         }
 
         p:hover {
@@ -68,7 +67,7 @@ div.business-page {
       }
 
       button:hover {
-        box-shadow: 0 0 4px index.$gray;
+        box-shadow: 0 0 4px base.$gray;
       }
     }
 
@@ -87,7 +86,7 @@ div.business-page {
     }
 
     .category {
-      color: index.$green;
+      color: base.$green;
       margin-top: 10px;
       font-weight: bold;
 
@@ -111,7 +110,7 @@ div.business-page {
       justify-content: center;
 
       width: 60%;
-      border: 1px solid index.$gray;
+      border: 1px solid base.$gray;
       padding: 15px;
 
       .title {
@@ -147,9 +146,9 @@ div.business-page {
         margin: 0 auto;
         padding: 10px;
 
-        border: 2px solid index.$orange;
+        border: 2px solid base.$orange;
         border-radius: 5px;
-        box-shadow: inset 0 0 3px index.$gray;
+        box-shadow: inset 0 0 3px base.$gray;
 
         overflow-y: scroll;
 

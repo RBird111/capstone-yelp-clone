@@ -1,8 +1,8 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 div.category-card:hover {
   box-shadow: 0 0 3px black;
-  color: index.$red;
+  color: base.$red;
 }
 
 div.category-card {
@@ -14,7 +14,7 @@ div.category-card {
   justify-content: center;
   align-items: center;
 
-  border: 1px solid index.$gray;
+  border: 1px solid base.$gray;
   border-radius: 5px;
 
   padding: 5px;

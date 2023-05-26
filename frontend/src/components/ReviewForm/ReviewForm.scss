@@ -1,4 +1,4 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 div.review-form {
   cursor: default;
@@ -35,7 +35,7 @@ div.review-form {
 
       color: black;
       background-color: white;
-      border: 1px solid index.$red;
+      border: 1px solid base.$red;
       border-radius: 5px;
       padding: 5px;
     }
@@ -43,7 +43,7 @@ div.review-form {
 
   .delete:hover {
     i {
-      color: index.$red;
+      color: base.$red;
     }
 
     .confirm {
@@ -54,7 +54,7 @@ div.review-form {
 
   h1 {
     margin: 0 30px;
-    color: index.$red;
+    color: base.$red;
     font-family: "Amatic SC", cursive;
   }
 
@@ -82,7 +82,7 @@ div.review-form {
 
       border-radius: 4px;
       border: none;
-      outline: 1px solid index.$gray;
+      outline: 1px solid base.$gray;
 
       padding: 10px;
       margin-bottom: 30px;
@@ -91,7 +91,7 @@ div.review-form {
     }
 
     textarea:focus {
-      outline: 2px solid index.$blue;
+      outline: 2px solid base.$blue;
       border: none;
     }
 

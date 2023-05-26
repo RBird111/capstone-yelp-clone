@@ -1,4 +1,4 @@
-@use "../../index.scss" as index;
+@use "../../base.scss" as base;
 
 .footer {
   z-index: 1;
@@ -14,7 +14,7 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: index.$red;
+  background-color: base.$red;
 
   width: 100%;
   height: 15px;
@@ -34,7 +34,7 @@
   }
 
   p:hover {
-    color: index.$orange;
+    color: base.$orange;
   }
 
   .repo-link {
@@ -50,7 +50,7 @@
 
   .repo-link:hover {
     a {
-      color: index.$green;
+      color: base.$green;
     }
   }
 
@@ -71,7 +71,7 @@
     }
 
     i:hover {
-      color: index.$blue;
+      color: base.$blue;
     }
   }
 }

@@ -1,4 +1,4 @@
-@use "../../../index.scss" as index;
+@use "../../../base.scss" as base;
 
 @keyframes spin {
   0% {
@@ -23,7 +23,7 @@
     position: absolute;
     top: 40vh;
 
-    color: index.$red;
+    color: base.$red;
     font-family: "Amatic SC", cursive;
     font-size: 40px;
     font-weight: bold;
@@ -32,21 +32,21 @@
   .loading-icon {
     width: 70px;
     height: 70px;
-    border: 10px solid index.$red;
+    border: 10px solid base.$red;
     border-radius: 50%;
     animation: spin 1.9s linear infinite;
 
     .inner-loading-icon {
       width: 35px;
       height: 35px;
-      border: 8px solid index.$blue;
+      border: 8px solid base.$blue;
       border-radius: 50%;
       animation: spin 1.9s linear infinite;
 
       .inner-inner-loading-icon {
         width: 17px;
         height: 17px;
-        border: 4px solid index.$orange;
+        border: 4px solid base.$orange;
         border-radius: 50%;
       }
     }

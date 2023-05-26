@@ -1,4 +1,4 @@
-@use "../../../index.scss" as index;
+@use "../../../base.scss" as base;
 
 .div-logo {
   color: black;
@@ -8,7 +8,7 @@
   font-weight: bold;
 
   .w {
-    color: index.$red;
+    color: base.$red;
     font-weight: normal;
     font-family: "Open Sans", sans-serif;
   }
