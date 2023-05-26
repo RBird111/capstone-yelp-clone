@@ -9,3 +9,5 @@ __pycache__/
 bend.sh
 fend.sh
 db_reset.sh
+
+image_seed.py
