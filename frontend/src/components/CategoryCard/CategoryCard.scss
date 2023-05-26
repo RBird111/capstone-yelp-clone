@@ -1,39 +1,71 @@
 @use "../../base.scss" as base;
 
-div.category-card:hover {
-  box-shadow: 0 0 3px black;
-  color: base.$red;
-}
+.category-wrap {
+  position: relative;
 
-div.category-card {
-  cursor: pointer;
+  .background {
+    z-index: -1;
 
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-  border: 1px solid base.$gray;
-  border-radius: 5px;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    background-size: cover;
+    background-position: center;
 
-  padding: 5px;
-  margin-bottom: 30px;
+    width: 18vw;
+    min-width: 200px;
 
-  width: 18vw;
-  min-width: 200px;
+    height: 18vw;
+    min-height: 200px;
 
-  height: 18vw;
-  min-height: 200px;
+    padding: 5px;
+    border-radius: 5px;
 
-  i {
-    padding-bottom: 15px;
+    border: 1px solid base.$gray;
   }
 
-  .category-name {
-    font-size: 18px;
-    font-weight: bold;
+  div.category-card:hover {
+    box-shadow: 0 0 3px black;
+    font-size: 20px;
 
-    padding-top: 15px;
+    .category-name {
+      font-size: 20px;
+    }
+  }
+
+  div.category-card {
+    cursor: pointer;
+
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid base.$gray;
+    border-radius: 5px;
+
+    padding: 5px;
+    margin-bottom: 30px;
+
+    width: 18vw;
+    min-width: 200px;
+
+    height: 18vw;
+    min-height: 200px;
+
+    i {
+      padding-bottom: 15px;
+    }
+
+    .category-name {
+      font-size: 18px;
+      font-weight: bold;
+
+      padding-top: 15px;
+    }
   }
 }
