@@ -10,24 +10,14 @@ def seed_images():
     images = json.load(data)
 
     print("\nSeeding images table...")
-    for image in images:
-        var = random.choice(list(range(1, 101)))
-        if var < 34:
-            new_image = Image(
-                url=image['url'],
-                user_id=random.choice(range(1, 51)),
-                business_id=random.choice(range(1, 31)),
-                review_id=None,
-            )
-            db.session.add(new_image)
-        else:
-            new_image = Image(
-                url=image['url'],
-                user_id=random.choice(range(1, 51)),
-                review_id=random.choice(range(1, 151)),
-                business_id=None,
-            )
-            db.session.add(new_image)
+    for idx, image in enumerate(images):
+        new_image = Image(
+            url=image['url'],
+            user_id=(idx % 50) + 1,
+            business_id=(idx % 30) + 1,
+            review_id=idx + 1,
+        )
+        db.session.add(new_image)
 
     db.session.commit()
     print("Images table seeded.")

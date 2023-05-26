@@ -19,7 +19,7 @@ def validation_errors_to_messages(validation_errors):
     return errorMessages
 
 
-@user_routes.route('/', methods=['GET'])
+@user_routes.route('', methods=['GET'])
 @login_required
 def users():
     """
