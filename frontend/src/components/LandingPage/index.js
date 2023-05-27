@@ -23,14 +23,18 @@ const LandingPage = () => {
   if (reviews.length) {
     while (Object.values(randReviews).length < 10) {
       const review = reviews[Math.floor(Math.random() * reviews.length)];
+      if (Object.values(review.images).length === 0) continue;
       randReviews[review.id] = review;
     }
   }
 
   // Images for category buttons
-  const ctgImages = Object.values(randReviews)
-    .slice(6, 10)
-    .map((review) => Object.values(review.images)[0].url_regular);
+  const ctgImages =
+    Object.values(randReviews).length === 0
+      ? null
+      : Object.values(randReviews)
+          .slice(6, 10)
+          .map((review) => Object.values(review.images)[0].url_regular);
 
   if (!isLoaded) return <LoadingIcon />;
 
@@ -49,9 +53,11 @@ const LandingPage = () => {
       {/* Recent Activity */}
       <h1 className="title">Recent Activity</h1>
       <div className="reviews">
-        {Object.values(randReviews).slice(0, 6).map((review) => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
+        {Object.values(randReviews)
+          .slice(0, 6)
+          .map((review) => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
       </div>
     </div>
   );

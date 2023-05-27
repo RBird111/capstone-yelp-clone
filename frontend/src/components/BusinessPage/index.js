@@ -161,7 +161,7 @@ const BusinessPage = () => {
         <div className="r-wrap">
           <p className="title">Featured Reviews:</p>
 
-          <div className="reviews">
+          <div className="reviews-frame">
             {isLoaded &&
               Object.values(reviews)
                 .reverse()
