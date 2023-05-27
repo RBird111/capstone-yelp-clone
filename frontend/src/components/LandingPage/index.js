@@ -19,10 +19,9 @@ const LandingPage = () => {
     dispatch(getAllReviews()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  // Pulls 6 random reviews
   const randReviews = {};
   if (reviews.length) {
-    while (Object.values(randReviews).length < 6) {
+    while (Object.values(randReviews).length < 10) {
       const review = reviews[Math.floor(Math.random() * reviews.length)];
       randReviews[review.id] = review;
     }
@@ -30,7 +29,7 @@ const LandingPage = () => {
 
   // Images for category buttons
   const ctgImages = Object.values(randReviews)
-    .slice(0, 4)
+    .slice(6, 10)
     .map((review) => Object.values(review.images)[0].url_regular);
 
   if (!isLoaded) return <LoadingIcon />;
@@ -50,7 +49,7 @@ const LandingPage = () => {
       {/* Recent Activity */}
       <h1 className="title">Recent Activity</h1>
       <div className="reviews">
-        {Object.values(randReviews).map((review) => (
+        {Object.values(randReviews).slice(0, 6).map((review) => (
           <ReviewCard key={review.id} review={review} />
         ))}
       </div>

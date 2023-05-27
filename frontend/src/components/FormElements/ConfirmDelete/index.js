@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useState } from "react";
 
 import "./ConfirmDelete.scss";
 import { getBusiness } from "../../../store/business";
@@ -13,6 +14,9 @@ const ConfirmDelete = ({ business, thunk, item }) => {
   const history = useHistory();
 
   const { setModalContent, closeModal } = useModal();
+
+  const [yesText, setYesText] = useState("Yes");
+  const [noText, setNoText] = useState("No");
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -42,12 +46,28 @@ const ConfirmDelete = ({ business, thunk, item }) => {
         <p className="sure">Are you sure?</p>
 
         <div className="btns">
-          <div className="yes">
-            <DefaultButton onClick={handleDelete} text={"Yes"} />
+          <div
+            className="yes"
+            onMouseEnter={(e) => {
+              setYesText("Delete");
+            }}
+            onMouseLeave={(e) => {
+              setYesText("Yes");
+            }}
+          >
+            <DefaultButton onClick={handleDelete} text={yesText} />
           </div>
 
-          <div className="no">
-            <DefaultButton onClick={handleCancel} text={"No"} />
+          <div
+            className="no"
+            onMouseEnter={(e) => {
+              setNoText("Go Back");
+            }}
+            onMouseLeave={(e) => {
+              setNoText("No");
+            }}
+          >
+            <DefaultButton onClick={handleCancel} text={noText} />
           </div>
         </div>
       </div>

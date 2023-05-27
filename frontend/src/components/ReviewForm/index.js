@@ -84,6 +84,7 @@ const ReviewForm = ({ business, review }) => {
       {review && (
         <div
           className="delete"
+          title="Click to delete your review"
           onClick={() =>
             setModalContent(
               <ConfirmDelete

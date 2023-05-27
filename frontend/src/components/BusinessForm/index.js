@@ -111,6 +111,7 @@ const BusinessForm = ({ business }) => {
       {business && (
         <div
           className="delete"
+          title="Click to delete business"
           onClick={() =>
             setModalContent(
               <ConfirmDelete
