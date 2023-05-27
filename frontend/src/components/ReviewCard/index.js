@@ -14,7 +14,6 @@ const ReviewCard = ({ review }) => {
       <div
         className="background"
         style={{
-          // backgroundImage: `linear-gradient(white 8vw, transparent 8vw 18vw, white 18vw), url(${imageUrl})`,
           backgroundImage: `url(${imageUrl})`,
         }}
       />
@@ -22,12 +21,10 @@ const ReviewCard = ({ review }) => {
       <div className="wrap">
         <div className="user-info">
           <ProfileIcon />
-
           <div className="p-div">
             <p className="name">
               {review.user.first_name} {review.user.last_name[0]}.
             </p>
-
             <p className="wrote">Wrote a review</p>
           </div>
         </div>
@@ -36,7 +33,6 @@ const ReviewCard = ({ review }) => {
           <NavLink to={`/business/${review.business.id}`}>
             {review.business.name}
           </NavLink>
-
           <StarRatingBar rating={review.rating} />
         </div>
       </div>
@@ -44,7 +40,6 @@ const ReviewCard = ({ review }) => {
       <div className="r-wrap">
         <div className="review-body">
           <p className="body">{review.body}</p>
-
           <p
             className="continue"
             onClick={() => history.push(`/business/${review.business.id}`)}

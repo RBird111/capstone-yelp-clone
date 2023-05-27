@@ -56,6 +56,12 @@ function LoginFormPage() {
     }
   };
 
+  const loginDemo = async (e) => {
+    e.preventDefault();
+    await dispatch(login({ credential: "demo-lition", password: "password" }));
+    closeModal();
+  };
+
   return (
     <div className="login-form">
       <h1>
@@ -75,6 +81,10 @@ function LoginFormPage() {
 
         <DefaultButton text={"Log In"} />
       </form>
+
+      <p className="demo-user" onClick={loginDemo}>
+        Log in as Demo User
+      </p>
     </div>
   );
 }

@@ -15,7 +15,6 @@ import SearchBar from "./SearchBar";
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
-  // const history = useHistory();
 
   const { setModalContent } = useModal();
 
@@ -24,7 +23,6 @@ function Navigation({ isLoaded }) {
   const loginDemo = async (e) => {
     e.preventDefault();
     await dispatch(login({ credential: "demo-lition", password: "password" }));
-    // history.push("/");
   };
 
   return (

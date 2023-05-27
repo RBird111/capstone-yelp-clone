@@ -26,6 +26,18 @@ div.login-form {
 
     button {
       width: 70%;
+      margin-bottom: 20px;
     }
+  }
+
+  .demo-user {
+    cursor: pointer;
+    color: base.$blue;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .demo-user:hover {
+    font-weight: bold;
   }
 }
