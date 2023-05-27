@@ -21,7 +21,11 @@ const Footer = () => {
           rel="noreferrer"
           href="https://github.com/MrBird88/capstone-yelp-clone"
         >
+          <i className="fa-brands fa-python fa-lg" />
+          <i className="fa-brands fa-css3 fa-lg" />
           GitHub Repo
+          <i className="fa-brands fa-html5 fa-lg" />
+          <i className="fa-brands fa-js fa-lg" />
         </a>
       </div>
 

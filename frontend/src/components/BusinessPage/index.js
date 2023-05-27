@@ -53,6 +53,13 @@ const BusinessPage = () => {
 
   if (!isLoaded) return <LoadingIcon />;
 
+  const iconClass = {
+    restaurant: "fa-utensils",
+    shopping: "fa-cart-shopping",
+    automotive: "fa-car",
+    "home services": "fa-house",
+  };
+
   const style = () => {
     if (Object.values(images).length === 0)
       return { backgroundColor: "#9b3838" };
@@ -130,7 +137,7 @@ const BusinessPage = () => {
         </div>
 
         <p className="category">
-          <i className="fa-solid fa-building" />
+          <i className={`fa-solid ${iconClass[category]}`} />
           {category[0].toUpperCase() + category.slice(1)}
         </p>
       </div>
@@ -151,7 +158,11 @@ const BusinessPage = () => {
               Object.values(reviews)
                 .reverse()
                 .map((review) => (
-                  <ReviewFeedItem key={review.id} review={review} />
+                  <ReviewFeedItem
+                    key={review.id}
+                    review={review}
+                    userId={user?.id}
+                  />
                 ))}
           </div>
         </div>
