@@ -53,18 +53,22 @@ const BusinessPage = () => {
 
   if (!isLoaded) return <LoadingIcon />;
 
+  const style = () => {
+    if (Object.values(images).length === 0)
+      return { backgroundColor: "#9b3838" };
+
+    return {
+      backgroundImage: `linear-gradient(90deg, black, transparent), url(${
+        Object.values(images)[
+          Math.floor(Math.random() * Object.values(images).length)
+        ].url_full
+      })`,
+    };
+  };
+
   return (
     <div className="business-page">
-      <div
-        className="top-bar"
-        style={{
-          backgroundImage: `linear-gradient(90deg, black, transparent), url(${
-            Object.values(images)[
-              Math.floor(Math.random() * Object.values(images).length)
-            ].url_full
-          })`,
-        }}
-      >
+      <div className="top-bar" style={{ ...style() }}>
         <div className="title">
           <div className="name">
             <h1>{name}</h1>

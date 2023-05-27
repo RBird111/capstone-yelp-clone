@@ -7,7 +7,7 @@
   }
 
   div.category-card {
-    box-shadow: 0 0 3px black;
+    box-shadow: 0 0 2px black;
     font-size: 20px;
 
     color: base.$blue;
@@ -30,8 +30,8 @@
     top: 0;
     left: 0;
 
-    filter: blur(1px);
-    -webkit-filter: blur(1px);
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
     background-size: cover;
     background-position: center;
 
