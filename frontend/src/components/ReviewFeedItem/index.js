@@ -2,7 +2,7 @@ import ProfileIcon from "../FormElements/ProfileIcon";
 import StarRatingBar from "../FormElements/StarRatingBar";
 import "./ReviewFeedItem.scss";
 
-const ReviewFeedItem = ({ review }) => {
+const ReviewFeedItem = ({ review, userId }) => {
   const { user, rating, body } = review;
 
   return (

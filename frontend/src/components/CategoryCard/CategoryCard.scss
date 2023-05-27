@@ -10,8 +10,8 @@
     box-shadow: 0 0 2px black;
     font-size: 20px;
 
-    color: base.$blue;
-    background-color: rgba(0, 0, 0, 0.45);
+    color: base.$red;
+    background-color: rgba(0, 0, 0, 0.55);
 
     .category-name {
       font-size: 20px;
@@ -32,6 +32,7 @@
 
     filter: blur(2px);
     -webkit-filter: blur(2px);
+
     background-size: cover;
     background-position: center;
 
@@ -45,6 +46,8 @@
     border-radius: 7px;
 
     border: 1px solid base.$gray;
+
+    transition: filter 0.5s;
   }
 
   div.category-card {
@@ -68,8 +71,12 @@
     height: 18vw;
     min-height: 200px;
 
+    transition: background-color 0.5s;
+
     i {
       padding-bottom: 15px;
+      transition-property: font-size color;
+      transition: 0.3s ease-out;
     }
 
     .category-name {
@@ -77,6 +84,9 @@
       font-weight: bold;
 
       padding-top: 15px;
+      transition-property: font-size color;
+      transition: 0.3s ease-out;
+      // transition: color 0.3s ease-out;
     }
   }
 }

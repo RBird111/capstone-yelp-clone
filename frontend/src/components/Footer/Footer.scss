@@ -22,6 +22,14 @@
   padding-top: 7px;
   padding-bottom: 7px;
 
+  i {
+    color: white;
+
+    font-size: 18px;
+
+    padding: 0 4px;
+  }
+
   p {
     color: white;
     font-weight: bold;
@@ -44,13 +52,28 @@
 
       font-family: "Amatic SC", cursive;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: bolder;
+    }
+
+    i {
+      font-weight: normal;
+      color: base.$red;
+    }
+
+    .fa-html5,
+    .fa-css3 {
+      transition: color 0.8s;
+    }
+
+    .fa-python,
+    .fa-js {
+      transition: color 1.2s 0.3s;
     }
   }
 
   .repo-link:hover {
-    a {
-      color: base.$green;
+    i {
+      color: white;
     }
   }
 
@@ -60,14 +83,6 @@
 
     p {
       padding-right: 4px;
-    }
-
-    i {
-      color: white;
-
-      font-size: 18px;
-
-      padding: 0 4px;
     }
 
     i:hover {
