@@ -40,7 +40,7 @@ const LandingPage = () => {
       {/* Categories */}
       <h1 className="title">Categories</h1>
       <div className="categories">
-        {["home services", "shopping", "restaurant", "automotive"].map(
+        {["automotive", "home services", "restaurant", "shopping"].map(
           (service, idx) => (
             <CategoryCard key={idx} category={service} url={ctgImages[idx]} />
           )

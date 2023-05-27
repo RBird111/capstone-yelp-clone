@@ -1,24 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import "./BusinessForm.scss";
-import DefaultButton from "../FormElements/DefaultButton";
-import FormInput, { handleErrors, toInput } from "../FormElements/FormInput";
 import { useModal } from "../../context/Modal";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import FormInput, { handleErrors, toInput } from "../FormElements/FormInput";
+import FormSelect, { toSelectInput } from "../FormElements/FormSelect";
 import {
   createBusiness,
   deleteBusiness,
   updateBusiness,
 } from "../../store/business";
+import ConfirmDelete from "../FormElements/ConfirmDelete";
 import Error from "../FormElements/Error";
-import FormSelect, { toSelectInput } from "../FormElements/FormSelect";
+import DefaultButton from "../FormElements/DefaultButton";
 
 const BusinessForm = ({ business }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { closeModal } = useModal();
+  const { setModalContent, closeModal } = useModal();
   const businessData = useSelector((state) => state.business.currBusiness);
 
   const [name, setName] = useState(business ? business.name : "");
@@ -67,14 +68,6 @@ const BusinessForm = ({ business }) => {
     setErrors(errorsObj);
   }, [address, category, city, description, name, state]);
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
-
-    history.push("/");
-    await dispatch(deleteBusiness(business.id));
-    closeModal();
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -116,15 +109,22 @@ const BusinessForm = ({ business }) => {
   return (
     <div className="business-form">
       {business && (
-        <div className="delete">
-          <div className="confirm">
-            <p>Delete this business?</p>
-            <DefaultButton onClick={handleDelete} text={"Delete"} />
-          </div>
-
+        <div
+          className="delete"
+          onClick={() =>
+            setModalContent(
+              <ConfirmDelete
+                item={business}
+                thunk={deleteBusiness}
+                business={business}
+              />
+            )
+          }
+        >
           <i className="fa-solid fa-trash" />
         </div>
       )}
+
       <h1>{business ? "Update " : "Add a "}Business</h1>
 
       <form onSubmit={handleSubmit}>

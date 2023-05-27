@@ -13,11 +13,12 @@ import DefaultButton from "../FormElements/DefaultButton";
 import StarRatingBar from "../FormElements/StarRatingBar";
 import Error from "../FormElements/Error";
 import { getBusiness } from "../../store/business";
+import ConfirmDelete from "../FormElements/ConfirmDelete";
 
 const ReviewForm = ({ business, review }) => {
   const dispatch = useDispatch();
 
-  const { closeModal } = useModal();
+  const { setModalContent, closeModal } = useModal();
   const reviewData = useSelector((state) => state.reviews.currReview);
 
   const [rating, setRating] = useState(review ? review.rating : null);
@@ -42,14 +43,6 @@ const ReviewForm = ({ business, review }) => {
 
     setErrors(errorsObj);
   }, [body, rating]);
-
-  const handleDelete = async (e) => {
-    e.preventDefault();
-
-    await dispatch(deleteReview(review.id));
-    await dispatch(getBusiness(business.id));
-    closeModal();
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,12 +82,18 @@ const ReviewForm = ({ business, review }) => {
   return (
     <div className="review-form">
       {review && (
-        <div className="delete">
-          <div className="confirm">
-            <p>Delete your review?</p>
-            <DefaultButton onClick={handleDelete} text={"Delete"} />
-          </div>
-
+        <div
+          className="delete"
+          onClick={() =>
+            setModalContent(
+              <ConfirmDelete
+                item={review}
+                thunk={deleteReview}
+                business={business}
+              />
+            )
+          }
+        >
           <i className="fa-solid fa-trash" />
         </div>
       )}
