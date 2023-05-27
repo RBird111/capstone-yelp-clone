@@ -55,7 +55,8 @@ div.business-page {
         padding: 10px 15px;
 
         color: white;
-        background-color: transparent;
+        background-color: rgba(0, 0, 0, 0.25);
+        transition: background-color 0.4s;
         border: 2px solid white;
         border-radius: 4px;
         font-weight: bold;
@@ -71,6 +72,7 @@ div.business-page {
 
       button:hover {
         box-shadow: 0 0 4px base.$gray;
+        background-color: rgba(0, 0, 0, 0.55);
       }
     }
 

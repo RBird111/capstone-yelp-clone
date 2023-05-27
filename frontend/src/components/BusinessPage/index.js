@@ -93,6 +93,14 @@ const BusinessPage = () => {
           {user && hasReview ? (
             <button
               className="add-review"
+              onMouseEnter={(e) => {
+                const star = document.querySelector(".fa-star");
+                star.className = "fa-solid fa-star";
+              }}
+              onMouseLeave={(e) => {
+                const star = document.querySelector(".fa-star");
+                star.className = "fa-regular fa-star";
+              }}
               onClick={() =>
                 setModalContent(
                   <ReviewForm business={business} review={hasReview} />
@@ -161,7 +169,8 @@ const BusinessPage = () => {
                   <ReviewFeedItem
                     key={review.id}
                     review={review}
-                    userId={user?.id}
+                    userEmail={user?.email}
+                    business={business}
                   />
                 ))}
           </div>
