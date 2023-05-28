@@ -12,6 +12,28 @@ const StarRatingBar = ({ rating, setRating }) => {
     5: "#fb433c",
   };
 
+  const ratingText = (rating) => {
+    switch (rating) {
+      case 1:
+        return "Not good";
+
+      case 2:
+        return "Could've been better";
+
+      case 3:
+        return "OK";
+
+      case 4:
+        return "Good";
+
+      case 5:
+        return "Great";
+
+      default:
+        return "";
+    }
+  };
+
   const [disRating, setDisRating] = useState(rating);
 
   // Component that renders a single star
@@ -54,11 +76,34 @@ const StarRatingBar = ({ rating, setRating }) => {
 
   // Renders five StarIcons
   return (
-    <div className="rating-bar" style={{ display: "flex" }}>
-      {[1, 2, 3, 4, 5].map((number) => (
-        <StarIcon key={number} number={number} />
-      ))}
-    </div>
+    <>
+      <div
+        className="rating-text"
+        style={{
+          height: setRating ? "30px" : "0",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {setRating && (
+          <p
+            style={{
+              fontFamily: `"Amatic SC", cursive`,
+              fontSize: "20px",
+              fontWeight: "bold",
+            }}
+          >
+            {ratingText(disRating)}
+          </p>
+        )}
+      </div>
+
+      <div className="rating-bar" style={{ display: "flex" }}>
+        {[1, 2, 3, 4, 5].map((number) => (
+          <StarIcon key={number} number={number} />
+        ))}
+      </div>
+    </>
   );
 };
 
