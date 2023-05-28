@@ -11,9 +11,6 @@ class Image(db.Model):
     # Table columns
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(500), nullable=False)
-    url_full = db.Column(db.String(500))
-    url_regular = db.Column(db.String(500))
-    url_small = db.Column(db.String(500))
 
     user_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod("users.id")), nullable=False)
@@ -32,9 +29,7 @@ class Image(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'url_full': self.url_full,
-            'url_regular': self.url_regular,
-            'url_small': self.url_small,
+            'url': self.url,
 
             'user_id': self.user_id,
             'user': self.user.to_obj(),
@@ -50,7 +45,5 @@ class Image(db.Model):
     def to_obj(self):
         return {
             'id': self.id,
-            'url_full': self.url_full,
-            'url_regular': self.url_regular,
-            'url_small': self.url_small,
+            'url': self.url,
         }

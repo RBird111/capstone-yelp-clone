@@ -68,7 +68,7 @@ const BusinessPage = () => {
       backgroundImage: `linear-gradient(90deg, black, transparent), url(${
         Object.values(images)[
           Math.floor(Math.random() * Object.values(images).length)
-        ].url_full
+        ].url
       })`,
     };
   };

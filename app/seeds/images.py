@@ -11,9 +11,6 @@ def seed_images():
     for idx, image in enumerate(images):
         new_image = Image(
             url=image['url_regular'],
-            url_small=image['url_small'],
-            url_regular=image['url_regular'],
-            url_full=image['url_full'],
             user_id=(idx % 50) + 1,
             business_id=(idx % 30) + 1,
             review_id=idx + 1,
