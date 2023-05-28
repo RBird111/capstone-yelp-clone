@@ -26,6 +26,16 @@ sqlalchemy = "==1.4.46"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 requests = "==2.31.0"
+boto3 = "==1.26.142"
+botocore = "==1.29.142"
+certifi = "==2023.5.7"
+charset-normalizer = "==3.1.0"
+idna = "==3.4"
+importlib-metadata = "==6.6.0"
+jmespath = "==1.0.1"
+s3transfer = "==0.6.1"
+urllib3 = "==1.26.16"
+zipp = "==3.15.0"
 
 [dev-packages]
 

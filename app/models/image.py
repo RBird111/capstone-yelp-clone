@@ -10,6 +10,7 @@ class Image(db.Model):
 
     # Table columns
     id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.String(500), nullable=False)
     url_full = db.Column(db.String(500))
     url_regular = db.Column(db.String(500))
     url_small = db.Column(db.String(500))
