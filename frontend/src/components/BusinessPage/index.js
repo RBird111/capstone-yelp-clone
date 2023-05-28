@@ -113,6 +113,14 @@ const BusinessPage = () => {
           ) : user ? (
             <button
               className="add-review"
+              onMouseEnter={(e) => {
+                const star = document.querySelector(".fa-star");
+                star.className = "fa-solid fa-star";
+              }}
+              onMouseLeave={(e) => {
+                const star = document.querySelector(".fa-star");
+                star.className = "fa-regular fa-star";
+              }}
               onClick={() =>
                 setModalContent(<ReviewForm business={business} />)
               }
@@ -134,20 +142,19 @@ const BusinessPage = () => {
             {Object.values(reviews).length} review
             {Object.values(reviews).length === 1 ? "" : "s"}
           </p>
-
-          <div className="location">
-            {location.address}
-
-            <p>
-              {location.city}, {location.state}
-            </p>
-          </div>
         </div>
 
         <p className="category">
           <i className={`fa-solid ${iconClass[category]}`} />
           {category[0].toUpperCase() + category.slice(1)}
         </p>
+
+        <div className="location">
+          {location.address}
+          <p>
+            {location.city}, {location.state}
+          </p>
+        </div>
       </div>
 
       <div className="about">

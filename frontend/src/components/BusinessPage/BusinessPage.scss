@@ -83,11 +83,6 @@ div.business-page {
       .reviews {
         margin-left: 10px;
       }
-
-      .location {
-        margin-left: 10px;
-        font-size: 12px;
-      }
     }
 
     .category {
@@ -98,6 +93,12 @@ div.business-page {
       i {
         margin-right: 8px;
       }
+    }
+
+    .location {
+      font-size: 12px;
+      margin-top: 8px;
+      color: base.$blue;
     }
   }
 
