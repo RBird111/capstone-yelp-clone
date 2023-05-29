@@ -8,7 +8,6 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import Footer from "./components/Footer";
 import BusinessFeed from "./components/BusinessFeed";
-import UploadImage from "./components/UploadImage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,10 +33,6 @@ function App() {
 
           <Route path="/category/:category">
             <BusinessFeed />
-          </Route>
-
-          <Route path="/image">
-            <UploadImage />
           </Route>
 
           <Route>
