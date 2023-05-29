@@ -49,6 +49,7 @@ def update_user():
     """
     form = UserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    form.data['password'] = "temp"
 
     if not form.validate_on_submit():
         return {'errors': validation_errors_to_messages(form.errors)}, 401
@@ -62,7 +63,6 @@ def update_user():
     user.last_name = form.data['last_name']
     user.username = form.data['username']
     user.email = form.data['email']
-    user.password = form.data['password']
 
     db.session.commit()
 

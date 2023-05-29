@@ -106,12 +106,16 @@ export const updateUser = (userData) => async (dispatch) => {
     body: JSON.stringify(userData),
   });
 
-  if (!response.ok) return await handleErrors(response);
-
-  const { user } = await response.json();
-  dispatch(_updateUser(user));
-
-  return user;
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(_updateUser(data));
+    return null;
+  } else {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  }
 };
 
 export const deleteUser = (userId) => async (dispatch) => {
@@ -121,10 +125,10 @@ export const deleteUser = (userId) => async (dispatch) => {
 
   if (!response.ok) return await handleErrors(response);
 
-  const { message } = await response.json();
+  await response.json();
   dispatch(removeUser());
 
-  return message;
+  return null;
 };
 
 // ---REDUCER--- \\
