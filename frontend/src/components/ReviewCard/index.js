@@ -7,7 +7,7 @@ import ProfileIcon from "../FormElements/ProfileIcon";
 const ReviewCard = ({ review }) => {
   const history = useHistory();
 
-  const imageUrl = Object.values(review.images)[0].url_regular;
+  const imageUrl = Object.values(review.images)[0].url;
 
   return (
     <div className="review-card">

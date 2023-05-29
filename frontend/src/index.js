@@ -9,6 +9,7 @@ import * as businessActions from "./store/business";
 import * as locationActions from "./store/locations";
 import * as reviewActions from "./store/reviews";
 import * as sessionActions from "./store/session";
+import * as imageActions from "./store/images";
 import App from "./App";
 
 import "./index.scss";
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV !== "production") {
   window.store = store;
   window.normalize = normalize;
   window.businessActions = businessActions;
+  window.imageActions = imageActions;
   window.locationActions = locationActions;
   window.reviewActions = reviewActions;
   window.sessionActions = sessionActions;

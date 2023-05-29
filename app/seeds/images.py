@@ -10,9 +10,7 @@ def seed_images():
     print("\nSeeding images table...")
     for idx, image in enumerate(images):
         new_image = Image(
-            url_small=image['url_small'],
-            url_regular=image['url_regular'],
-            url_full=image['url_full'],
+            url=image['url_regular'],
             user_id=(idx % 50) + 1,
             business_id=(idx % 30) + 1,
             review_id=idx + 1,

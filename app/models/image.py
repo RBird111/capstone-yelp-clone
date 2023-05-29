@@ -10,9 +10,7 @@ class Image(db.Model):
 
     # Table columns
     id = db.Column(db.Integer, primary_key=True)
-    url_full = db.Column(db.String(500))
-    url_regular = db.Column(db.String(500))
-    url_small = db.Column(db.String(500))
+    url = db.Column(db.String(500), nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod("users.id")), nullable=False)
@@ -31,25 +29,21 @@ class Image(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'url_full': self.url_full,
-            'url_regular': self.url_regular,
-            'url_small': self.url_small,
+            'url': self.url,
 
             'user_id': self.user_id,
             'user': self.user.to_obj(),
 
             'business_id': self.business_id,
-            'business': self.business.to_obj(),
+            'business': self.business.to_obj() if self.business else {},
 
             'review_id': self.review_id,
-            'review': self.review.to_obj(),
+            'review': self.review.to_obj() if self.review else {},
         }
 
     # Partial instance to avoid circular logic
     def to_obj(self):
         return {
             'id': self.id,
-            'url_full': self.url_full,
-            'url_regular': self.url_regular,
-            'url_small': self.url_small,
+            'url': self.url,
         }

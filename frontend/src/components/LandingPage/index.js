@@ -34,7 +34,7 @@ const LandingPage = () => {
       ? null
       : Object.values(randReviews)
           .slice(6, 10)
-          .map((review) => Object.values(review.images)[0].url_regular);
+          .map((review) => Object.values(review.images)[0].url);
 
   if (!isLoaded) return <LoadingIcon />;
 
