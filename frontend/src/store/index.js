@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import businessReducer from "./business";
+import imageReducer from "./images";
 import locationReducer from "./locations";
 import reviewReducer from "./reviews";
 
@@ -53,6 +54,7 @@ export const normalize = (data) => {
 const rootReducer = combineReducers({
   session,
   business: businessReducer,
+  image: imageReducer,
   location: locationReducer,
   reviews: reviewReducer,
 });

@@ -1,11 +1,10 @@
 import os
 import uuid
 import boto3
-import botocore
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 BUCKET_NAME = os.environ.get('S3_BUCKET')
-S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
+S3_LOCATION = f"https://{BUCKET_NAME}.s3.amazonaws.com/"
 
 s3 = boto3.client(
     's3',
@@ -33,7 +32,7 @@ def upload_file_to_s3(file, acl="public-read"):
         )
     except Exception as e:
         # in case the our s3 upload fails
-        return {"errors": str(e)}, 404
+        return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}
 
@@ -49,6 +48,6 @@ def remove_file_from_s3(image_url):
             Key=key
         )
     except Exception as e:
-        return {"errors": str(e)}, 404
+        return {"errors": str(e)}
 
     return True

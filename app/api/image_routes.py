@@ -22,6 +22,32 @@ def validation_errors_to_messages(validation_errors):
     return errorMessages
 
 
+@image_routes.route("/<int:id>", methods=["GET"])
+def get_image_by_id(id):
+    """
+    GET image by id
+    """
+    image = Image.query.get(id)
+
+    if not image:
+        return {'errors': 'Image could not be found'}
+
+    return {'image': image.to_dict()}
+
+
+@image_routes.route("", methods=["GET"])
+def get_all_images():
+    """
+    GET all images
+    """
+    images = Image.query.all()
+
+    if not images:
+        return {'errors': 'Error loading images'}
+
+    return {'images': [image.to_dict() for image in images]}
+
+
 @image_routes.route("", methods=["POST"])
 @login_required
 def upload_image():
@@ -43,7 +69,7 @@ def upload_image():
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
         # so we send back that error message
-        return upload
+        return upload, 404
 
     new_image = Image(
         url=upload['url'],

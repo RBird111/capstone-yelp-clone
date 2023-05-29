@@ -35,10 +35,10 @@ class Image(db.Model):
             'user': self.user.to_obj(),
 
             'business_id': self.business_id,
-            'business': self.business.to_obj(),
+            'business': self.business.to_obj() if self.business else {},
 
             'review_id': self.review_id,
-            'review': self.review.to_obj(),
+            'review': self.review.to_obj() if self.review else {},
         }
 
     # Partial instance to avoid circular logic
