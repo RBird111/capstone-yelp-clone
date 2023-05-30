@@ -131,7 +131,7 @@ const reviewReducer = (state = initialState, action) => {
     }
 
     case UPDATE_REVIEW: {
-      const newState = { ...state };
+      const newState = { ...state, allReviews: { ...state.allReviews } };
 
       newState.currReview = normalize(action.review);
       newState.allReviews[action.review.id] = normalize(action.review);

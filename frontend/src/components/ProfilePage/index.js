@@ -1,23 +1,26 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import "./ProfilePage.scss";
 import LoadingIcon from "../FormElements/LoadingIcon";
 import UserInfo from "./UserInfo";
 import ReviewFeedItem from "../ReviewFeedItem";
+import { getAllReviews } from "../../store/reviews";
 
 const ProfilePage = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const user = useSelector((state) => state.session.user);
+  const reviews = useSelector((state) => state.reviews.allReviews);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (!user) history.push("/");
-    else setIsLoaded(true);
-  }, [history, user]);
+    else dispatch(getAllReviews()).then(() => setIsLoaded(true));
+  }, [dispatch, history, user, reviews]);
 
   if (!isLoaded) return <LoadingIcon />;
 
@@ -31,15 +34,19 @@ const ProfilePage = () => {
       <div className="personal-reviews">
         <h1>My Reviews</h1>
         <div className="user-review-items">
-          {Object.values(user.reviews).map((review) => (
-            <ReviewFeedItem
-              key={review.id}
-              review={review}
-              userEmail={user.email}
-              aboutMe={true}
-              business={review.business}
-            />
-          ))}
+          {Object.values(user.reviews).map((review) => {
+            review = reviews[review.id];
+
+            return (
+              <ReviewFeedItem
+                key={review.id}
+                review={review}
+                userEmail={user.email}
+                business={review.business}
+                aboutMe={true}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
