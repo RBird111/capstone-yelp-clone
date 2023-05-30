@@ -12,6 +12,7 @@ import ProfileButton from "./ProfileButton";
 import SignupFormPage from "../SignupFormPage";
 import BusinessForm from "../BusinessForm";
 import SearchBar from "./SearchBar";
+import { useEffect } from "react";
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ function Navigation({ isLoaded }) {
   const { setModalContent } = useModal();
 
   const sessionUser = useSelector((state) => state.session.user);
+
+  useEffect(() => {}, [sessionUser]);
 
   const loginDemo = async (e) => {
     e.preventDefault();

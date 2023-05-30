@@ -9,76 +9,53 @@ div.user-info {
   display: flex;
   flex-direction: column;
 
-  font-size: 25px;
-
-  .user-item {
+  .field {
     display: flex;
     align-items: center;
-    width: 100%;
+    margin-bottom: 20px;
+
+    input {
+      margin-right: 3px;
+      border: none;
+      outline: 1px solid base.$gray;
+      font-size: 22px;
+      border-radius: 3px;
+      padding: 0 5px;
+    }
+
+    input:focus {
+      outline: 2px solid base.$blue;
+    }
+
+    .submit {
+      border: none;
+      background-color: white;
+    }
+
+    .label {
+      margin-right: 20px;
+      font-family: "Amatic SC", cursive;
+      font-size: 30px;
+      font-weight: bold;
+      color: base.$orange;
+    }
+
+    .value {
+      font-size: 22px;
+    }
 
     i {
       cursor: pointer;
-      margin-right: 10px;
+      margin-left: 10px;
       font-size: 20px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 20px;
-      width: 20px;
     }
 
     i:hover {
       color: base.$red;
     }
 
-    .label {
-      font-weight: bold;
-      font-size: 28px;
-
-      display: flex;
-      align-items: center;
-    }
-
-    p.value {
-      margin-left: 10px;
-    }
-
-    .submit {
-      background-color: white;
-      border: none;
-
-      i {
-        cursor: pointer;
-        margin-left: 10px;
-        font-size: 20px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 20px;
-        width: 20px;
-      }
-    }
-
-    .submit {
-      i:hover {
-        color: base.$green;
-      }
-    }
-
-    input.value {
-      padding: 0 6px;
-      font-size: 28px;
-      margin-left: 10px;
-
-      outline: none;
-      border: 1px solid base.$gray;
-      border-radius: 5px;
-    }
-
-    input.value:focus {
-      border: 1px solid base.$blue;
+    i.fa-check:hover {
+      color: base.$green;
     }
   }
 }

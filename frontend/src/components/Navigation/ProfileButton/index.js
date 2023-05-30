@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import "./ProfileButton.scss";
 import { logout } from "../../../store/session";
 import ProfileIcon from "../../FormElements/ProfileIcon";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ function ProfileButton({ user }) {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    history.push("/");
     dispatch(logout());
   };
 
@@ -48,7 +49,7 @@ function ProfileButton({ user }) {
           <>
             <div className="header">
               <p>
-                {user.first_name} {user.last_name[0].toUpperCase()}.
+                {user.first_name} {user.last_name[0]}.
               </p>
             </div>
 

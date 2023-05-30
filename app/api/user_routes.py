@@ -49,7 +49,6 @@ def update_user():
     """
     form = UserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    form.data['password'] = "temp"
 
     if not form.validate_on_submit():
         return {'errors': validation_errors_to_messages(form.errors)}, 401
@@ -66,7 +65,7 @@ def update_user():
 
     db.session.commit()
 
-    return {'user': user.to_dict()}
+    return user.to_dict()
 
 
 @user_routes.route('/curr', methods=['DELETE'])
