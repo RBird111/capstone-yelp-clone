@@ -20,7 +20,7 @@ const ProfilePage = () => {
   useEffect(() => {
     if (!user) history.push("/");
     else dispatch(getAllReviews()).then(() => setIsLoaded(true));
-  }, [dispatch, history, user, reviews]);
+  }, [dispatch, history, user]);
 
   if (!isLoaded) return <LoadingIcon />;
 
