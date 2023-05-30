@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useModal } from "../../context/Modal";
 import ProfileIcon from "../FormElements/ProfileIcon";
 import StarRatingBar from "../FormElements/StarRatingBar";
@@ -5,6 +6,8 @@ import ReviewForm from "../ReviewForm";
 import "./ReviewFeedItem.scss";
 
 const ReviewFeedItem = ({ review, userEmail, business, aboutMe }) => {
+  const history = useHistory();
+
   const { user, rating, body } = review;
   const { setModalContent } = useModal();
 
@@ -12,6 +15,7 @@ const ReviewFeedItem = ({ review, userEmail, business, aboutMe }) => {
 
   const style = () => {
     if (!userOwned) return {};
+    if (aboutMe) return { outline: "2px solid #4990e2" };
     return {
       outline: "2px solid #00ac82",
     };
@@ -20,10 +24,21 @@ const ReviewFeedItem = ({ review, userEmail, business, aboutMe }) => {
   return (
     <div className="review-feed-item" style={{ ...style() }}>
       <div className="name-tag">
-        <ProfileIcon />
+        {!aboutMe && <ProfileIcon />}
 
         {userOwned && aboutMe ? (
-          <p>{business.name}</p>
+          <p
+            onClick={() => history.push(`/business/${business.id}`)}
+            style={{
+              cursor: "pointer",
+              marginLeft: "0",
+              color: "#00ac82",
+              fontSize: "28px",
+              fontFamily: `"Amatic SC", cursive`,
+            }}
+          >
+            {business.name}
+          </p>
         ) : userOwned ? (
           <p>You</p>
         ) : (
