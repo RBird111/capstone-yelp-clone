@@ -6,20 +6,20 @@ import "./ProfilePage.scss";
 import LoadingIcon from "../FormElements/LoadingIcon";
 import UserInfo from "./UserInfo";
 import ReviewFeedItem from "../ReviewFeedItem";
-import { getAllReviews } from "../../store/reviews";
+import { getUserReviews } from "../../store/reviews";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const user = useSelector((state) => state.session.user);
-  const reviews = useSelector((state) => state.reviews.allReviews);
+  const userReviews = useSelector((state) => state.reviews.userReviews);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (!user) history.push("/");
-    else dispatch(getAllReviews()).then(() => setIsLoaded(true));
+    else dispatch(getUserReviews()).then(() => setIsLoaded(true));
   }, [dispatch, history, user]);
 
   if (!isLoaded) return <LoadingIcon />;
@@ -34,19 +34,15 @@ const ProfilePage = () => {
       <div className="personal-reviews">
         <h1>My Reviews</h1>
         <div className="user-review-items">
-          {Object.values(user.reviews).map((review) => {
-            review = reviews[review.id];
-
-            return (
-              <ReviewFeedItem
-                key={review.id}
-                review={review}
-                userEmail={user.email}
-                business={review.business}
-                aboutMe={true}
-              />
-            );
-          })}
+          {Object.values(userReviews).map((review) => (
+            <ReviewFeedItem
+              key={review.id}
+              review={review}
+              userEmail={user.email}
+              business={review.business}
+              aboutMe={true}
+            />
+          ))}
         </div>
       </div>
     </div>
