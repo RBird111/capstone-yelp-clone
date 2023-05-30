@@ -105,7 +105,7 @@ const initialState = { currLocation: {}, allLocations: {} };
 const locationReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_LOCATION: {
-      const newState = { ...state, allLocations: { ...state.allLocations } };
+      const newState = normalize(state);
 
       newState.allLocations[action.location.id] = normalize(action.location);
       newState.currLocation = normalize(action.location);
@@ -114,7 +114,7 @@ const locationReducer = (state = initialState, action) => {
     }
 
     case GET_ALL_LOCATIONS: {
-      const newState = { ...state };
+      const newState = normalize(state);
 
       newState.allLocations = normalize(action.locations);
 
@@ -122,7 +122,7 @@ const locationReducer = (state = initialState, action) => {
     }
 
     case CREATE_LOCATION: {
-      const newState = { ...state, allLocations: { ...state.allLocations } };
+      const newState = normalize(state);
 
       newState.currLocation = normalize(action.location);
       newState.allLocations[action.location.id] = normalize(action.location);
@@ -131,7 +131,7 @@ const locationReducer = (state = initialState, action) => {
     }
 
     case UPDATE_LOCATION: {
-      const newState = { ...state, allLocations: { ...state.allLocations } };
+      const newState = normalize(state);
 
       newState.currLocation = normalize(action.location);
       newState.allLocations[action.location.id] = normalize(action.location);
@@ -140,7 +140,7 @@ const locationReducer = (state = initialState, action) => {
     }
 
     case DELETE_LOCATION: {
-      const newState = { ...state, allLocations: { ...state.allLocations } };
+      const newState = normalize(state);
 
       newState.currLocation = {};
       delete newState.allLocations[action.locationId];

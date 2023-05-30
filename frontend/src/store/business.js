@@ -106,7 +106,7 @@ const businessReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_BUSINESS: {
       // Create deep copy of state
-      const newState = { ...state, allBusinesses: { ...state.allBusinesses } };
+      const newState = normalize(state);
 
       // Overwrite business
       newState.currBusiness = normalize(action.business);
@@ -115,7 +115,7 @@ const businessReducer = (state = initialState, action) => {
     }
     case GET_ALL_BUSINESSES: {
       // Create deep copy of state
-      const newState = { ...state };
+      const newState = normalize(state);
 
       // Overwrite allBusinesses
       newState.allBusinesses = normalize(action.businesses);
@@ -124,7 +124,7 @@ const businessReducer = (state = initialState, action) => {
     }
     case CREATE_BUSINESS: {
       // Create deep copy of state.state.allBusinesses
-      const newState = { ...state, allBusinesses: { ...state.allBusinesses } };
+      const newState = normalize(state);
 
       // Overwrite currBusiness and allBusinesses
       newState.currBusiness = normalize(action.business);
@@ -134,7 +134,7 @@ const businessReducer = (state = initialState, action) => {
     }
     case UPDATE_BUSINESS: {
       // Create deep copy of state
-      const newState = { ...state, allBusinesses: { ...state.allBusinesses } };
+      const newState = normalize(state);
 
       // Overwrite business and allBusinesses
       newState.currBusiness = normalize(action.business);
@@ -144,7 +144,7 @@ const businessReducer = (state = initialState, action) => {
     }
     case DELETE_BUSINESS: {
       // Create deep copy of state
-      const newState = { ...state, allBusinesses: { ...state.allBusinesses } };
+      const newState = normalize(state);
 
       // Reset currBusiness
       newState.currBusiness = {};
