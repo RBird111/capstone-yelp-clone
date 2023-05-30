@@ -4,7 +4,7 @@ import StarRatingBar from "../FormElements/StarRatingBar";
 import ReviewForm from "../ReviewForm";
 import "./ReviewFeedItem.scss";
 
-const ReviewFeedItem = ({ review, userEmail, business }) => {
+const ReviewFeedItem = ({ review, userEmail, business, aboutMe }) => {
   const { user, rating, body } = review;
   const { setModalContent } = useModal();
 
@@ -22,7 +22,9 @@ const ReviewFeedItem = ({ review, userEmail, business }) => {
       <div className="name-tag">
         <ProfileIcon />
 
-        {userOwned ? (
+        {userOwned && aboutMe ? (
+          <p>{business.name}</p>
+        ) : userOwned ? (
           <p>You</p>
         ) : (
           <p>

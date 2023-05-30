@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import "./Navigation.scss";
 import { useModal } from "../../context/Modal";
@@ -12,6 +11,7 @@ import ProfileButton from "./ProfileButton";
 import SignupFormPage from "../SignupFormPage";
 import BusinessForm from "../BusinessForm";
 import SearchBar from "./SearchBar";
+import { useEffect } from "react";
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
@@ -20,9 +20,12 @@ function Navigation({ isLoaded }) {
 
   const sessionUser = useSelector((state) => state.session.user);
 
+  useEffect(() => {}, [sessionUser]);
+
   const loginDemo = async (e) => {
     e.preventDefault();
-    await dispatch(login({ credential: "demo-lition", password: "password" }));
+    const demo = await (await fetch(`/api/user/1`)).json();
+    await dispatch(login({ credential: demo.username, password: "password" }));
   };
 
   return (

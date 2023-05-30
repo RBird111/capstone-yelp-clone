@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import Footer from "./components/Footer";
 import BusinessFeed from "./components/BusinessFeed";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ function App() {
         <Switch>
           <Route exact path="/">
             <LandingPage />
+          </Route>
+
+          <Route path="/profile">
+            <ProfilePage />
           </Route>
 
           <Route path="/business/:businessId">

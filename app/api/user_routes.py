@@ -31,7 +31,6 @@ def users():
 
 
 @user_routes.route('/<int:id>', methods=['GET'])
-@login_required
 def user(id):
     """
     Query for a user by id and returns that user in a dictionary
@@ -62,11 +61,10 @@ def update_user():
     user.last_name = form.data['last_name']
     user.username = form.data['username']
     user.email = form.data['email']
-    user.password = form.data['password']
 
     db.session.commit()
 
-    return {'user': user.to_dict()}
+    return user.to_dict()
 
 
 @user_routes.route('/curr', methods=['DELETE'])
