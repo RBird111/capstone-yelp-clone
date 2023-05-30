@@ -3,6 +3,7 @@ import { handleErrors, normalize } from ".";
 // ---TYPES--- \\
 const GET_REVIEW = "reviews/GET_REVIEW";
 const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
+const GET_USER_REVIEWS = "reviews/GET_USER_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
@@ -15,6 +16,11 @@ const _getReview = (review) => ({
 
 const _getAllReviews = (reviews) => ({
   type: GET_ALL_REVIEWS,
+  reviews,
+});
+
+const _getUserReviews = (reviews) => ({
+  type: GET_USER_REVIEWS,
   reviews,
 });
 
@@ -52,6 +58,17 @@ export const getAllReviews = () => async (dispatch) => {
 
   const { reviews } = await response.json();
   dispatch(_getAllReviews(reviews));
+
+  return reviews;
+};
+
+export const getUserReviews = () => async (dispatch) => {
+  const response = await fetch(`/api/reviews/user/curr`);
+
+  if (!response.ok) return await handleErrors(response);
+
+  const { reviews } = await response.json();
+  dispatch(_getUserReviews(reviews));
 
   return reviews;
 };
@@ -100,15 +117,17 @@ export const deleteReview = (reviewId) => async (dispatch) => {
 };
 
 // ---REDUCER--- \\
-const initialState = { currReview: {}, allReviews: {} };
+const initialState = { currReview: {}, allReviews: {}, userReviews: {} };
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_REVIEW: {
       const newState = { ...state };
 
-      newState.currReview = normalize(action.review);
-      newState.allReviews[action.review.id] = normalize(action.review);
+      const newReview = normalize(action.review);
+      newState.currReview = newReview;
+      newState.allReviews[action.review.id] = newReview;
+      newState.allReviews[action.review.id] = newReview;
 
       return newState;
     }
@@ -121,20 +140,32 @@ const reviewReducer = (state = initialState, action) => {
       return newState;
     }
 
+    case GET_USER_REVIEWS: {
+      const newState = { ...state };
+
+      newState.userReviews = normalize(action.reviews);
+
+      return newState;
+    }
+
     case CREATE_REVIEW: {
       const newState = { ...state };
 
-      newState.currReview = normalize(action.review);
-      newState.allReviews[action.review.id] = normalize(action.review);
+      const newReview = normalize(action.review);
+      newState.currReview = newReview;
+      newState.allReviews[action.review.id] = newReview;
+      newState.userReviews[action.review.id] = newReview;
 
       return newState;
     }
 
     case UPDATE_REVIEW: {
-      const newState = { ...state, allReviews: { ...state.allReviews } };
+      const newState = { ...state };
 
-      newState.currReview = normalize(action.review);
-      newState.allReviews[action.review.id] = normalize(action.review);
+      const newReview = normalize(action.review);
+      newState.currReview = newReview;
+      newState.allReviews[action.review.id] = newReview;
+      newState.userReviews[action.review.id] = newReview;
 
       return newState;
     }
@@ -144,6 +175,7 @@ const reviewReducer = (state = initialState, action) => {
 
       newState.currReview = {};
       delete newState.allReviews[action.reviewid];
+      delete newState.userReviews[action.reviewid];
 
       return newState;
     }

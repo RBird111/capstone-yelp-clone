@@ -19,15 +19,13 @@ const UserInput = ({ value, label, onChange, user, form }) => {
       </p>
       <div className="disp-ele">
         {!edit ? (
-          <>
-            <p className="value">
-              {value}
-              <i
-                className="fa-solid fa-pen-to-square"
-                onClick={() => setEdit(true)}
-              />
-            </p>
-          </>
+          <p className="value">
+            {value}
+            <i
+              className="fa-solid fa-pen-to-square"
+              onClick={() => setEdit(true)}
+            />
+          </p>
         ) : (
           <>
             <input
