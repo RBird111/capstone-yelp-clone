@@ -2,43 +2,37 @@
 
 div.profile-page {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 89.4vh;
+  padding: 10px;
 
-  .side-bar {
+  .account {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
 
-    height: 100%;
-
-    width: 12vw;
-    min-width: 150px;
-
-    outline: 1px solid base.$gray;
-
-    background-color: base.$blue;
-
-    a {
-      width: 100%;
-      padding: 10px 0;
-
-      color: white;
-      text-align: center;
-      font-family: "Amatic SC", cursive;
-      font-size: 40px;
-      font-weight: bold;
-    }
-
-    a.active {
-      background-color: base.$green;
+    h1 {
+      margin-bottom: 10px;
     }
   }
 
-  .c-wrapper {
-    width: 100%;
-    height: 100%;
+  .personal-reviews {
+    width: 90%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .user-review-items {
+      height: 430px;
+      overflow-y: scroll;
+      outline: 2px solid base.$orange;
+      border-radius: 5px;
+        box-shadow: inset 0 0 5px base.$gray;
+      padding: 20px;
+    }
   }
 }

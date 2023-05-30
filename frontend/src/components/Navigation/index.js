@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import "./Navigation.scss";
 import { useModal } from "../../context/Modal";
@@ -25,7 +24,8 @@ function Navigation({ isLoaded }) {
 
   const loginDemo = async (e) => {
     e.preventDefault();
-    await dispatch(login({ credential: "demo-lition", password: "password" }));
+    const demo = await (await fetch(`/api/user/1`)).json();
+    await dispatch(login({ credential: demo.username, password: "password" }));
   };
 
   return (

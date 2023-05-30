@@ -31,7 +31,6 @@ def users():
 
 
 @user_routes.route('/<int:id>', methods=['GET'])
-@login_required
 def user(id):
     """
     Query for a user by id and returns that user in a dictionary

@@ -17,41 +17,45 @@ const UserInput = ({ value, label, onChange, user, form }) => {
           .join(" ")}
         :
       </p>
-      {!edit ? (
-        <>
-          <p className="value">{value}</p>
-          <i
-            className="fa-solid fa-pen-to-square"
-            onClick={() => setEdit(true)}
-          />
-        </>
-      ) : (
-        <>
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-          />
-          <button className="submit">
+      <div className="disp-ele">
+        {!edit ? (
+          <>
+            <p className="value">
+              {value}
+              <i
+                className="fa-solid fa-pen-to-square"
+                onClick={() => setEdit(true)}
+              />
+            </p>
+          </>
+        ) : (
+          <>
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+            />
+            <button className="submit">
+              <i
+                className="fa-solid fa-check"
+                onClick={() => {
+                  setEdit(false);
+                  form.current.dispatchEvent(
+                    new Event("submit", { cancelable: true, bubbles: true })
+                  );
+                }}
+              />
+            </button>
             <i
-              className="fa-solid fa-check"
+              className="fa-sharp fa-solid fa-xmark"
               onClick={() => {
+                onChange(user[label]);
                 setEdit(false);
-                form.current.dispatchEvent(
-                  new Event("submit", { cancelable: true, bubbles: true })
-                );
               }}
             />
-          </button>
-          <i
-            className="fa-sharp fa-solid fa-xmark"
-            onClick={() => {
-              onChange(user[label]);
-              setEdit(false);
-            }}
-          />
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 };
@@ -122,7 +126,7 @@ const UserInfo = ({ user }) => {
   };
 
   return (
-    <div className="user-info">
+    <div className="user-info-form">
       <form className="update-user" onSubmit={handleSubmit} ref={formRef}>
         {[
           [first_name, "first_name", setFirstName],

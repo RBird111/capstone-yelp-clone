@@ -1,15 +1,11 @@
-import {
-  NavLink,
-  Route,
-  Switch,
-  useHistory,
-} from "react-router-dom/cjs/react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import "./ProfilePage.scss";
 import LoadingIcon from "../FormElements/LoadingIcon";
 import UserInfo from "./UserInfo";
+import ReviewFeedItem from "../ReviewFeedItem";
 
 const ProfilePage = () => {
   const history = useHistory();
@@ -27,30 +23,24 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <div className="side-bar">
-        <NavLink exact to="/profile">
-          Profile
-        </NavLink>
-
-        <NavLink to="/profile/reviews">Reviews</NavLink>
-
-        <NavLink to="/profile/images">Images</NavLink>
+      <div className="account">
+        <h1>Account Information</h1>
+        <UserInfo user={user} />
       </div>
 
-      <div className="c-wrapper">
-        <Switch>
-          <Route exact path="/profile">
-            <UserInfo user={user} />
-          </Route>
-
-          <Route path="/profile/reviews">
-            <LoadingIcon />
-          </Route>
-
-          <Route path="/profile/images">
-            <LoadingIcon />
-          </Route>
-        </Switch>
+      <div className="personal-reviews">
+        <h1>My Reviews</h1>
+        <div className="user-review-items">
+          {Object.values(user.reviews).map((review) => (
+            <ReviewFeedItem
+              key={review.id}
+              review={review}
+              userEmail={user.email}
+              aboutMe={true}
+              business={review.business}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
