@@ -15,12 +15,25 @@ class Business(db.Model):
     category = db.Column(db.String(40))
 
     location_id = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod("locations.id")), nullable=False)
+        add_prefix_for_prod("locations.id")),
+        nullable=False
+    )
+
+    owner_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("users.id"),
+    ))
 
     location = db.relationship("Location", back_populates="business")
-    reviews = db.relationship(
-        "Review", back_populates="business", cascade='all, delete-orphan')
     images = db.relationship("Image", back_populates="business")
+    reviews = db.relationship(
+        "Review",
+        back_populates="business",
+        cascade='all, delete-orphan',
+    )
+    owner = db.relationship(
+        "User",
+        back_populates="owned_business",
+    )
 
     # Model methods
 
