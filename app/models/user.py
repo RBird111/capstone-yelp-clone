@@ -49,7 +49,7 @@ class User(db.Model, UserMixin):
             'locations': [location.to_obj() for location in self.locations],
             'reviews': [review.to_obj() for review in self.reviews],
             'images': [image.to_obj() for image in self.images],
-            'owned_business': self.owned_business[0].to_obj(),
+            'owned_business': self.owned_business[0].to_obj() if self.owned_business else None,
         }
 
     # Partial instance to avoid circular logic
