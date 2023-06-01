@@ -48,6 +48,9 @@ class Business(db.Model):
             'location_id': self.location_id,
             'location': self.location.to_obj(),
 
+            'owner_id': self.owner_id,
+            'owner': self.owner.to_obj() if self.owner else None,
+
             'avg_rating': self.avg_rating(),
             'reviews': [review.to_obj() for review in self.reviews] if self.reviews else [],
             'images': [image.to_obj() for image in self.images] if self.images else [],

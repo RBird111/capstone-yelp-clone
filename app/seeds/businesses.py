@@ -11,15 +11,20 @@ def seed_businesses():
 
     print("\nSeeding businesses table...")
     loc_arr = list(range(1, 51))
+    user_arr = list(range(1, 51))
     for business in businesses:
         location = random.choice(loc_arr)
         loc_arr.remove(location)
+
+        user = random.choice(user_arr)
+        user_arr.remove(user)
 
         new_user = Business(
             name=business['name'],
             description=business['description'],
             category=business['category'],
             location_id=location,
+            owner_id=user,
         )
         db.session.add(new_user)
 
