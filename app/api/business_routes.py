@@ -109,10 +109,20 @@ def update_business(id):
     if not business:
         return {'errors': ['Business could not be found.']}, 404
 
+    def owner_id():
+        if form.data['owner_id']:
+            return form.data['owner_id']
+        else:
+            try:
+                return business.owner_id
+            except:
+                return None
+
     business.name = form.data['name']
     business.description = form.data['description']
     business.category = form.data['category']
     business.location_id = form.data['location_id']
+    business.owner_id = owner_id()
 
     db.session.commit()
 

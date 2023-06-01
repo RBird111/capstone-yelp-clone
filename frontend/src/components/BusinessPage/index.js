@@ -7,7 +7,7 @@ import {
 
 import "./BusinessPage.scss";
 import { useModal } from "../../context/Modal";
-import { getBusiness } from "../../store/business";
+import { getBusiness, updateBusiness } from "../../store/business";
 import StarRatingBar from "../FormElements/StarRatingBar";
 import LoadingIcon from "../FormElements/LoadingIcon";
 import ReviewForm from "../ReviewForm";
@@ -60,6 +60,26 @@ const BusinessPage = () => {
     "home services": "fa-house",
   };
 
+  const claim = async (e) => {
+    e.preventDefault();
+
+    const businessData = {
+      id: business.id,
+      name: business.name,
+      description: business.description,
+      category: business.category,
+      location_id: business.location_id,
+      owner_id: user.id,
+      address: business.location.address,
+      state: business.location.state,
+      city: business.location.city,
+    };
+
+    const data = await dispatch(updateBusiness(businessData));
+    console.log("DATA =>", data);
+    await dispatch(getBusiness(business.id));
+  };
+
   const style = () => {
     if (Object.values(images).length === 0)
       return { backgroundColor: "#9b3838" };
@@ -79,13 +99,19 @@ const BusinessPage = () => {
         <div className="title">
           <div className="name">
             <h1>{name}</h1>
-            {user && (
+            {user && user.id === business.owner_id ? (
               <p
                 onClick={() =>
                   setModalContent(<BusinessForm business={business} />)
                 }
               >
                 Update Business
+              </p>
+            ) : user && !business.owner_id ? (
+              <p onClick={claim}>Claim Business!</p>
+            ) : (
+              <p className="claimed" style={{ cursor: "default" }}>
+                Claimed <i className="fa-regular fa-circle-check" />
               </p>
             )}
           </div>

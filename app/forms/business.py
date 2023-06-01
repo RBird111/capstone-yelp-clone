@@ -23,3 +23,5 @@ class BusinessForm(FlaskForm):
 
     state = StringField('state', validators=[
                         DataRequired('must submit state'), Length(1, 40)])
+
+    owner_id = StringField('owner_id')

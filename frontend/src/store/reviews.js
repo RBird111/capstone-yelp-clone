@@ -122,7 +122,7 @@ const initialState = { currReview: {}, allReviews: {}, userReviews: {} };
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_REVIEW: {
-      const newState = { ...state };
+      const newState = normalize(state);
 
       const newReview = normalize(action.review);
       newState.currReview = newReview;
@@ -133,7 +133,7 @@ const reviewReducer = (state = initialState, action) => {
     }
 
     case GET_ALL_REVIEWS: {
-      const newState = { ...state };
+      const newState = normalize(state);
 
       newState.allReviews = normalize(action.reviews);
 
@@ -141,7 +141,7 @@ const reviewReducer = (state = initialState, action) => {
     }
 
     case GET_USER_REVIEWS: {
-      const newState = { ...state };
+      const newState = normalize(state);
 
       newState.userReviews = normalize(action.reviews);
 
@@ -149,7 +149,7 @@ const reviewReducer = (state = initialState, action) => {
     }
 
     case CREATE_REVIEW: {
-      const newState = { ...state };
+      const newState = normalize(state);
 
       const newReview = normalize(action.review);
       newState.currReview = newReview;
@@ -160,7 +160,7 @@ const reviewReducer = (state = initialState, action) => {
     }
 
     case UPDATE_REVIEW: {
-      const newState = { ...state };
+      const newState = normalize(state);
 
       const newReview = normalize(action.review);
       newState.currReview = newReview;
@@ -171,7 +171,7 @@ const reviewReducer = (state = initialState, action) => {
     }
 
     case DELETE_REVIEW: {
-      const newState = { ...state };
+      const newState = normalize(state);
 
       newState.currReview = {};
       delete newState.allReviews[action.reviewid];

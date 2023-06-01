@@ -64,7 +64,7 @@ const initialState = { currImage: {}, allImages: {} };
 const imageReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_IMAGE: {
-      const newState = { ...state, allImages: { ...state.allImages } };
+      const newState = normalize(state);
 
       newState.currImage = normalize(action.image);
 
@@ -72,7 +72,7 @@ const imageReducer = (state = initialState, action) => {
     }
 
     case GET_ALL_IMAGES: {
-      const newState = { ...state, allImages: { ...state.allImages } };
+      const newState = normalize(state);
 
       newState.allImages = normalize(action.images);
 
@@ -80,7 +80,7 @@ const imageReducer = (state = initialState, action) => {
     }
 
     case UPLOAD_IMAGE: {
-      const newState = { ...state, allImages: { ...state.allImages } };
+      const newState = normalize(state);
 
       newState.currImage = normalize(action.image);
       newState.allImages[action.image.id] = normalize(action.image);
