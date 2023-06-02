@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     locations = db.relationship("UserLocation", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")
     images = db.relationship("Image", back_populates="user")
-    owned_business = db.relationship("Business", back_populates="owner")
+    owned_businesses = db.relationship("Business", back_populates="owner")
 
     # Model methods
     @property
@@ -49,7 +49,7 @@ class User(db.Model, UserMixin):
             'locations': [location.to_obj() for location in self.locations],
             'reviews': [review.to_obj() for review in self.reviews],
             'images': [image.to_obj() for image in self.images],
-            'owned_business': self.owned_business[0].to_obj() if self.owned_business else None,
+            'owned_business': [business.to_obj() for business in self.owned_businesses],
         }
 
     # Partial instance to avoid circular logic
