@@ -32,7 +32,7 @@ class Business(db.Model):
     )
     owner = db.relationship(
         "User",
-        back_populates="owned_business",
+        back_populates="owned_businesses",
     )
 
     # Model methods
