@@ -1,6 +1,6 @@
 # Welcome to Whelp...
 
-Whelp is a clone of the Yelp website. Whelp helps people who's original plans fell through and want to find something else to do in their area. It aims to be your first choice for finding your second best option.
+Whelp is a clone of the Yelp website. Whelp helps people who's original plans fell through and want to find something else to do in their area. It aims to be the best source for finding your next best options.
 
 [Live Link](https://whelp.onrender.com/)
 
