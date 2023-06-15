@@ -1,4 +1,4 @@
-import { NavLink, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 

@@ -18,7 +18,7 @@ const UploadImage = () => {
     form.append("image", image);
     form.append("business_id", businessId);
 
-    await dispatch(uploadImage(form));
+    await dispatch(uploadImage(form)).then(() => console.log("Done"));
 
     setImageLoading(false);
   };
