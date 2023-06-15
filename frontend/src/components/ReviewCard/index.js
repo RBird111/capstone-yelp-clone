@@ -1,4 +1,4 @@
-import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useHistory } from "react-router-dom";
 
 import "./ReviewCard.scss";
 import StarRatingBar from "../FormElements/StarRatingBar";
