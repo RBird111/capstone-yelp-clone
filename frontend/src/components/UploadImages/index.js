@@ -57,6 +57,20 @@ const UploadImage = () => {
 
         <div className="image-container">
           {images.length === 0 && <p>No Images Selected</p>}
+          {images.length > 0 &&
+            Array.from(images).map((file, idx) => {
+              const url = URL.createObjectURL(file);
+              const style = {
+                width: "70px",
+                height: "70px",
+              };
+
+              return (
+                <div key={idx} className="p-wrap">
+                  <img style={style} src={url} alt="prev" />
+                </div>
+              );
+            })}
         </div>
 
         <DefaultButton text={"Upload"} />
