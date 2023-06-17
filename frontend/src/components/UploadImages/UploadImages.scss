@@ -1,0 +1,39 @@
+@import "../../base.scss";
+
+.upload-images {
+  width: 500px;
+
+  &,
+  .image-container,
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  form {
+    label {
+      cursor: pointer;
+      color: white;
+      background-color: $red;
+      padding: 10px 15px;
+
+      &:hover {
+        box-shadow: 0 0 3px black;
+      }
+
+      input {
+        width: 0;
+        height: 0;
+      }
+    }
+
+    .image-container {
+      width: 450px;
+      height: 450px;
+
+      border: 1px solid $gray;
+    }
+  }
+}

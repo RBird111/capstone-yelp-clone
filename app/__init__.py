@@ -56,7 +56,8 @@ def inject_csrf_token(response):
         secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
         samesite='Strict' if os.environ.get(
             'FLASK_ENV') == 'production' else None,
-        httponly=True)
+        httponly=True
+    )
     return response
 
 
@@ -66,9 +67,10 @@ def api_help():
     Returns all API routes and their doc strings
     """
     acceptable_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-    route_list = {rule.rule: [[method for method in rule.methods if method in acceptable_methods],
-                              app.view_functions[rule.endpoint].__doc__]
-                  for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
+    route_list = {rule.rule: [
+        [method for method in rule.methods if method in acceptable_methods],
+        app.view_functions[rule.endpoint].__doc__]
+        for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
     return route_list
 
 
