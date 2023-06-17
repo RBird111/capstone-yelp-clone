@@ -1,0 +1,42 @@
+@import "../../base.scss";
+
+.upload-images {
+  width: 100vw;
+  height: 100vh;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &,
+  .image-container,
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  label {
+    cursor: pointer;
+    color: white;
+    background-color: $red;
+    padding: 10px 15px;
+
+    &:hover {
+      box-shadow: 0 0 3px black;
+    }
+
+    input {
+      width: 0;
+      height: 0;
+    }
+  }
+
+  .image-container {
+    width: 50vmin;
+    height: 50vmin;
+
+    border: 1px solid $gray;
+  }
+}

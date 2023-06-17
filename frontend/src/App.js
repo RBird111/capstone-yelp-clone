@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage";
 import Footer from "./components/Footer";
 import BusinessFeed from "./components/BusinessFeed";
 import ProfilePage from "./components/ProfilePage";
+import UploadImages from "./components/UploadImages";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,10 @@ function App() {
 
           <Route path="/category/:category">
             <BusinessFeed />
+          </Route>
+
+          <Route path={`/upload`}>
+            <UploadImages />
           </Route>
 
           <Route>
