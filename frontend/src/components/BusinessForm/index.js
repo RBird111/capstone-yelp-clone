@@ -14,7 +14,6 @@ import {
 import ConfirmDelete from "../FormElements/ConfirmDelete";
 import Error from "../FormElements/Error";
 import DefaultButton from "../FormElements/DefaultButton";
-import UploadImages from "../UploadImages";
 
 const BusinessForm = ({ business }) => {
   const dispatch = useDispatch();
@@ -33,7 +32,6 @@ const BusinessForm = ({ business }) => {
   const [description, setDescription] = useState(
     business ? business.description : ""
   );
-  const [images, setImages] = useState([]);
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -177,16 +175,6 @@ const BusinessForm = ({ business }) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-
-        <div
-          className="image-icon"
-          onClick={() =>
-            setModalContent(<UploadImages folder={{ images, setImages }} />)
-          }
-        >
-          <i className="fa-regular fa-image" />
-          <p>Add Images</p>
-        </div>
 
         <DefaultButton text={`${business ? "Update" : "Add"} Business`} />
       </form>
