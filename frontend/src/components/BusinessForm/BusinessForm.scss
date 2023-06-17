@@ -1,4 +1,4 @@
-@use "../../base.scss" as base;
+@import "../../base.scss";
 
 div.business-form {
   cursor: default;
@@ -22,7 +22,7 @@ div.business-form {
 
   .delete:hover {
     i {
-      color: base.$red;
+      color: $red;
     }
 
     .confirm {
@@ -55,7 +55,7 @@ div.business-form {
 
       border-radius: 4px;
       border: none;
-      outline: 1px solid base.$gray;
+      outline: 1px solid $gray;
 
       padding: 10px;
       margin-bottom: 15px;
@@ -64,8 +64,45 @@ div.business-form {
     }
 
     textarea:focus {
-      outline: 2px solid base.$blue;
+      outline: 2px solid $blue;
       border: none;
+    }
+
+    .image-icon {
+      position: absolute;
+      top: 2%;
+      left: 2%;
+
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+      color: $green;
+
+      i {
+        margin-right: 7px;
+        font-size: 20px;
+        transition: color 0.2s;
+      }
+
+      p {
+        opacity: 0;
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+        font-family: "Amatic SC", cursive;
+        transition: opacity 0.7s;
+      }
+
+      &:hover {
+        i {
+          color: $red;
+        }
+
+        p {
+          opacity: 1;
+        }
+      }
     }
 
     button {

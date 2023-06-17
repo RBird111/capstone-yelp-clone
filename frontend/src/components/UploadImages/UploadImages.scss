@@ -1,12 +1,7 @@
 @import "../../base.scss";
 
 .upload-images {
-  width: 100vw;
-  height: 100vh;
-
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 500px;
 
   &,
   .image-container,
@@ -34,8 +29,8 @@
   }
 
   .image-container {
-    width: 50vmin;
-    height: 50vmin;
+    width: 450px;
+    height: 450px;
 
     border: 1px solid $gray;
   }

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 import "./UploadImages.scss";
 
@@ -14,9 +13,7 @@ const returnFileSize = (number) => {
 };
 
 const UploadImages = ({ folder }) => {
-  const dispatch = useDispatch();
-
-  const { images, setImages } = folder ? folder : { images: "", setImages: "" };
+  const { images, setImages } = folder;
   const [imagesLoading, setImagesLoading] = useState(false);
 
   return (
@@ -33,7 +30,7 @@ const UploadImages = ({ folder }) => {
         </label>
 
         <div className="image-container">
-          <p>No Images Selected</p>
+          {images.length === 0 && <p>No Images Selected</p>}
         </div>
       </div>
     </>
