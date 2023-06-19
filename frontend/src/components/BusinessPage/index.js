@@ -14,6 +14,7 @@ import ReviewForm from "../ReviewForm";
 import LoginFormPage from "../LoginFormPage";
 import BusinessForm from "../BusinessForm";
 import ReviewFeedItem from "../ReviewFeedItem";
+import UploadImages from "../UploadImages";
 
 // Expects reviews to be normalized
 const alreadyReviewed = (user, reviews) => {
@@ -175,11 +176,25 @@ const BusinessPage = () => {
           {category[0].toUpperCase() + category.slice(1)}
         </p>
 
-        <div className="location">
-          {location.address}
-          <p>
-            {location.city}, {location.state}
-          </p>
+        <div className="btm-bit">
+          <div className="location">
+            {location.address}
+            <p>
+              {location.city}, {location.state}
+            </p>
+          </div>
+
+          <div
+            className="upload-image-btn"
+            style={{ visibility: user ? "visible" : "hidden" }}
+            onClick={() => {
+              if (user)
+                setModalContent(<UploadImages businessId={businessId} />);
+            }}
+          >
+            <i className="fa-solid fa-camera" />
+            <p>Upload Images!</p>
+          </div>
         </div>
       </div>
 
