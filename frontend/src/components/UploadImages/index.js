@@ -61,7 +61,7 @@ const UploadImages = ({ businessId }) => {
   };
 
   const style = () => {
-    if (images.length === 0)
+    if (images.length === 0 || imagesLoading)
       return {
         display: "flex",
         justifyContent: "center",
