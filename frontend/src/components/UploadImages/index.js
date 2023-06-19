@@ -5,6 +5,7 @@ import "./UploadImages.scss";
 import { useModal } from "../../context/Modal";
 import { uploadImage } from "../../store/images";
 import DefaultButton from "../FormElements/DefaultButton";
+import { getBusiness } from "../../store/business";
 
 const FeedItem = ({ file, images, setImages }) => {
   const url = URL.createObjectURL(file);
@@ -54,6 +55,8 @@ const UploadImages = ({ businessId }) => {
       form.append("business_id", businessId);
       await dispatch(uploadImage(form));
     }
+
+    await dispatch(getBusiness(businessId));
 
     setImagesLoading(false);
 
