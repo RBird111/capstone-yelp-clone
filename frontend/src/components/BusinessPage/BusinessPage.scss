@@ -99,10 +99,42 @@ div.business-page {
       }
     }
 
-    .location {
-      font-size: 12px;
-      margin-top: 8px;
-      color: base.$blue;
+    .btm-bit {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .location {
+        font-size: 12px;
+        margin-top: 8px;
+        color: base.$blue;
+      }
+
+      .upload-image-btn {
+        cursor: pointer;
+        font-size: 14px;
+
+        padding: 10px 15px;
+
+        color: white;
+        background-color: rgba(0, 0, 0, 0.25);
+        transition: background-color 0.4s;
+        border: 2px solid white;
+        border-radius: 4px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          box-shadow: 0 0 4px base.$gray;
+          background-color: rgba(0, 0, 0, 0.55);
+        }
+
+        i {
+          margin-right: 8px;
+        }
+      }
     }
   }
 
