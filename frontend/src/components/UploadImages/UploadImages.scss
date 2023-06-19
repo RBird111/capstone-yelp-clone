@@ -1,6 +1,7 @@
 @import "../../base.scss";
 
 .upload-images {
+  position: relative;
   width: 500px;
 
   &,
@@ -42,11 +43,23 @@
 
       overflow-y: scroll;
 
-      .empty {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      @keyframes spin {
+        0% {
+          transform: rotate(0turn);
+        }
+
+        100% {
+          transform: rotate(1turn);
+        }
+      }
+
+      .image-loader {
+        width: 90px;
+        height: 90px;
+        border-radius: 500%;
+        border: 15px solid $gray;
+        border-top: 15px solid $red;
+        animation: spin 2s linear infinite;
       }
 
       .img-feed-itm {
