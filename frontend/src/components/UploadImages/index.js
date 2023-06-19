@@ -6,17 +6,37 @@ import { useModal } from "../../context/Modal";
 import { uploadImage } from "../../store/images";
 import DefaultButton from "../FormElements/DefaultButton";
 
-const returnFileSize = (number) => {
-  if (number < 1024) {
-    return `${number} bytes`;
-  } else if (number >= 1024 && number < 1048576) {
-    return `${(number / 1024).toFixed(1)} KB`;
-  } else if (number >= 1048576) {
-    return `${(number / 1048576).toFixed(1)} MB`;
-  }
+const FeedItem = ({ file, images, setImages }) => {
+  const url = URL.createObjectURL(file);
+  const returnFileSize = (number) => {
+    if (number < 1024) {
+      return `${number} bytes`;
+    } else if (number >= 1024 && number < 1048576) {
+      return `${(number / 1024).toFixed(1)} KB`;
+    } else if (number >= 1048576) {
+      return `${(number / 1048576).toFixed(1)} MB`;
+    }
+  };
+
+  return (
+    <div className="img-feed-itm">
+      <img src={url} alt="preview" />
+      <div
+        className="hover-card"
+        onClick={() => {
+          const newImages = Array.from(images).filter((obj) => obj !== file);
+          setImages(newImages);
+        }}
+      >
+        <p>{file.name} </p>
+        <p>{returnFileSize(file.size)}</p>
+        <i className="fa-solid fa-trash fa-beat" />
+      </div>
+    </div>
+  );
 };
 
-const UploadImage = () => {
+const UploadImages = ({ businessId }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
@@ -29,10 +49,10 @@ const UploadImage = () => {
     setImagesLoading(true);
     console.log("IMAGES LOADING? before =>", imagesLoading);
 
-    for (const image of Array.from(images)) {
+    for (const image of images) {
       const form = new FormData();
       form.append("image", image);
-      // form.append("business_id", businessId);
+      form.append("business_id", businessId);
       await dispatch(uploadImage(form));
     }
 
@@ -42,59 +62,55 @@ const UploadImage = () => {
     closeModal();
   };
 
+  const style = () => {
+    if (images.length === 1)
+      return {
+        alignItems: "flex-start",
+      };
+    if (images.length === 2)
+      return {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+      };
+  };
+
   return (
     <div className="upload-images">
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label>
-          Upload Images
+          Add Images
           <input
             type="file"
             accept="image/*"
             multiple
-            onChange={(e) => setImages(e.target.files)}
+            onChange={(e) => {
+              console.log("IMAGES =>", images);
+              return setImages([...images, ...e.target.files]);
+            }}
           />
         </label>
 
-        <div className="image-container">
-          {images.length === 0 && <p>No Images Selected</p>}
-          {images.length > 0 &&
-            Array.from(images).map((file, idx) => {
-              const url = URL.createObjectURL(file);
-              const style = {
-                width: "70px",
-                height: "70px",
-              };
+        <div style={style()} className="image-container">
+          {/* Without images */}
+          {images.length === 0 && <p className="empty">No Images Selected</p>}
 
-              return (
-                <div key={idx} className="p-wrap">
-                  <img style={style} src={url} alt="prev" />
-                </div>
-              );
-            })}
+          {/* With images */}
+          {images.length > 0 &&
+            images.map((file, idx) => (
+              <FeedItem
+                key={idx}
+                file={file}
+                images={images}
+                setImages={setImages}
+              />
+            ))}
         </div>
 
         <DefaultButton text={"Upload"} />
       </form>
-    </div>
-  );
-};
-
-const UploadImages = () => {
-  const { setModalContent } = useModal();
-  const style = {
-    position: "absolute",
-    top: "0",
-    left: "0",
-    width: "100vw",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-
-  return (
-    <div style={style} onClick={() => setModalContent(<UploadImage />)}>
-      Click Me
     </div>
   );
 };
