@@ -44,10 +44,9 @@ const UploadImages = ({ businessId }) => {
   const [imagesLoading, setImagesLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefualt();
+    e.preventDefault();
 
     setImagesLoading(true);
-    console.log("IMAGES LOADING? before =>", imagesLoading);
 
     for (const image of images) {
       const form = new FormData();
@@ -57,12 +56,18 @@ const UploadImages = ({ businessId }) => {
     }
 
     setImagesLoading(false);
-    console.log("IMAGES LOADING? after =>", imagesLoading);
 
     closeModal();
   };
 
   const style = () => {
+    if (images.length === 0)
+      return {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        overflowY: "hidden",
+      };
     if (images.length === 1)
       return {
         alignItems: "flex-start",
@@ -86,20 +91,23 @@ const UploadImages = ({ businessId }) => {
             type="file"
             accept="image/*"
             multiple
-            onChange={(e) => {
-              console.log("IMAGES =>", images);
-              return setImages([...images, ...e.target.files]);
-            }}
+            onChange={(e) => setImages(e.target.files)}
           />
         </label>
 
         <div style={style()} className="image-container">
+          {/* Images being uploaded */}
+          {imagesLoading && <div className="image-loader" />}
+
           {/* Without images */}
-          {images.length === 0 && <p className="empty">No Images Selected</p>}
+          {!imagesLoading && images.length === 0 && (
+            <p className="empty">No Images Selected</p>
+          )}
 
           {/* With images */}
-          {images.length > 0 &&
-            images.map((file, idx) => (
+          {!imagesLoading &&
+            images.length > 0 &&
+            Array.from(images).map((file, idx) => (
               <FeedItem
                 key={idx}
                 file={file}
