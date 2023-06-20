@@ -26,9 +26,19 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <div className="account">
-        <h1>Account Information</h1>
-        <UserInfo user={user} />
+      <div className="acc-imgs">
+        <div className="account">
+          <h1>Account Information</h1>
+          <UserInfo user={user} />
+        </div>
+
+        <div className="imgs">
+          {/* {Object.values(user.images).map((image, idx) => (
+            <div key={idx}>
+              <img src={image.url} alt="test" />
+            </div>
+          ))} */}
+        </div>
       </div>
 
       <div className="personal-reviews">

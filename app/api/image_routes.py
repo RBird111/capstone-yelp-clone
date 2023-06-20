@@ -2,8 +2,7 @@ from flask import Blueprint, request
 from flask_login import current_user, login_required
 from app.forms.image import ImageForm
 from app.models import db, Image
-from app.s3 import (
-    upload_file_to_s3, get_unique_filename)
+from app.s3 import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
 image_routes = Blueprint("images", __name__)
 
@@ -82,3 +81,25 @@ def upload_image():
     db.session.commit()
 
     return {'image': new_image.to_dict()}
+
+
+@image_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_image(id):
+    """
+    DELETE image from S3
+    """
+    image = Image.query.get(id)
+
+    if not image:
+        return {'errors': 'Image could not be found'}
+
+    ret = remove_file_from_s3(image["url"])
+
+    if ret != True:
+        return ret
+
+    db.session.delete(image)
+    db.session.commit()
+
+    return {'message': 'Image successfully deleted.'}
