@@ -94,7 +94,9 @@ const UploadImages = ({ businessId }) => {
             type="file"
             accept="image/*"
             multiple
-            onChange={(e) => setImages(e.target.files)}
+            onChange={(e) =>
+              setImages([...Array.from(images), ...e.target.files])
+            }
           />
         </label>
 

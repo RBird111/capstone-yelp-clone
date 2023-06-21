@@ -26,9 +26,11 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page">
-      <div className="account">
-        <h1>Account Information</h1>
-        <UserInfo user={user} />
+      <div className="acc-imgs">
+        <div className="account">
+          <h1>Account Information</h1>
+          <UserInfo user={user} />
+        </div>
       </div>
 
       <div className="personal-reviews">

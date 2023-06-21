@@ -54,7 +54,7 @@ export const normalize = (data) => {
 const rootReducer = combineReducers({
   session,
   business: businessReducer,
-  image: imageReducer,
+  images: imageReducer,
   location: locationReducer,
   reviews: reviewReducer,
 });
