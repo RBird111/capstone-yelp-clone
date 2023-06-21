@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getAllReviews } from "../../store/reviews";
+import { getRandomReviews } from "../../store/reviews";
 
 import "./LandingPage.scss";
 import ReviewCard from "../ReviewCard";
@@ -10,33 +10,22 @@ import LoadingIcon from "../FormElements/LoadingIcon";
 const LandingPage = () => {
   const dispatch = useDispatch();
 
-  let reviews = useSelector((state) => state.reviews.allReviews);
+  let reviews = useSelector((state) => state.reviews.randomReviews);
   reviews = Object.values(reviews);
+  console.log("REVIEWS =>", reviews);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(getAllReviews()).then(() => setIsLoaded(true));
+    dispatch(getRandomReviews(10)).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  const randReviews = {};
-  if (reviews.length) {
-    while (Object.values(randReviews).length < 10) {
-      const review = reviews[Math.floor(Math.random() * reviews.length)];
-      if (Object.values(review.images).length === 0) continue;
-      randReviews[review.id] = review;
-    }
-  }
+  if (!isLoaded) return <LoadingIcon />;
 
   // Images for category buttons
-  const ctgImages =
-    Object.values(randReviews).length === 0
-      ? null
-      : Object.values(randReviews)
-          .slice(6, 10)
-          .map((review) => Object.values(review.images)[0].url);
-
-  if (!isLoaded) return <LoadingIcon />;
+  const ctgImages = reviews.map(
+    (review) => Object.values(review.images)[0].url
+  );
 
   return (
     <div className="landing-page">
@@ -53,11 +42,9 @@ const LandingPage = () => {
       {/* Recent Activity */}
       <h1 className="title">Recent Activity</h1>
       <div className="reviews">
-        {Object.values(randReviews)
-          .slice(0, 6)
-          .map((review) => (
-            <ReviewCard key={review.id} review={review} />
-          ))}
+        {reviews.slice(0, 6).map((review) => (
+          <ReviewCard key={review.id} review={review} />
+        ))}
       </div>
     </div>
   );
