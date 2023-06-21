@@ -47,6 +47,17 @@ def get_all_images():
     return {'images': [image.to_dict() for image in images]}
 
 
+@image_routes.route("/curr", methods=["GET"])
+@login_required
+def get_user_images():
+    """
+    GET current user's images
+    """
+    images = Image.query.where(Image.user_id == current_user.id)
+
+    return {'images': [image.to_dict() for image in images]}
+
+
 @image_routes.route("", methods=["POST"])
 @login_required
 def upload_image():
