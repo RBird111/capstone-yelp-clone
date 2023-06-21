@@ -4,6 +4,7 @@ import { handleErrors, normalize } from ".";
 const GET_REVIEW = "reviews/GET_REVIEW";
 const GET_ALL_REVIEWS = "reviews/GET_ALL_REVIEWS";
 const GET_USER_REVIEWS = "reviews/GET_USER_REVIEWS";
+const GET_RANDOM_REVIEWS = "reviews/GET_RANDOM_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
@@ -21,6 +22,11 @@ const _getAllReviews = (reviews) => ({
 
 const _getUserReviews = (reviews) => ({
   type: GET_USER_REVIEWS,
+  reviews,
+});
+
+const _getRandomReviews = (reviews) => ({
+  type: GET_RANDOM_REVIEWS,
   reviews,
 });
 
@@ -73,6 +79,17 @@ export const getUserReviews = () => async (dispatch) => {
   return reviews;
 };
 
+export const getRandomReviews = (numOfReviews) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/random/${numOfReviews}`);
+
+  if (!response.ok) return await handleErrors(response);
+
+  const { reviews } = await response.json();
+  dispatch(_getRandomReviews(reviews));
+
+  return reviews;
+};
+
 export const createReview = (reviewData) => async (dispatch) => {
   const response = await fetch(`/api/reviews`, {
     method: "POST",
@@ -117,7 +134,12 @@ export const deleteReview = (reviewId) => async (dispatch) => {
 };
 
 // ---REDUCER--- \\
-const initialState = { currReview: {}, allReviews: {}, userReviews: {} };
+const initialState = {
+  currReview: {},
+  allReviews: {},
+  userReviews: {},
+  randomReviews: {},
+};
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -144,6 +166,14 @@ const reviewReducer = (state = initialState, action) => {
       const newState = normalize(state);
 
       newState.userReviews = normalize(action.reviews);
+
+      return newState;
+    }
+
+    case GET_RANDOM_REVIEWS: {
+      const newState = normalize(state);
+
+      newState.randomReviews = normalize(action.reviews);
 
       return newState;
     }
