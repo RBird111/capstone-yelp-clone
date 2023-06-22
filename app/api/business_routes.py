@@ -26,7 +26,6 @@ def get_all_businesses():
     GET all businesses
     """
     category = request.args.get('category')
-    print("\nCATEGORY =>", category, "\n")
 
     if category:
         businesses = Business.query.where(Business.category == category).all()

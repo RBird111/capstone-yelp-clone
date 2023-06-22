@@ -12,7 +12,6 @@ const LandingPage = () => {
 
   let reviews = useSelector((state) => state.reviews.randomReviews);
   reviews = Object.values(reviews);
-  console.log("REVIEWS =>", reviews);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
