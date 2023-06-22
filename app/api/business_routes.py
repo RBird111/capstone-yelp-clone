@@ -25,7 +25,13 @@ def get_all_businesses():
     """
     GET all businesses
     """
-    businesses = Business.query.all()
+    category = request.args.get('category')
+    print("\nCATEGORY =>", category, "\n")
+
+    if category:
+        businesses = Business.query.where(Business.category == category).all()
+    else:
+        businesses = Business.query.all()
 
     if not businesses:
         return {'errors': ['Error trying to load businesses.']}, 404

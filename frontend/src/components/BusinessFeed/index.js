@@ -12,15 +12,16 @@ const BusinessFeed = () => {
 
   const { category } = useParams();
   const businesses = useSelector((state) => state.business.allBusinesses);
-  const categoryBusinesses = Object.values(businesses).filter(
-    (business) => business.category === category
-  );
+  // const categoryBusinesses = Object.values(businesses).filter(
+  //   (business) => business.category === category
+  // );
+  const categoryBusinesses = Object.values(businesses);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(getAllBusinesses()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+    dispatch(getAllBusinesses(category)).then(() => setIsLoaded(true));
+  }, [category, dispatch]);
 
   const iconClass = {
     restaurant: "fa-utensils",

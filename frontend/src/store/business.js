@@ -45,16 +45,20 @@ export const getBusiness = (businessId) => async (dispatch) => {
   return business;
 };
 
-export const getAllBusinesses = () => async (dispatch) => {
-  const response = await fetch(`/api/businesses`);
+export const getAllBusinesses =
+  (category = null) =>
+  async (dispatch) => {
+    const response = await fetch(
+      `/api/businesses${category ? "?category=" + category : ""}`
+    );
 
-  if (!response.ok) return await handleErrors(response);
+    if (!response.ok) return await handleErrors(response);
 
-  const { businesses } = await response.json();
-  dispatch(_getAllBusinesses(businesses));
+    const { businesses } = await response.json();
+    dispatch(_getAllBusinesses(businesses));
 
-  return businesses;
-};
+    return businesses;
+  };
 
 export const createBusiness = (businessData) => async (dispatch) => {
   const response = await fetch(`/api/businesses`, {
