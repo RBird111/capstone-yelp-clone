@@ -7,6 +7,13 @@ div.profile-page {
   height: 89.4vh;
   padding: 10px;
 
+  .acc-imgs {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
   .account {
     display: flex;
     flex-direction: column;
@@ -17,6 +24,11 @@ div.profile-page {
     h1 {
       margin-bottom: 10px;
     }
+  }
+
+  .imgs {
+    width: 400px;
+    height: 310px;
   }
 
   .personal-reviews {

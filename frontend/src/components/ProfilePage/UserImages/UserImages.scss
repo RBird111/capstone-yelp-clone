@@ -1,0 +1,22 @@
+@import "../../../base.scss";
+
+.user-images {
+  position: relative;
+  outline: 1px solid $orange;
+  height: 85%;
+  width: 100%;
+
+  overflow: hidden;
+  display: flex;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    &:hover {
+      filter: blur(0.5rem);
+    }
+  }
+}

@@ -7,6 +7,7 @@ import LoadingIcon from "../FormElements/LoadingIcon";
 import UserInfo from "./UserInfo";
 import ReviewFeedItem from "../ReviewFeedItem";
 import { getUserReviews } from "../../store/reviews";
+import UserImages from "./UserImages";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,11 @@ const ProfilePage = () => {
         <div className="account">
           <h1>Account Information</h1>
           <UserInfo user={user} />
+        </div>
+
+        <div className="imgs">
+          <h1>My Images</h1>
+          <UserImages user={user} />
         </div>
       </div>
 
