@@ -105,7 +105,7 @@ def delete_image(id):
     if not image:
         return {'errors': 'Image could not be found'}
 
-    ret = remove_file_from_s3(image["url"])
+    ret = remove_file_from_s3(image.url)
 
     if ret != True:
         return ret

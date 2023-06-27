@@ -12,6 +12,10 @@ div.profile-page {
     justify-content: space-around;
     flex-wrap: wrap;
     width: 100%;
+
+    h1 {
+      margin-bottom: 10px;
+    }
   }
 
   .account {
