@@ -23,7 +23,7 @@ const LandingPage = () => {
 
   // Images for category buttons
   const ctgImages = reviews.map(
-    (review) => Object.values(review.images)[0].url
+    (review) => Object.values(review.images)[0]?.url
   );
 
   return (
