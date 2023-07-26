@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   useHistory,
   useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
+} from "react-router-dom";
 
 import "./BusinessPage.scss";
 import { useModal } from "../../context/Modal";
