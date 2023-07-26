@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
