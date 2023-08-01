@@ -107,7 +107,7 @@ def delete_image(id):
 
     ret = remove_file_from_s3(image.url)
 
-    if ret != True:
+    if ret is not True:
         return ret
 
     db.session.delete(image)
