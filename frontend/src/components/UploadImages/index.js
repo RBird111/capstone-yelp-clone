@@ -87,8 +87,7 @@ const UploadImages = ({ businessId }) => {
 
   return (
     <div className="upload-images">
-      {/* <form onSubmit={handleSubmit} encType="multipart/form-data"> */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label>
           Add Images
           <input
