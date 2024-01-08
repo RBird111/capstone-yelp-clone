@@ -112,7 +112,11 @@ const UserImages = () => {
       className="user-images"
       onClick={() => setModalContent(<GalleryModal />)}
     >
-      <img className={fade ?? "img"} src={images[idx].url} alt="carousel" />
+      {length ? (
+        <img className={fade ?? "img"} src={images[idx]?.url} alt="carousel" />
+      ) : (
+        <p>You haven't uploaded any images</p>
+      )}
     </div>
   );
 };
