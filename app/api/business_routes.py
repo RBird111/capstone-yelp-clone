@@ -148,4 +148,4 @@ def delete_business(id):
     db.session.delete(business)
     db.session.commit()
 
-    return {'message': 'Business sucessfully deleted.'}
+    return {'message': 'Business successfully deleted.'}

@@ -7,7 +7,7 @@ from flask_login import current_user, login_user, logout_user
 auth_routes = Blueprint('auth', __name__)
 
 
-# Function that returns a list of error messasges
+# Function that returns a list of error messages
 def validation_errors_to_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list

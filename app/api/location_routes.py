@@ -28,7 +28,7 @@ def get_all_locations():
     locations = Location.query.all()
 
     if not locations:
-        return {'errors': ['Error tryinig to load locations.']}, 404
+        return {'errors': ['Error trying to load locations.']}, 404
 
     return {'locations': [location.to_dict() for location in locations]}
 
