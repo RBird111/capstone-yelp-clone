@@ -1,4 +1,4 @@
-# Welcome to Whelp...
+# Welcome to Whelp
 
 Whelp is a clone of the Yelp website. Whelp helps people who's original plans fell through and want to find something else to do in their area. It aims to be the best source for finding your next best options.
 
@@ -46,7 +46,7 @@ Whelp is a clone of the Yelp website. Whelp helps people who's original plans fe
 
 4. Set up database by running the following commands:
 
-   ```
+   ```sh
    pipenv shell
    flask db upgrade
    flask seed all
@@ -55,7 +55,8 @@ Whelp is a clone of the Yelp website. Whelp helps people who's original plans fe
 5. Start backend server by running the `flask run` command.
 
 6. Start frontend server by running the following commands:
-   ```
+
+   ```sh
    cd frontend
    npm start
    ```
